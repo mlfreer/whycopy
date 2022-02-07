@@ -4,7 +4,40 @@
 
 {{ block content }}
 
-    {{ next_button }}
+
+<font size="4">
+<table class="table">
+    <tr>
+        <td> Round chosen for payment </td>
+        <td> {{player.payment_round}} </td>
+    </tr>
+    <tr>
+        <td> You have chosen Option </td>
+        <td> {{player.lottery_choice}} </td>
+    </tr>
+    <tr>
+        <td> You have chosen </td>
+        {% if player.delegation_choice > -1 %}
+        <td>
+            to delegate
+        </td>
+        {% else %}
+        <td>
+            not to delegate
+        </td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td> Your payment is </td>
+        <td> {{player.payoff}}</td>
+    </tr>
+</table>
+</font>
+
+
+
+
+
 {{ endblock }}
 
 

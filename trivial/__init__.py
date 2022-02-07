@@ -1,5 +1,6 @@
 from otree.api import *
 
+import random
 
 doc = """
 Your app description
@@ -33,12 +34,15 @@ class C(BaseConstants):
 
     # defining experts:
     EXPERTS_average_payoff = [0 for i in range(0,5)]
+    EXPERTS_average_payoff = [2, 3, 4, 1, 6]
 
     EXPERTS_risk_rating = [0 for i in range(0,5)]
+    EXPERTS_risk_rating = ['A', 'D', 'E', 'B', 'C']
 
     EXPERTS_quality_rating = [0 for i in range(0,5)]
+    EXPERTS_quality_rating = ['D', 'A', 'B', 'C', 'E']
 
-    EXPERTS_choices = [[0 for i in range(0,5)] for i in range(0,5)]
+    EXPERTS_choices = [[1 for i in range(0,5)] for i in range(0,5)]
 
 
 
@@ -52,11 +56,37 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # lottery choice:
-    lottery_choice = models.IntegerField(min=0,max=1)
+    lottery_choice = models.IntegerField(min=1,max=2)
 
     # delegation choice:
-    to_delegate = models.IntegerField(min=0,max=1)
-    whom_delegate = models.IntegerField(min=0,max=C.NUM_OF_EXPERTS)
+    delegation_choice = models.IntegerField(min=-1,max=C.NUM_OF_EXPERTS)
+
+    # payment round
+    payment_round = models.IntegerField(min=1,max=C.NUM_ROUNDS)
+
+
+#-----------------------------------------------
+# METHODS
+#-----------------------------------------------
+def set_payoffs(player: Player):
+    player.payment_round = random.randint(1,C.NUM_ROUNDS)
+    p = player.in_round(player.payment_round)
+    if player.delegation_choice == -1:
+        choice = p.lottery_choice
+    else:
+        choice = C.EXPERTS_choices[p.delegation_choice][player.payment_round-1]
+    r = random.uniform(0,1)
+    if choice == 1:
+        if r<C.P_HEADS:
+            player.payoff = C.Lottery1[player.payment_round-1][0]
+        else:
+            player.payoff = C.Lottery1[player.payment_round-1][1]
+    if choice == 2:
+        if r<C.P_HEADS:
+            player.payoff = C.Lottery2[player.payment_round-1][0]
+        else:
+            player.payoff = C.Lottery2[player.payment_round-1][1]
+
 
 
 # PAGES
@@ -64,6 +94,7 @@ class DecisionScreen(Page):
     form_model = 'player'
     form_fields = ['lottery_choice']
 
+    @staticmethod
     def vars_for_template(player):
         i = player.subsession.round_number-1
         return dict(
@@ -71,18 +102,41 @@ class DecisionScreen(Page):
             lottery_2 = C.Lottery2[i],
             )
 
+class DelegationScreen(Page):
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
 
-class ResultsWaitPage(WaitPage):
-    pass
+    form_model = 'player'
+    form_fields = ['delegation_choice']
+
+    @staticmethod
+    def vars_for_template(player):
+        experts = [[0 for i in range(0,4)] for i in range(0,4)]
+        for i in range(0,4):
+            experts[i] = [C.EXPERTS_average_payoff[i], C.EXPERTS_risk_rating[i], C.EXPERTS_quality_rating[i], i]
+
+        return dict(
+            experts = [experts[i] for i in range(0,4)]
+            )
+
+
+
+class ResultsComputePage(Page):
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
+    def before_next_page(player, timeout_happened):
+        set_payoffs(player)
 
 
 class Results(Page):
-    pass
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
 
 
 page_sequence = [
-                DecisionScreen, 
-                ResultsWaitPage, 
+                DecisionScreen,
+                DelegationScreen,
+                ResultsComputePage, 
                 Results
                 ]
 

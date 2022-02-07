@@ -1,0 +1,60 @@
+{{ block title }}
+    Please take a decision
+{{ endblock }}
+
+{{ block content }}
+<font size="4">
+<table class="table">
+    <tr>
+        <td>
+            <input id="NoDelegation" type="radio" name="delegation_choice" value="-1" required>
+        </td>
+        <td>
+        I do not want to delegate my decision
+        </td>
+    </tr>
+    <tr>
+    </tr>
+</table>
+
+<br><br>
+
+If you want to delegate please select one of the options below
+
+<br><br>
+
+<table class="table">
+    <tr>
+        <td> </td>
+        <td> <b> Average Payoff </b> </td>
+        <td> <b> Risk Rating </b> </td>
+        <td> <b> Quality Rating </b> </td>
+    </tr>
+    {% for e in experts %}
+    <tr>
+        <td> 
+            <input id="1" type="radio" name="delegation_choice" value="{{e.3}}" required>
+        </td>
+        <td>
+            {{e.0}}
+        </td>
+        <td>
+            {{e.1}}
+        </td>
+        <td>
+            {{e.2}}
+        </td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> {{next_button}} </td>
+    </tr>
+</table>
+
+</font>
+
+{{ endblock }}
