@@ -1,0 +1,44 @@
+{{ block title }}
+    Please take a decision
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+    <table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if H </b> </td>
+            <td> <b> Paymemt if T </b> </td>
+        </tr>
+
+        <tr>
+            <td> <input id="Option1" type="radio" name="lottery_choice" value="1" required>  <b> Option 1 </b>
+            </td>
+            <td>
+                <b> {{ lottery_1.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_1.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> <input id="Option1" type="radio" name="lottery_choice" value="2" required>  <b> Option 2 </b>
+            </td>
+            <td>
+                <b> {{ lottery_2.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_2.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> {{ next_button }} </td>
+        </tr>
+    </table>
+</font>
+    
+
+{{ endblock }}
