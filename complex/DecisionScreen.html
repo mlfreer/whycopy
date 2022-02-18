@@ -1,0 +1,372 @@
+{{ block title }}
+    Please take a decision
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+    <table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if H </b> </td>
+            <td> <b> Paymemt if T </b> </td>
+            <td> </td>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 1 </b>
+            </td>
+            <td>
+                <b> 1 </b>
+            </td>
+            <td>
+                <b> 2 </b>
+            </td>
+            <td> 
+                <input type="range" oninput = "update_value(option1_slider,option1_form)" min="0" max="100" class="slider" id="option1" value="0" name="portfolio_shares_a1">
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_dec" value="-">
+                <input type="number" oninput = "update_value(option1_form,option1_slider)" class="form-control" id="option1_form" name="portfolio_shares_a1" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td> <b> Option 2 </b>
+            </td>
+            <td>
+                <b> 2 </b>
+            </td>
+            <td>
+                <b> 1 </b>
+            </td>
+            <td>
+                <input type="range" oninput = "update_value(option2_slider,option2_form)" min="0" max="100" id="option2" value="0" name="portfolio_shares_a2">
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option2_form,option2_slider)"  class="btn btn-outline-secondary" id="option2_form_dec" value="-">
+                <input type="number" oninput = "update_value(option2_form,option2_slider)" class="form-control" id="option2_form" name="portfolio_shares_a2" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option2_form,option2_slider)" class="btn btn-outline-secondary" id="option2_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 3 </b>
+            </td>
+            <td>
+                <b> 3 </b>
+            </td>
+            <td>
+                <b> 1 </b>
+            </td>
+            <td>
+                <input type="range" oninput = "update_value(option3_slider,option3_form)" min="0" max="100" id="option3" value="0" name="portfolio_shares_a3">
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option3_form,option3_slider)"  class="btn btn-outline-secondary" id="option3_form_dec" value="-">
+                <input type="number" oninput = "update_value(option3_form,option3_slider)" class="form-control" id="option3_form" name="portfolio_shares_a3" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option3_form,option3_slider)" class="btn btn-outline-secondary" id="option3_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 4 </b>
+            </td>
+            <td>
+                <b> 4 </b>
+            </td>
+            <td>
+                <b> 1 </b>
+            </td>
+            <td>
+                <input type="range" oninput = "update_value(option4_slider,option4_form)" min="0" max="100" id="option4" value="0" name="portfolio_shares_a4">
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option4_form,option4_slider)"  class="btn btn-outline-secondary" id="option4_form_dec" value="-">
+                <input type="number" oninput = "update_value(option4_form,option4_slider)" class="form-control" id="option4_form" name="portfolio_shares_a4" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option4_form,option4_slider)" class="btn btn-outline-secondary" id="option4_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td> <b> Option 5 </b>
+            </td>
+            <td>
+                <b> 1 </b>
+            </td>
+            <td>
+                <b> 5 </b>
+            </td>
+            <td>
+                <input type="range" oninput = "update_value(option5_slider,option5_form)" min="0" max="100" id="option5" value="0" name="portfolio_shares_a5">
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option5_form,option5_slider)"  class="btn btn-outline-secondary" id="option5_form_dec" value="-">
+                <input type="number" oninput = "update_value(option5_form,option5_slider)" class="form-control" id="option5_form" name="portfolio_shares_a5" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option5_form,option5_slider)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td> <b>Tokens</b> </td>
+            <td> </td>
+            <td> </td>
+            <td> <input type="range" oninput = "update_value(tokens_slider,tokens_form)" min="0" max="100" value="100" id="tokens_slider" name="tokens"> </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(tokens_form,tokens_slider)"  class="btn btn-outline-secondary" id="tokens_dec" value="-">
+                <input type="number" oninput = "update_value(tokens_form,tokens_slider)" class="form-control" id="tokens_form" name="tokens" min="0" max="100" step="1" value="100"/>
+                <input type="button" onclick="inc(tokens_form,tokens_slider)" class="btn btn-outline-secondary" id="tokens_inc" value="+">
+            </div>
+        </tr>
+
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> <input type="button" onclick="reset()" class="btn btn-primary" value="Reset">  </td>
+            <td> {% next_button %}</td>
+        </tr>
+    </table>
+</font>
+
+
+
+<script>
+// fixing option 1:
+var option1_slider = document.getElementById("option1");
+var option1_form = document.getElementById("option1_form");
+option1_form.value = option1_slider.value;
+
+// fixing option 2:
+var option2_slider = document.getElementById("option2");
+var option2_form = document.getElementById("option2_form");
+option2_form.value = option2_slider.value;
+
+// fixing option 3:
+var option3_slider = document.getElementById("option3");
+var option3_form = document.getElementById("option3_form");
+option3_form.value = option3_slider.value;
+
+// fixing option 4:
+var option4_slider = document.getElementById("option4");
+var option4_form = document.getElementById("option4_form");
+option4_form.value = option4_slider.value;
+
+// fixing option 5:
+var option5_slider = document.getElementById("option5");
+var option5_form = document.getElementById("option5_form");
+option5_form.value = option5_slider.value;
+
+
+// fixing tokens:
+var tokens_slider = document.getElementById("tokens_slider");
+var tokens_form = document.getElementById("tokens_form");
+tokens_form.value = tokens_slider.value;
+
+
+
+// resetting the values
+function reset() {
+    option1_form.value = 0
+    option2_form.value = 0
+    option3_form.value = 0
+    option4_form.value = 0
+    option5_form.value = 0
+
+    option1_slider.value = 0
+    option2_slider.value = 0
+    option3_slider.value = 0
+    option4_slider.value = 0
+    option5_slider.value = 0
+
+    tokens_form.value = 100
+    tokens_slider.value = 100
+}
+
+// updating value from x to y:
+function update_value(x,y) {
+    a = parseFloat(tokens_form.value)
+    b = parseFloat(x.value)
+    c = parseFloat(y.value)
+
+    if ((x.id=="tokens_form") || (x.id=="tokens_slider"))
+    {
+        diff = (b-c)/4
+
+        option1 = parseFloat(option1_form.value)
+        option2 = parseFloat(option2_form.value)
+        option3 = parseFloat(option3_form.value)
+        option4 = parseFloat(option4_form.value)
+        option5 = parseFloat(option5_form.value)
+//        window.alert(option1-diff)
+        if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100))
+        {
+            y.value = x.value
+            option1_form.value = option1 - diff
+            option2_form.value = option2 - diff
+            option3_form.value = option3 - diff
+            option4_form.value = option4 - diff
+            option5_form.value = option5 - diff
+
+            option1_slider.value = option1 - diff
+            option2_slider.value = option2 - diff
+            option3_slider.value = option3 - diff
+            option4_slider.value = option4 - diff
+            option5_slider.value = option5 - diff
+        }
+        else
+        {
+            if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0))
+            {
+                y.value = x.value
+                option1_form.value = option1 - diff
+                option2_form.value = option2 - diff
+                option3_form.value = option3 - diff
+                option4_form.value = option4 - diff
+                option5_form.value = option5 - diff
+
+                option1_slider.value = option1 - diff
+                option2_slider.value = option2 - diff
+                option3_slider.value = option3 - diff
+                option4_slider.value = option4 - diff
+                option5_slider.value = option5 - diff
+            }
+            else
+            {
+                x.value = y.value
+
+            }
+        }
+    }
+    else
+    {
+        if (a-b+c >= 0) {
+            tokens_form.value=a-b+c
+            tokens_slider.value = tokens_form.value
+            y.value = x.value;
+        }
+        else
+        {
+            x.value=y.value
+        }
+    }    
+}
+
+
+// to operationlize the buttons
+function dec(form,slider) {
+    a = parseFloat(form.value)
+    if (a >= 1) {       
+        form.value--
+        update_value(form,slider)
+    };
+}
+
+function inc(form,slider) {
+    a = parseFloat(form.value)
+    if (a <= 99) {       
+        form.value++
+        update_value(form,slider)
+    };
+}
+
+
+
+</script>
+
+
+
+
+
+
+<style>
+input[type="range"] { 
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 10px; /* iOS */
+}
+
+::-webkit-slider-runnable-track {
+    background: #ddd;
+}
+
+/*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ */
+::-webkit-slider-thumb {
+    border-radius: 10px;
+    -webkit-appearance: none;
+    width: 20px; /* 1 */
+    height: 40px;
+    background: #0275d8;
+    box-shadow: -100.5vw 0 0 100vw #0275d8;
+    border: 0px solid #0275d8; /* 1 */
+}
+
+::-moz-range-track {
+    height: 40px;
+    background: #ddd;
+}
+
+::-moz-range-thumb {
+    background: #0275d8;
+    height: 40px;
+    width: 20px;
+    border: 3px solid #0275d8;
+    border-radius: 10px;
+    box-shadow: -100vw 0 0 100vw #0275d8;
+    box-sizing: border-box;
+}
+
+::-ms-fill-lower { 
+    background: blue;
+}
+
+::-ms-thumb { 
+    background: #0275d8;
+    border: 2px solid #0275d8;
+    height: 40px;
+    width: 20px;
+    box-sizing: border-box;
+}
+
+::-ms-ticks-after { 
+    display: none; 
+}
+
+::-ms-ticks-before { 
+    display: none; 
+}
+
+::-ms-track { 
+    background: #ddd;
+    color: transparent;
+    height: 40px;
+    border: none;
+}
+
+::-ms-tooltip { 
+    display: none;
+}
+</style>
+
+{{ endblock }}
