@@ -64,6 +64,12 @@ class Player(BasePlayer):
     # payment round
     payment_round = models.IntegerField(min=1,max=C.NUM_ROUNDS)
 
+    # final choice:
+    final_choice = models.IntegerField(initial=0)
+
+    # state of the world
+    state_of_the_world = models.BooleanField(initial=False)
+
 
 #-----------------------------------------------
 # METHODS
@@ -75,16 +81,22 @@ def set_payoffs(player: Player):
         choice = p.lottery_choice
     else:
         choice = C.EXPERTS_choices[p.delegation_choice][player.payment_round-1]
+
+    player.final_choice = choice
     r = random.uniform(0,1)
     if choice == 1:
         if r<C.P_HEADS:
+            player.state_of_the_world = True
             player.payoff = C.Lottery1[player.payment_round-1][0]
         else:
+            player.state_of_the_world = False
             player.payoff = C.Lottery1[player.payment_round-1][1]
     if choice == 2:
         if r<C.P_HEADS:
+            player.state_of_the_world = True
             player.payoff = C.Lottery2[player.payment_round-1][0]
         else:
+            player.state_of_the_world = False
             player.payoff = C.Lottery2[player.payment_round-1][1]
 
 
@@ -134,6 +146,15 @@ class ResultsComputePage(Page):
 class Results(Page):
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
+
+    @staticmethod
+    def vars_for_template(player):
+        i = player.payment_round-1
+        return dict(
+            lottery_1 = C.Lottery1[i],
+            lottery_2 = C.Lottery2[i],
+            state_of_the_world = player.state_of_the_world
+            )
 
 
 page_sequence = [

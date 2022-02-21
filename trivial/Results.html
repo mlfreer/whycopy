@@ -7,13 +7,31 @@
 
 <font size="4">
 <table class="table">
-    <tr>
+    <tr style="border-bottom:2pt solid black;">
         <td> Round chosen for payment </td>
         <td> {{player.payment_round}} </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+
+    <tr>
+        <td> Options </td>
+        <td> Payment if <b> Heads </b> </td>
+        <td> Payment if <b> Tails </b> </td>
+        <td> Chosen </td>
     </tr>
     <tr>
-        <td> You have chosen Option </td>
-        <td> {{player.lottery_choice}} </td>
+        <td> Option 1 </td>
+        <td> {{lottery_1.0}} </td>
+        <td> {{lottery_1.1}} </td>
+        <td> {% if player.final_choice == 1 %} <b> YES </b> {% endif %} </td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Option 2 </td>
+        <td> {{lottery_2.0}} </td>
+        <td> {{lottery_2.1}} </td>
+        <td> {% if player.final_choice == 2 %} <b> YES </b> {% endif %} </td>
     </tr>
     <tr>
         <td> You have chosen </td>
@@ -26,10 +44,27 @@
             not to delegate
         </td>
         {% endif %}
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> The state of the world is </td>
+        {% if state_of_the_world == True %}
+        <td> <b> Heads </b> </td>
+        {% else %}
+        <td> <b> Tails </b> </td>
+        {% endif %}
+        <td> </td>
+        <td> </td>
+        <td> </td>
     </tr>
     <tr>
         <td> Your payment is </td>
         <td> {{player.payoff}}</td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
     </tr>
 </table>
 </font>

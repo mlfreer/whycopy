@@ -10,7 +10,7 @@ Your app description
 class C(BaseConstants):
     NAME_IN_URL = 'complex'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 1
+    NUM_ROUNDS = 2
 
     # Probability of HEADS:
     P_HEADS = .5
@@ -23,22 +23,27 @@ class C(BaseConstants):
     # array for the first lottery:
     Lottery1 = [[0 for i in range(0,5)] for i in range(0,2)]
     Lottery1[0] = [90, 10]
+    Lottery1[1] = [10, 90]
 
     # array for the second lottery:
     Lottery2 = [[0 for i in range(0,5)] for i in range(0,2)]
     Lottery2[0] = [70, 30]
+    Lottery2[1] = [30, 60]
 
     # array for the third lottery:
     Lottery3 = [[0 for i in range(0,5)] for i in range(0,2)]
     Lottery3[0] = [50, 40]
+    Lottery3[1] = [40, 50]
 
     # array for the fourth lottery:
     Lottery4 = [[0 for i in range(0,5)] for i in range(0,2)]
     Lottery4[0] = [30, 60]
+    Lottery4[1] = [70, 30]
 
     # array for the fith lottery:
     Lottery5 = [[0 for i in range(0,5)] for i in range(0,2)]
     Lottery5[0] = [10, 90]
+    Lottery5[1] = [90, 10]
 
     # defining experts:
     EXPERTS_average_payoff = [0 for i in range(0,5)]
@@ -128,7 +133,8 @@ def set_payoffs(player: Player):
 # PAGES
 #--------------------------------------------
 class Welcome(Page):
-    pass
+    def is_displayed(player):
+        return player.subsession.round_number == 1
 
 class DecisionScreen(Page):
     template_name = '_static/templates/Complex_DecisionScreen.html'
