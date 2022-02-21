@@ -91,6 +91,7 @@ def set_payoffs(player: Player):
 
 # PAGES
 class DecisionScreen(Page):
+    template_name = '_static/templates/Trivial_DecisionScreen.html'
     form_model = 'player'
     form_fields = ['lottery_choice']
 
@@ -106,6 +107,7 @@ class DelegationScreen(Page):
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
 
+    template_name = '_static/templates/DelegationScreen.html'
     form_model = 'player'
     form_fields = ['delegation_choice']
 
@@ -122,6 +124,7 @@ class DelegationScreen(Page):
 
 
 class ResultsComputePage(Page):
+    template_name = '_static/templates/ResultsComputePage.html'
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
     def before_next_page(player, timeout_happened):

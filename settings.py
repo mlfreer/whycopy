@@ -2,12 +2,12 @@ from os import environ
 
 SESSION_CONFIGS = [
      dict(
-         name='trivial',
+         name='Trivial_Delegation',
          app_sequence=['trivial'],
          num_demo_participants=1,
      ),
      dict(
-         name='complex',
+         name='Complex_Delegation',
          app_sequence=['complex'],
          num_demo_participants=1,
      ),
@@ -30,7 +30,7 @@ SESSION_FIELDS = []
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False
 
 ADMIN_USERNAME = 'admin'
