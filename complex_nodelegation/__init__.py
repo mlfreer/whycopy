@@ -8,7 +8,7 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'complex'
+    NAME_IN_URL = 'complex_nodelegation'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 2
 
@@ -77,8 +77,6 @@ class Player(BasePlayer):
     portfolio_shares_a5 = models.FloatField()
     tokens = models.FloatField()
 
-    delegation_choice = models.IntegerField()
-
     payment_round = models.IntegerField()
 
     # final investment
@@ -99,10 +97,9 @@ def set_payoffs(player: Player):
     player.payment_round = random.randint(1,C.NUM_ROUNDS)
     p = player.in_round(player.payment_round)
     choice = [0 for i in range(0,5)]
-    if player.delegation_choice == -1:
-        choice = [p.portfolio_shares_a1, p.portfolio_shares_a2, p.portfolio_shares_a3, p.portfolio_shares_a4, p.portfolio_shares_a5]
-    else:
-        choice = C.EXPERTS_choices[p.delegation_choice][player.payment_round-1]
+    
+    choice = [p.portfolio_shares_a1, p.portfolio_shares_a2, p.portfolio_shares_a3, p.portfolio_shares_a4, p.portfolio_shares_a5]
+    
     
     player.final_choice_a1 = choice[0]
     player.final_choice_a2 = choice[1]
@@ -158,25 +155,6 @@ class DecisionScreen(Page):
             return 'Please spend the entire budget'
 
 
-class DelegationScreen(Page):
-    def is_displayed(player):
-        return player.subsession.round_number == C.NUM_ROUNDS
-
-    template_name = '_static/templates/DelegationScreen.html'
-    form_model = 'player'
-    form_fields = ['delegation_choice']
-
-    @staticmethod
-    def vars_for_template(player):
-        experts = [[0 for i in range(0,4)] for i in range(0,4)]
-        for i in range(0,4):
-            experts[i] = [C.EXPERTS_average_payoff[i], C.EXPERTS_risk_rating[i], C.EXPERTS_quality_rating[i], i]
-
-        return dict(
-            experts = [experts[i] for i in range(0,4)]
-            )
-
-
 class ResultsComputePage(Page):
     template_name = '_static/templates/ResultsComputePage.html'
     def is_displayed(player):
@@ -185,7 +163,7 @@ class ResultsComputePage(Page):
         set_payoffs(player)
 
 class Results(Page):
-    template_name = '_static/templates/Complex_Results.html'
+#    template_name = '_static/templates/Complex_Results.html'
 
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
@@ -211,7 +189,6 @@ class Results(Page):
 page_sequence = [
                 Welcome,
                 DecisionScreen,
-                DelegationScreen,
                 ResultsComputePage,
                 Results
                 ]

@@ -1,0 +1,77 @@
+{{ block title }}
+    Final Results
+{{ endblock }}
+
+{{ block content }}
+
+
+<font size="4">
+<table class="table">
+    <tr style="border-bottom:2pt solid black;">
+        <td> Round chosen for payment </td>
+        <td> {{player.payment_round}} </td>
+    </tr>
+    <tr>
+        <td> Options </td>
+        <td> Payment if <b> Heads </b> </td>
+        <td> Payment if <b> Tails </b> </td>
+        <td> Chosen to invest </td>
+    </tr>
+    <tr>
+        <td> Option 1 </td>
+        <td> {{lottery_1.0}} </td>
+        <td> {{lottery_1.1}} </td>
+        <td> {{ player.final_choice_a1 }}</td>
+    </tr>
+    <tr>
+        <td> Option 2 </td>
+        <td> {{lottery_2.0}} </td>
+        <td> {{lottery_2.1}} </td>
+        <td> {{ player.final_choice_a2 }}</td>
+    </tr>
+    <tr>
+        <td> Option 3 </td>
+        <td> {{lottery_3.0}} </td>
+        <td> {{lottery_3.1}} </td>
+        <td> {{ player.final_choice_a3 }}</td>
+    </tr>
+    <tr>
+        <td> Option 4 </td>
+        <td> {{lottery_4.0}} </td>
+        <td> {{lottery_4.1}} </td>
+        <td> {{ player.final_choice_a4 }}</td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Option 5 </td>
+        <td> {{lottery_5.0}} </td>
+        <td> {{lottery_5.1}} </td>
+        <td> {{ player.final_choice_a5 }}</td>
+    </tr>
+    <tr>
+        <td> The state of the world is </td>
+        {% if state_of_the_world == True %}
+        <td> <b> Heads </b> </td>
+        {% else %}
+        <td> <b> Tails </b> </td>
+        {% endif %}
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Your payment is </td>
+        <td> <b> {{player.payoff}} </b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+</table>
+</font>
+
+
+
+
+
+{{ endblock }}
+
+

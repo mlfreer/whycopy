@@ -8,7 +8,7 @@ Your app description
 
 # models
 class C(BaseConstants):
-    NAME_IN_URL = 'trivial'
+    NAME_IN_URL = 'trivial_nodelegation'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 2
 
@@ -32,19 +32,6 @@ class C(BaseConstants):
 
 
 
-    # defining experts:
-    EXPERTS_average_payoff = [0 for i in range(0,5)]
-    EXPERTS_average_payoff = [2, 3, 4, 1, 6]
-
-    EXPERTS_risk_rating = [0 for i in range(0,5)]
-    EXPERTS_risk_rating = ['A', 'D', 'E', 'B', 'C']
-
-    EXPERTS_quality_rating = [0 for i in range(0,5)]
-    EXPERTS_quality_rating = ['D', 'A', 'B', 'C', 'E']
-
-    EXPERTS_choices = [[1 for i in range(0,5)] for i in range(0,5)]
-
-
 
 class Subsession(BaseSubsession):
     pass
@@ -57,9 +44,6 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # lottery choice:
     lottery_choice = models.IntegerField(min=1,max=2)
-
-    # delegation choice:
-    delegation_choice = models.IntegerField(min=-1,max=C.NUM_OF_EXPERTS)
 
     # payment round
     payment_round = models.IntegerField(min=1,max=C.NUM_ROUNDS)
@@ -77,10 +61,9 @@ class Player(BasePlayer):
 def set_payoffs(player: Player):
     player.payment_round = random.randint(1,C.NUM_ROUNDS)
     p = player.in_round(player.payment_round)
-    if player.delegation_choice == -1:
-        choice = p.lottery_choice
-    else:
-        choice = C.EXPERTS_choices[p.delegation_choice][player.payment_round-1]
+    
+    choice = p.lottery_choice
+    
 
     player.final_choice = choice
     r = random.uniform(0,1)
@@ -123,26 +106,6 @@ class DecisionScreen(Page):
             lottery_2 = C.Lottery2[i],
             )
 
-class DelegationScreen(Page):
-    def is_displayed(player):
-        return player.subsession.round_number == C.NUM_ROUNDS
-
-    template_name = '_static/templates/DelegationScreen.html'
-    form_model = 'player'
-    form_fields = ['delegation_choice']
-
-    @staticmethod
-    def vars_for_template(player):
-        experts = [[0 for i in range(0,4)] for i in range(0,4)]
-        for i in range(0,4):
-            experts[i] = [C.EXPERTS_average_payoff[i], C.EXPERTS_risk_rating[i], C.EXPERTS_quality_rating[i], i]
-
-        return dict(
-            experts = [experts[i] for i in range(0,4)]
-            )
-
-
-
 class ResultsComputePage(Page):
     template_name = '_static/templates/ResultsComputePage.html'
     def is_displayed(player):
@@ -152,7 +115,7 @@ class ResultsComputePage(Page):
 
 
 class Results(Page):
-    template_name = '_static/templates/Trivial_Results.html'
+#    template_name = '_static/templates/Trivial_Results.html'
 
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
@@ -170,7 +133,6 @@ class Results(Page):
 page_sequence = [
                 Welcome,
                 DecisionScreen,
-                DelegationScreen,
                 ResultsComputePage, 
                 Results
                 ]
