@@ -30,6 +30,13 @@ var tokens_form = document.getElementById("tokens_form");
 tokens_form.value = tokens_slider.value;
 
 
+// round to the next multiple of 5
+function round5(x)
+{
+    return Math.ceil(x/5)*5;
+}
+
+
 
 // resetting the values
 function reset() {
@@ -51,58 +58,60 @@ function reset() {
 
 // updating value from x to y:
 function update_value(x,y) {
-    a = parseFloat(tokens_form.value)
-    b = parseFloat(x.value)
-    c = parseFloat(y.value)
+    a = parseInt(tokens_form.value)
+    b = parseInt(x.value)
+    c = parseInt(y.value)
 
     if ((x.id=="tokens_form") || (x.id=="tokens_slider"))
     {
-        diff = (b-c)/5
+        temp = round5(b-c);
+        x.value = parseInt(y.value) + temp
+        b = parseInt(x.value)
+        
+        diff = temp/5
 
-        option1 = parseFloat(option1_form.value)
-        option2 = parseFloat(option2_form.value)
-        option3 = parseFloat(option3_form.value)
-        option4 = parseFloat(option4_form.value)
-        option5 = parseFloat(option5_form.value)
+        option1 = parseInt(option1_form.value)
+        option2 = parseInt(option2_form.value)
+        option3 = parseInt(option3_form.value)
+        option4 = parseInt(option4_form.value)
+        option5 = parseInt(option5_form.value)
 //        window.alert(option1-diff)
         if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100))
         {
-            temp = parseFloat(x.value)
-            y.value = temp.toFixed(2);
-            option1_form.value = (option1 - diff).toFixed(2);
-            option2_form.value = (option2 - diff).toFixed(2);
-            option3_form.value = (option3 - diff).toFixed(2);
-            option4_form.value = (option4 - diff).toFixed(2);
-            option5_form.value = (option5 - diff).toFixed(2);
+            
+            y.value = x.value
+            option1_form.value = option1 - diff;
+                option2_form.value = option2 - diff;
+                option3_form.value = option3 - diff;
+                option4_form.value = option4 - diff;
+                option5_form.value = option5 - diff;
 
-            option1_slider.value = (option1 - diff).toFixed(2);
-            option2_slider.value = (option2 - diff).toFixed(2);
-            option3_slider.value = (option3 - diff).toFixed(2);
-            option4_slider.value = (option4 - diff).toFixed(2);
-            option5_slider.value = (option5 - diff).toFixed(2);
+                option1_slider.value = option1 - diff;
+                option2_slider.value = option2 - diff;
+                option3_slider.value = option3 - diff;
+                option4_slider.value = option4 - diff;
+                option5_slider.value = option5 - diff;
         }
         else
         {
             if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0))
             {
-                temp = parseFloat(x.value)
-                y.value = temp.toFixed(2);
-                option1_form.value = (option1 - diff).toFixed(2);
-                option2_form.value = (option2 - diff).toFixed(2);
-                option3_form.value = (option3 - diff).toFixed(2);
-                option4_form.value = (option4 - diff).toFixed(2);
-                option5_form.value = (option5 - diff).toFixed(2);
+                y.value = x.value;
+                option1_form.value = option1 - diff;
+                option2_form.value = option2 - diff;
+                option3_form.value = option3 - diff;
+                option4_form.value = option4 - diff;
+                option5_form.value = option5 - diff;
 
-                option1_slider.value = (option1 - diff).toFixed(2);
-                option2_slider.value = (option2 - diff).toFixed(2);
-                option3_slider.value = (option3 - diff).toFixed(2);
-                option4_slider.value = (option4 - diff).toFixed(2);
-                option5_slider.value = (option5 - diff).toFixed(2);
+                option1_slider.value = option1 - diff;
+                option2_slider.value = option2 - diff;
+                option3_slider.value = option3 - diff;
+                option4_slider.value = option4 - diff;
+                option5_slider.value = option5 - diff;
             }
             else
             {
-                temp = parseFloat(y.value)
-                x.value = temp.toFixed(2);
+                x.value = y.value;
 
             }
         }
@@ -112,16 +121,15 @@ function update_value(x,y) {
         if (a-b+c >= 0) {
             temp =a-b+c;
 //            if ((b-c<=1) && (b-c>=-1)) {window.alert(b-c)}
-            tokens_form.value=temp.toFixed(2);
+            tokens_form.value=temp;
 //            window.alert(tokens_form.value)
             tokens_slider.value = tokens_form.value
-            temp = parseFloat(x.value)
-            y.value = temp.toFixed(2);
+            y.value = x.value
         }
         else
         {   
-            temp = parseFloat(y.value)
-            x.value=temp.toFixed(2)
+            
+            x.value=y.value
         }
     }
 
@@ -131,25 +139,39 @@ function update_value(x,y) {
     }
 }
 
+// to operationlize the buttons
+function dec5(form,slider) {
+    a = parseInt(form.value)
+    if (a >= 5) {       
+        form.value = parseInt(form.value)-5
+//        window.alert(slider.value)
+        update_value(form,slider)
+    };
+}
+
+function inc5(form,slider) {
+    a = parseInt(form.value)
+    if (a <= 95) {       
+        form.value = parseInt(form.value)+5
+        update_value(form,slider)
+    };
+}
+
 
 // to operationlize the buttons
 function dec(form,slider) {
-    a = parseFloat(form.value)
+    a = parseInt(form.value)
     if (a >= 1) {       
-        temp = parseFloat(form.value)
-        temp = temp-1
-        form.value=temp.toFixed(2)
+        form.value--
 //        window.alert(slider.value)
         update_value(form,slider)
     };
 }
 
 function inc(form,slider) {
-    a = parseFloat(form.value)
+    a = parseInt(form.value)
     if (a <= 99) {       
-        temp = parseFloat(form.value)
-        temp = temp+1
-        form.value=temp.toFixed(2)
+        form.value++
         update_value(form,slider)
     };
 }
