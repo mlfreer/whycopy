@@ -209,7 +209,7 @@ class Results(Page):
 # PAGE SEQUENCE
 #--------------------------------------------
 page_sequence = [
-                Welcome,
+#                Welcome,
                 DecisionScreen,
                 DelegationScreen,
                 ResultsComputePage,

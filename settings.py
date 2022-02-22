@@ -3,22 +3,22 @@ from os import environ
 SESSION_CONFIGS = [
      dict(
          name='Trivial_Delegation',
-         app_sequence=['trivial'],
+         app_sequence=['consent_form','trivial'],
          num_demo_participants=1,
      ),
      dict(
          name='Complex_Delegation',
-         app_sequence=['complex'],
+         app_sequence=['consent_form','complex'],
          num_demo_participants=1,
      ),
      dict(
          name='Complex_No_Delegation',
-         app_sequence=['complex_nodelegation'],
+         app_sequence=['consent_form','complex_nodelegation'],
          num_demo_participants=1,
      ),
      dict(
          name='Trivial_No_Delegation',
-         app_sequence=['trivial_nodelegation'],
+         app_sequence=['consent_form','trivial_nodelegation'],
          num_demo_participants=1,
      ),
 ]

@@ -187,7 +187,7 @@ class Results(Page):
 # PAGE SEQUENCE
 #--------------------------------------------
 page_sequence = [
-                Welcome,
+#                Welcome,
                 DecisionScreen,
                 ResultsComputePage,
                 Results

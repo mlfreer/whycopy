@@ -168,7 +168,7 @@ class Results(Page):
 
 
 page_sequence = [
-                Welcome,
+#                Welcome,
                 DecisionScreen,
                 DelegationScreen,
                 ResultsComputePage, 
