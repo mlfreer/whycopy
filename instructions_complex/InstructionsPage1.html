@@ -1,0 +1,60 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Block 1: Instructions (1)
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+
+The next screens explain how to play the investment game in Block 1. Remember, a considerable amount of money is at stake so please pay careful attention to the instructions.
+
+<br><br>
+
+In this game, you will make 5 decisions. In each of these decisions, you can choose one of the two investment options. The return of your investments depends on the toss of a coin (simulated by the computer).
+
+<br>
+<br>
+
+At the end of the experiment, <b>one of the decisions made in the first block will be randomly chosen and will determine your payment</b>. This amount of money will be paid in addition to the initial endowment of £2.5. In total, the first block will take about 25 minutes.
+
+<br>
+<br>
+
+The table on the decision screens will show the payoff if you have chosen to invest in this asset. 
+Options specify the payoffs for heads and tales), which are equally likely and determined by the simulation of the coin flip.
+For instance, each unit of the Option 1 would pay 90 tokens if the coin comes up heads and 10 tokens if the coin comes up tales.
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/complex_decision_1.png' }}" class="center"/>
+
+    </div>
+</div>
+
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  float: center;
+  text-align: center;
+}
+</style>
+{{ endblock }}
