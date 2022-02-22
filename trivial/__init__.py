@@ -9,7 +9,7 @@ Your app description
 # models
 class C(BaseConstants):
     NAME_IN_URL = 'trivial'
-    PLAYERS_PER_GROUP = None
+    PLAYERS_PER_GROUP = 1
     NUM_ROUNDS = 2
 
     # Probability of HEADS:
@@ -80,7 +80,7 @@ def set_payoffs(player: Player):
     if player.delegation_choice == -1:
         choice = p.lottery_choice
     else:
-        choice = C.EXPERTS_choices[p.delegation_choice][player.payment_round-1]
+        choice = C.EXPERTS_choices[player.delegation_choice][player.payment_round-1]
 
     player.final_choice = choice
     r = random.uniform(0,1)
@@ -143,12 +143,16 @@ class DelegationScreen(Page):
 
 
 
-class ResultsComputePage(Page):
-    template_name = '_static/templates/ResultsComputePage.html'
+class ResultsComputePage(WaitPage):
+#    template_name = '_static/templates/ResultsComputePage.html'
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
-    def before_next_page(player, timeout_happened):
-        set_payoffs(player)
+    @staticmethod
+    def after_all_players_arrive(group: Group):
+        players = group.get_players()
+        for p in players:
+            set_payoffs(p)
+
 
 
 class Results(Page):

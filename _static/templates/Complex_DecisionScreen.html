@@ -29,7 +29,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_dec" value="-">
-                <input type="number" oninput = "update_value(option1_form,option1_slider)" class="form-control" id="option1_form" name="portfolio_shares_a1" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "form_update(option1_form,option1_slider)" class="form-control" id="option1_form" name="portfolio_shares_a1" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_inc" value="+">
             </div>
             </td>
@@ -114,7 +114,7 @@
                 <div class="input-group">
                 <input type="button" onclick="dec(option5_form,option5_slider)"  class="btn btn-outline-secondary" id="option5_form_dec" value="-">
                 <input type="number" oninput = "update_value(option5_form,option5_slider)" class="form-control" id="option5_form" name="portfolio_shares_a5" min="0" max="100" step="1" value="0"/>
-                <input type="button" onclick="inc(option5_form,option5_slider)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
+                <input type="button" onclick="inc_prime(option5_form,option5_slider)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
             </div>
             </td>
         </tr>
@@ -154,6 +154,147 @@
 {% load staticfiles %}
 
 <script type="text/javascript" src="{{static 'global/budget_jars.js' }}">
+</script>
+
+<script>
+// updating value from x to y:
+function update_value(x,y) {
+    next_button.style.visibility = "hidden";
+
+
+    a = parseInt(tokens_form.value)
+    b = parseInt(x.value)
+    c = parseInt(y.value)
+
+    if ((a<0)||(b<0)) {
+        reset_values();
+        return;
+    }
+
+
+    if ((x.id=="tokens_form") || (x.id=="tokens_slider"))
+    {
+        temp = round5(b-c);
+        x.value = parseInt(y.value) + temp
+        b = parseInt(x.value)
+        
+        diff = temp/5
+
+        option1 = parseInt(option1_form.value)
+        option2 = parseInt(option2_form.value)
+        option3 = parseInt(option3_form.value)
+        option4 = parseInt(option4_form.value)
+        option5 = parseInt(option5_form.value)
+//        window.alert(option1-diff)
+        if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100))
+        {
+            
+            y.value = x.value
+            option1_form.value = option1 - diff;
+                option2_form.value = option2 - diff;
+                option3_form.value = option3 - diff;
+                option4_form.value = option4 - diff;
+                option5_form.value = option5 - diff;
+
+                option1_slider.value = option1 - diff;
+                option2_slider.value = option2 - diff;
+                option3_slider.value = option3 - diff;
+                option4_slider.value = option4 - diff;
+                option5_slider.value = option5 - diff;
+        }
+        else
+        {
+            if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0))
+            {
+                y.value = x.value;
+                option1_form.value = option1 - diff;
+                option2_form.value = option2 - diff;
+                option3_form.value = option3 - diff;
+                option4_form.value = option4 - diff;
+                option5_form.value = option5 - diff;
+
+                option1_slider.value = option1 - diff;
+                option2_slider.value = option2 - diff;
+                option3_slider.value = option3 - diff;
+                option4_slider.value = option4 - diff;
+                option5_slider.value = option5 - diff;
+            }
+            else
+            {
+                x.value = y.value;
+
+            }
+        }
+    }
+    else
+    {
+        if (a-b+c >= 0) {
+            temp =a-b+c;
+//            if ((b-c<=1) && (b-c>=-1)) {window.alert(b-c)}
+            tokens_form.value=temp;
+//            window.alert(tokens_form.value)
+            tokens_slider.value = tokens_form.value
+            y.value = x.value
+        }
+        else
+        {   
+            
+            x.value=y.value
+        }
+    }
+
+    if ((tokens_form.value>100) || (tokens_slider.valu>100) )    
+    {
+        reset_values();
+    }
+
+}
+
+// to operationlize the buttons
+function dec5(form,slider) {
+    a = parseInt(form.value)
+    if (a >= 5) {       
+        form.value = parseInt(form.value)-5
+//        window.alert(slider.value)
+        update_value(form,slider)
+    };
+}
+
+function inc5(form,slider) {
+    a = parseInt(form.value)
+    if (a <= 95) {       
+        form.value = parseInt(form.value)+5
+        update_value(form,slider)
+    };
+}
+
+
+// to operationlize the buttons
+function dec(form,slider) {
+    a = parseInt(form.value)
+    if ((a >= 1) && (a<=100)) {       
+        form.value--
+//        window.alert(slider.value)
+        update_value(form,slider)
+    }
+    else
+    {
+        reset_values();
+    }
+}
+
+function inc(form,slider) {
+    a = parseInt(form.value)
+    if ((a <= 99) && (a>0)) {  
+        form.value++
+        update_value(form,slider)
+    }
+    else
+    {
+        reset_values();
+    }
+}
+
 </script>
 
 
