@@ -1,0 +1,70 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Block 1: Instructions
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+The next screens explain how to play the investment game in Block 1. 
+Remember, a considerable amount of money is at stake so please pay careful attention to the instructions.
+
+
+<br>
+<br>
+
+In this game, you will make 5 decisions. 
+In each of these decisions, you can choose one of the two investment options. 
+The return of your investments depends on the toss of a coin (simulated by the computer).
+
+
+<br>
+<br>
+
+At the end of the experiment, <b>one of the decisions made in the first block will be randomly chosen and will determine your payment</b>. This amount of money will be paid in addition to the initial endowment of £2.5. In total, the first block will take about 25 minutes.
+
+<br>
+<br>
+
+The table on the decision screens will show the payoff if you have chosen to invest in this asset. 
+In the example below we explain the payments depending on the option chosen, 
+If you chosoe Option 1 if the coin comes up heads you will receive 100 tokens and 0 tokens if it comes up tails.
+If you chosoe Option 2 if the coin comes up heads you will receive 0 tokens and 100 tokens if it comes up tails.
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/trivial_decision.png' }}" class="center"/>
+
+<br>
+<br>
+ 
+Once you finalized the choice please click the "Next" button.
+</div>
+</div>
+
+<br>
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  float: center;
+  text-align: center;
+}
+</style>
+{{ endblock }}

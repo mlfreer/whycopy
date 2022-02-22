@@ -25,16 +25,11 @@ class Player(BasePlayer):
 
 
 # PAGES
-class MyPage(Page):
+class Instructions(Page):
     pass
 
 
-class ResultsWaitPage(WaitPage):
-    pass
 
-
-class Results(Page):
-    pass
-
-
-page_sequence = [MyPage, ResultsWaitPage, Results]
+page_sequence = [
+            Instructions,
+    ]

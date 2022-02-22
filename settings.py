@@ -21,6 +21,12 @@ SESSION_CONFIGS = [
          app_sequence=['consent_form','trivial_nodelegation'],
          num_demo_participants=1,
      ),
+     dict(
+         name='Trivial_Instructions',
+         app_sequence=['consent_form','instructions_trivial'],
+         num_demo_participants=1,
+     ),
+
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
