@@ -70,12 +70,12 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # defining the shares for the different assets:
-    portfolio_shares_a1 = models.FloatField()
-    portfolio_shares_a2 = models.FloatField()
-    portfolio_shares_a3 = models.FloatField()
-    portfolio_shares_a4 = models.FloatField()
-    portfolio_shares_a5 = models.FloatField()
-    tokens = models.FloatField()
+    portfolio_shares_a1 = models.IntegerField(initial=0)
+    portfolio_shares_a2 = models.IntegerField(initial=0)
+    portfolio_shares_a3 = models.IntegerField(initial=0)
+    portfolio_shares_a4 = models.IntegerField(initial=0)
+    portfolio_shares_a5 = models.IntegerField(initial=0)
+    tokens = models.IntegerField(initial=C.TOKEN_BUDGET)
 
     payment_round = models.IntegerField()
 

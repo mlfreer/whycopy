@@ -121,14 +121,14 @@
 
 
         <tr>
-            <td> <b>Tokens</b> </td>
+            <td> <b>Leftover Tokens</b> </td>
             <td> </td>
             <td> </td>
             <td> <input type="range" oninput = "update_value(tokens_slider,tokens_form)" min="0" max="100" step="1" value="100" id="tokens_slider" name="tokens"> </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec5(tokens_form,tokens_slider)"  class="btn btn-outline-secondary" id="tokens_dec" value="-">
-                <input type="number" oninput = "update_value(tokens_form,tokens_slider)" class="form-control" id="tokens_form" name="tokens" min="0" max="100" step="1" value="100"/>
+                <input type="number" oninput = "update_value(tokens_form,tokens_slider)" class="form-control" id="tokens_form" name="tokens" min="0" max="100" step="1" value ="100"/>
                 <input type="button" onclick="inc5(tokens_form,tokens_slider)" class="btn btn-outline-secondary" id="tokens_inc" value="+">
             </div>
         </tr>
@@ -137,10 +137,16 @@
             <td> </td>
             <td> </td>
             <td> </td>
-            <td> <input type="button" onclick="reset()" class="btn btn-primary" value="Reset">  </td>
-            <td> {% next_button %}</td>
+            <td> <input type="button" onclick="reset_values()" class="btn btn-primary" value="Reset">  </td>
+            <td> <input type="button" onclick="validate()" class="btn btn-primary" value="Submit"> </td>
         </tr>
     </table>
+
+
+<div id="NextButton" style="float: right; visibility:hidden">
+{% next_button %}
+</div>
+
 </font>
 
 

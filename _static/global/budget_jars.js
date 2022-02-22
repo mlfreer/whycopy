@@ -30,6 +30,21 @@ var tokens_form = document.getElementById("tokens_form");
 tokens_form.value = tokens_slider.value;
 
 
+// 
+var next_button = document.getElementById("NextButton");
+
+function validate()
+{
+    if ((tokens_form.value)==0)
+    {
+        next_button.style.visibility = "visible"
+    }
+    else
+    {
+        next_button.style.visibility = "hidden"
+    }
+}
+
 // round to the next multiple of 5
 function round5(x)
 {
@@ -39,7 +54,9 @@ function round5(x)
 
 
 // resetting the values
-function reset() {
+function reset_values() {
+    next_button.style.visibility = "hidden";
+
     option1_form.value = 0
     option2_form.value = 0
     option3_form.value = 0
@@ -58,6 +75,8 @@ function reset() {
 
 // updating value from x to y:
 function update_value(x,y) {
+    next_button.style.visibility = "hidden";
+
     a = parseInt(tokens_form.value)
     b = parseInt(x.value)
     c = parseInt(y.value)
@@ -175,4 +194,5 @@ function inc(form,slider) {
         update_value(form,slider)
     };
 }
+
 
