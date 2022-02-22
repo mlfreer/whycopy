@@ -10,7 +10,7 @@ Your app description
 class C(BaseConstants):
     NAME_IN_URL = 'complex'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 4
+    NUM_ROUNDS = 2
 
     # Probability of HEADS:
     P_HEADS = .5
@@ -46,6 +46,8 @@ class C(BaseConstants):
     Lottery5[1] = [90, 10]
 
     # defining experts:
+    NUM_OF_EXPERTS = 4
+
     EXPERTS_average_payoff = [0 for i in range(0,5)]
     EXPERTS_average_payoff = [2, 3, 4, 1, 6]
 
