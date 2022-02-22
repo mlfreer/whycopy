@@ -54,6 +54,15 @@ LANGUAGE_CODE = 'en'
 REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False
 
+ROOMS = [
+    dict(
+        name='econ_lab',
+        display_name='Economics Lab',
+        participant_label_file='_rooms/econ_lab.txt',
+        use_secure_urls=False
+    ),
+]
+
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
@@ -61,3 +70,5 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 DEMO_PAGE_INTRO_HTML = """ """
 
 SECRET_KEY = '1668786856812'
+
+
