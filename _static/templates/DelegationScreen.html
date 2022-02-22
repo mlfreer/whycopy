@@ -17,7 +17,7 @@
     </tr>
 </table>
 
-<br><br>
+<br>
 
 If you want to delegate please select one of the options below
 
@@ -26,7 +26,7 @@ If you want to delegate please select one of the options below
 <table class="table">
     <tr>
         <td> </td>
-        <td> <b> Average Payoff </b> </td>
+        <td> <b> Payment </b> </td>
         <td> <b> Risk Rating </b> </td>
         <td> <b> Quality Rating </b> </td>
     </tr>
@@ -47,13 +47,11 @@ If you want to delegate please select one of the options below
     </tr>
     {% endfor %}
 
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> {{next_button}} </td>
-    </tr>
 </table>
+
+<div id="NextButton" style="float: right;">
+{% next_button %}
+</div>
 
 </font>
 

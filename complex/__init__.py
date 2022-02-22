@@ -203,6 +203,10 @@ class Results(Page):
             )
 #--------------------------------------------
 
+class DelegationInstructions(Page):
+    template_name = '_static/templates/DelegationInstructions.html'
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
 
 
 #--------------------------------------------
@@ -211,6 +215,7 @@ class Results(Page):
 page_sequence = [
 #                Welcome,
                 DecisionScreen,
+                DelegationInstructions,
                 DelegationScreen,
                 ResultsComputePage,
                 Results

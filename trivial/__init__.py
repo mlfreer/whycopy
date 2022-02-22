@@ -166,10 +166,18 @@ class Results(Page):
             state_of_the_world = player.state_of_the_world
             )
 
+#------------------------------------------
+# INSTRUCTIONS FOR DELEGATION TASK
+#------------------------------------------
+class DelegationInstructions(Page):
+    template_name = '_static/templates/DelegationInstructions.html'
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
 
 page_sequence = [
 #                Welcome,
                 DecisionScreen,
+                DelegationInstructions,
                 DelegationScreen,
                 ResultsComputePage, 
                 Results
