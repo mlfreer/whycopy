@@ -16,7 +16,7 @@ class C(BaseConstants):
     P_HEADS = .5
 
     # Number of experts to be used
-    NUM_OF_EXPERTS = 2
+    NUM_OF_EXPERTS = 4
 
     # defining lotteries:
     # array for the first lottery:
