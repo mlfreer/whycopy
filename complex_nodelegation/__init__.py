@@ -154,13 +154,17 @@ class DecisionScreen(Page):
         if values['tokens']>0:
             return 'Please spend the entire budget'
 
-
-class ResultsComputePage(Page):
-    template_name = '_static/templates/ResultsComputePage.html'
-    def is_displayed(player):
-        return player.subsession.round_number == C.NUM_ROUNDS
     def before_next_page(player, timeout_happened):
-        set_payoffs(player)
+        if player.subsession.round_number == C.NUM_ROUNDS:
+            set_payoffs(player)
+
+
+#class ResultsComputePage(Page):
+#    template_name = '_static/templates/ResultsComputePage.html'
+#    def is_displayed(player):
+#        return player.subsession.round_number == C.NUM_ROUNDS
+#    def before_next_page(player, timeout_happened):
+#        set_payoffs(player)
 
 class Results(Page):
 #    template_name = '_static/templates/Complex_Results.html'
@@ -189,6 +193,6 @@ class Results(Page):
 page_sequence = [
 #                Welcome,
                 DecisionScreen,
-                ResultsComputePage,
+#                ResultsComputePage,
                 Results
                 ]

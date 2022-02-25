@@ -16,7 +16,7 @@ class C(BaseConstants):
     P_HEADS = .5
 
     # Number of experts to be used
-    NUM_OF_EXPERTS = 2
+    NUM_OF_EXPERTS = 4
 
     # defining lotteries:
     # array for the first lottery:
@@ -105,6 +105,10 @@ class DecisionScreen(Page):
             lottery_1 = C.Lottery1[i],
             lottery_2 = C.Lottery2[i],
             )
+         
+    def before_next_page(player, timeout_happened):
+        if player.subsession.round_number == C.NUM_ROUNDS:
+            set_payoffs(player)
 
 class ResultsComputePage(Page):
     template_name = '_static/templates/ResultsComputePage.html'
@@ -112,6 +116,8 @@ class ResultsComputePage(Page):
         return player.subsession.round_number == C.NUM_ROUNDS
     def before_next_page(player, timeout_happened):
         set_payoffs(player)
+
+    
 
 
 class Results(Page):
@@ -133,7 +139,7 @@ class Results(Page):
 page_sequence = [
 #                Welcome,
                 DecisionScreen,
-                ResultsComputePage, 
+#                ResultsComputePage, 
                 Results
                 ]
 
