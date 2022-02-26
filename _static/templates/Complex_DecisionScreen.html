@@ -114,7 +114,7 @@
                 <div class="input-group">
                 <input type="button" onclick="dec(option5_form,option5_slider)"  class="btn btn-outline-secondary" id="option5_form_dec" value="-">
                 <input type="number" oninput = "update_value(option5_form,option5_slider)" class="form-control" id="option5_form" name="portfolio_shares_a5" min="0" max="100" step="1" value="0"/>
-                <input type="button" onclick="inc_prime(option5_form,option5_slider)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
+                <input type="button" onclick="inc(option5_form,option5_slider)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
             </div>
             </td>
         </tr>
@@ -168,6 +168,7 @@ function update_value(x,y) {
 
     if ((a<0)||(b<0)) {
         reset_values();
+        window.alert('Negative values are prohibited. The values are reset.')
         return;
     }
 
@@ -277,21 +278,13 @@ function dec(form,slider) {
 //        window.alert(slider.value)
         update_value(form,slider)
     }
-    else
-    {
-        reset_values();
-    }
 }
 
 function inc(form,slider) {
     a = parseInt(form.value)
-    if ((a <= 99) && (a>0)) {  
+    if ((a <= 99) && (a>=0)) {  
         form.value++
         update_value(form,slider)
-    }
-    else
-    {
-        reset_values();
     }
 }
 
