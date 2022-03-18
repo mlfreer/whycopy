@@ -20,15 +20,21 @@ class C(BaseConstants):
 
     # defining lotteries:
     # array for the first lottery:
-    Lottery1 = [[0 for i in range(0,5)] for i in range(0,2)]
+    Lottery1 = [[0 for i in range(0,5)] for i in range(0,5)]
 
     Lottery1[0] = [100, 0]
-    Lottery1[1] = [0, 110]
+    Lottery1[1] = [90, 10]
+    Lottery1[2] = [80, 20]
+    Lottery1[3] = [70, 30]
+    Lottery1[4] = [60, 40]
 
     # array for the second lottery:
-    Lottery2 = [[0 for i in range(0,5)] for i in range(0,2)]
+    Lottery2 = [[0 for i in range(0,5)] for i in range(0,5)]
     Lottery2[0] = [0, 100]
-    Lottery2[1] = [110, 0]
+    Lottery2[1] = [10, 90]
+    Lottery2[2] = [20, 80]
+    Lottery2[3] = [30, 70]
+    Lottery2[4] = [40, 60]
 
 
 

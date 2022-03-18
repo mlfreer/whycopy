@@ -2,6 +2,7 @@ from otree.api import *
 
 import random
 
+
 doc = """
 Your app description
 """
@@ -10,8 +11,11 @@ Your app description
 class C(BaseConstants):
     NAME_IN_URL = 'trivial_nodelegation'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 2
+    NUM_ROUNDS = 5
 
+    # setting the exchange rate:
+    EXCHANGE_RATE = .1
+    
     # Probability of HEADS:
     P_HEADS = .5
 
@@ -20,15 +24,25 @@ class C(BaseConstants):
 
     # defining lotteries:
     # array for the first lottery:
-    Lottery1 = [[0 for i in range(0,5)] for i in range(0,2)]
+    Lottery1 = [[0 for i in range(0,5)] for i in range(0,5)]
 
     Lottery1[0] = [100, 0]
-    Lottery1[1] = [0, 110]
+    Lottery1[1] = [90, 10]
+    Lottery1[2] = [80, 20]
+    Lottery1[3] = [70, 30]
+    Lottery1[4] = [60, 40]
 
     # array for the second lottery:
-    Lottery2 = [[0 for i in range(0,5)] for i in range(0,2)]
+    Lottery2 = [[0 for i in range(0,5)] for i in range(0,5)]
     Lottery2[0] = [0, 100]
-    Lottery2[1] = [110, 0]
+    Lottery2[1] = [10, 90]
+    Lottery2[2] = [20, 80]
+    Lottery2[3] = [30, 70]
+    Lottery2[4] = [40, 60]
+
+    # Number of Permutations:
+    Num_of_permutations = 12
+
 
 
 
@@ -42,6 +56,10 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+
+    # index of the budget subejct is facing
+    budget_index = models.IntegerField(min=0,max=4)
+
     # lottery choice:
     lottery_choice = models.IntegerField(min=1,max=2)
 
@@ -51,36 +69,63 @@ class Player(BasePlayer):
     # final choice:
     final_choice = models.IntegerField(initial=0)
 
+    # final budget index:
+    final_budget_index = models.IntegerField(min=0,max=4)
+
     # state of the world
     state_of_the_world = models.BooleanField(initial=False)
+
 
 
 #-----------------------------------------------
 # METHODS
 #-----------------------------------------------
+def creating_session(subsession):
+    import random
+    for p in subsession.get_players():
+        set_order(p)
+
+
+def set_order(player: Player):
+    budget_indicies=[0,1,2,3,4]
+    random.shuffle(budget_indicies)
+    print(budget_indicies)
+    players = player.in_all_rounds()
+
+    i=0
+    for p in players:
+        p.budget_index = budget_indicies[i]
+        i=i+1
+
+
+
 def set_payoffs(player: Player):
     player.payment_round = random.randint(1,C.NUM_ROUNDS)
     p = player.in_round(player.payment_round)
     
     choice = p.lottery_choice
-    
+    budget_index = p.budget_index
 
     player.final_choice = choice
+    player.final_budget_index = budget_index
     r = random.uniform(0,1)
     if choice == 1:
         if r<C.P_HEADS:
             player.state_of_the_world = True
-            player.payoff = C.Lottery1[player.payment_round-1][0]
+            payoff = C.Lottery1[budget_index][0]
         else:
             player.state_of_the_world = False
-            player.payoff = C.Lottery1[player.payment_round-1][1]
+            payoff = C.Lottery1[budget_index][1]
     if choice == 2:
         if r<C.P_HEADS:
             player.state_of_the_world = True
-            player.payoff = C.Lottery2[player.payment_round-1][0]
+            payoff = C.Lottery2[budget_index][0]
         else:
             player.state_of_the_world = False
-            player.payoff = C.Lottery2[player.payment_round-1][1]
+            payoff = C.Lottery2[budget_index][1]
+
+    player.payoff = cu(payoff)*C.EXCHANGE_RATE
+
 
 
 
@@ -100,7 +145,7 @@ class DecisionScreen(Page):
 
     @staticmethod
     def vars_for_template(player):
-        i = player.subsession.round_number-1
+        i = player.budget_index
         return dict(
             lottery_1 = C.Lottery1[i],
             lottery_2 = C.Lottery2[i],
@@ -128,7 +173,7 @@ class Results(Page):
 
     @staticmethod
     def vars_for_template(player):
-        i = player.payment_round-1
+        i = player.final_budget_index
         return dict(
             lottery_1 = C.Lottery1[i],
             lottery_2 = C.Lottery2[i],
