@@ -40,11 +40,6 @@ class C(BaseConstants):
     Lottery2[3] = [30, 70]
     Lottery2[4] = [40, 60]
 
-    # Number of Permutations:
-    Num_of_permutations = 12
-
-
-
 
 
 class Subsession(BaseSubsession):

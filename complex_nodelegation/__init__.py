@@ -10,40 +10,64 @@ Your app description
 class C(BaseConstants):
     NAME_IN_URL = 'complex_nodelegation'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 2
+    NUM_ROUNDS = 5
 
     # Probability of HEADS:
     P_HEADS = .5
 
     # Tokens budget:
+    EXCHANGE_RATE = 1000
     TOKEN_BUDGET = 100
 
 
     # defining lotteries:
     # array for the first lottery:
-    Lottery1 = [[0 for i in range(0,5)] for i in range(0,2)]
-    Lottery1[0] = [90, 10]
-    Lottery1[1] = [10, 90]
+    Lottery1 = [[0 for i in range(0,5)] for i in range(0,5)]
+    Lottery1[0] = [88, 6]
+    Lottery1[1] = [91, 3]
+    Lottery1[2] = [3, 91]
+    Lottery1[3] = [100, 0]
+    Lottery1[4] = [0, 100]
 
     # array for the second lottery:
-    Lottery2 = [[0 for i in range(0,5)] for i in range(0,2)]
-    Lottery2[0] = [70, 30]
-    Lottery2[1] = [30, 60]
+    Lottery2 = [[0 for i in range(0,5)] for i in range(0,5)]
+    Lottery2[0] = [68, 16]
+    Lottery2[1] = [70, 10]
+    Lottery2[2] = [10, 70]
+    Lottery2[3] = [50, 10]
+    Lottery2[4] = [10, 50]
 
     # array for the third lottery:
-    Lottery3 = [[0 for i in range(0,5)] for i in range(0,2)]
-    Lottery3[0] = [50, 40]
-    Lottery3[1] = [40, 50]
+    Lottery3 = [[0 for i in range(0,5)] for i in range(0,5)]
+    Lottery3[0] = [40, 30]
+    Lottery3[1] = [40, 20]
+    Lottery3[2] = [20, 40]
+    Lottery3[3] = [30, 14]
+    Lottery3[4] = [14, 30]
 
     # array for the fourth lottery:
-    Lottery4 = [[0 for i in range(0,5)] for i in range(0,2)]
-    Lottery4[0] = [30, 60]
-    Lottery4[1] = [70, 30]
+    Lottery4 = [[0 for i in range(0,5)] for i in range(0,5)]
+    Lottery4[0] = [34, 33]
+    Lottery4[1] = [34, 22]
+    Lottery4[2] = [22, 34]
+    Lottery4[3] = [20, 16]
+    Lottery4[4] = [16, 20]
 
     # array for the fith lottery:
-    Lottery5 = [[0 for i in range(0,5)] for i in range(0,2)]
-    Lottery5[0] = [10, 90]
-    Lottery5[1] = [90, 10]
+    Lottery5 = [[0 for i in range(0,5)] for i in range(0,5)]
+    Lottery5[0] = [20, 40]
+    Lottery5[1] = [13, 27]
+    Lottery5[2] = [27, 13]
+    Lottery5[3] = [10, 18]
+    Lottery5[4] = [18, 10]
+
+    # array for the fith lottery:
+    Lottery6 = [[0 for i in range(0,5)] for i in range(0,5)]
+    Lottery6[0] = [55, 15]
+    Lottery6[1] = [50, 10]
+    Lottery6[2] = [10, 50]
+    Lottery6[3] = [60, 4]
+    Lottery6[3] = [4, 60]
 
     # defining experts:
     EXPERTS_average_payoff = [0 for i in range(0,5)]
@@ -89,10 +113,34 @@ class Player(BasePlayer):
     # state of the world
     state_of_the_world = models.BooleanField(initial=False)
 
+    # index of the budget subejct is facing
+    budget_index = models.IntegerField(min=0,max=4)
+
+    # final budget index:
+    final_budget_index = models.IntegerField(min=0,max=4)
+
 
 #-----------------------------------------------
 # METHODS
 #-----------------------------------------------
+def creating_session(subsession):
+    import random
+    for p in subsession.get_players():
+        set_order(p)
+
+
+def set_order(player: Player):
+    budget_indicies=[0,1,2,3,4]
+    random.shuffle(budget_indicies)
+    print(budget_indicies)
+    players = player.in_all_rounds()
+
+    i=0
+    for p in players:
+        p.budget_index = budget_indicies[i]
+        i=i+1
+
+
 def set_payoffs(player: Player):
     player.payment_round = random.randint(1,C.NUM_ROUNDS)
     p = player.in_round(player.payment_round)
@@ -100,7 +148,8 @@ def set_payoffs(player: Player):
     
     choice = [p.portfolio_shares_a1, p.portfolio_shares_a2, p.portfolio_shares_a3, p.portfolio_shares_a4, p.portfolio_shares_a5]
     
-    
+    player.final_budget_index = p.budget_index
+
     player.final_choice_a1 = choice[0]
     player.final_choice_a2 = choice[1]
     player.final_choice_a3 = choice[2]
@@ -112,14 +161,14 @@ def set_payoffs(player: Player):
     lottery_payoffs = [0 for i in range(0,5)]
     if r<C.P_HEADS:
         player.state_of_the_world = True
-        lottery_payoffs = [C.Lottery1[player.payment_round-1][0], C.Lottery2[player.payment_round-1][0], C.Lottery3[player.payment_round-1][0], C.Lottery4[player.payment_round-1][0], C.Lottery5[player.payment_round-1][0]]
+        lottery_payoffs = [C.Lottery1[player.final_budget_index][0], C.Lottery2[player.final_budget_index][0], C.Lottery3[player.final_budget_index][0], C.Lottery4[player.final_budget_index][0], C.Lottery5[player.final_budget_index][0]]
     else:
         player.state_of_the_world = False
-        lottery_payoffs = [C.Lottery1[player.payment_round-1][1], C.Lottery2[player.payment_round-1][1], C.Lottery3[player.payment_round-1][1], C.Lottery4[player.payment_round-1][1], C.Lottery5[player.payment_round-1][1]]
+        lottery_payoffs = [C.Lottery1[player.final_budget_index][1], C.Lottery2[player.final_budget_index][1], C.Lottery3[player.final_budget_index][1], C.Lottery4[player.final_budget_index][1], C.Lottery5[player.final_budget_index][1]]
 
     temp = 0
     for i in range(0,5):
-        temp = temp+choice[i]*lottery_payoffs[i]/(C.TOKEN_BUDGET)
+        temp = temp+choice[i]*lottery_payoffs[i]/(C.EXCHANGE_RATE)
 
     player.payoff = temp
 
@@ -132,7 +181,7 @@ def set_payoffs(player: Player):
 class Welcome(Page):
     template_name = '_static/templates/Welcome.html'
     def is_displayed(player):
-        return player.subsession.round_number == 1
+        return player.round_number == 1
 
 class DecisionScreen(Page):
     template_name = '_static/templates/Complex_DecisionScreen.html'
@@ -141,13 +190,14 @@ class DecisionScreen(Page):
 
     @staticmethod
     def vars_for_template(player):
-        i = player.subsession.round_number-1
+        i = player.budget_index
         return dict(
             lottery_1 = C.Lottery1[i],
             lottery_2 = C.Lottery2[i],
             lottery_3 = C.Lottery3[i],
             lottery_4 = C.Lottery4[i],
             lottery_5 = C.Lottery5[i],
+            lottery_6 = C.Lottery6[i],
             )
 
     def error_message(player, values):
@@ -174,7 +224,7 @@ class Results(Page):
 
     @staticmethod
     def vars_for_template(player):
-        i = player.payment_round-1
+        i = player.final_budget_index
         return dict(
             lottery_1 = C.Lottery1[i],
             lottery_2 = C.Lottery2[i],
@@ -191,8 +241,6 @@ class Results(Page):
 # PAGE SEQUENCE
 #--------------------------------------------
 page_sequence = [
-#                Welcome,
                 DecisionScreen,
-#                ResultsComputePage,
                 Results
                 ]
