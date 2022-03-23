@@ -97,6 +97,12 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # prolific ID:
+    ProlificID = models.StringField()
+
+    # token earnings from the experment
+    earnings = models.IntegerField()
+
     # defining the shares for the different assets:
     portfolio_shares_a1 = models.IntegerField(initial=0)
     portfolio_shares_a2 = models.IntegerField(initial=0)
@@ -174,9 +180,12 @@ def set_payoffs(player: Player):
         lottery_payoffs = [C.Lottery1[player.final_budget_index][1], C.Lottery2[player.final_budget_index][1], C.Lottery3[player.final_budget_index][1], C.Lottery4[player.final_budget_index][1], C.Lottery5[player.final_budget_index][1], C.Lottery6[player.final_budget_index][1]]
 
     temp = 0
+    temp2 = 0
     for i in range(0,6):
+        temp2 = temp2+choice[i]*lottery_payoffs[i]
         temp = temp+choice[i]*lottery_payoffs[i]/(C.EXCHANGE_RATE)
 
+    player.earnings = temp2
     player.payoff = temp
 
 
@@ -215,13 +224,12 @@ class DecisionScreen(Page):
         if player.subsession.round_number == C.NUM_ROUNDS:
             set_payoffs(player)
 
-
-#class ResultsComputePage(Page):
-#    template_name = '_static/templates/ResultsComputePage.html'
-#    def is_displayed(player):
-#        return player.subsession.round_number == C.NUM_ROUNDS
-#    def before_next_page(player, timeout_happened):
-#        set_payoffs(player)
+class ProlificID(Page):
+    form_model = 'player'
+    form_fields = ['ProlificID']
+    template_name = '_static/templates/ProlificID.html'
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
 
 class Results(Page):
 #    template_name = '_static/templates/Complex_Results.html'
@@ -250,5 +258,6 @@ class Results(Page):
 #--------------------------------------------
 page_sequence = [
                 DecisionScreen,
+                ProlificID,
                 Results
                 ]

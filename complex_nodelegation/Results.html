@@ -1,5 +1,7 @@
 {{ block title }}
-    Final Results
+<div style="float: center; text-align: center;">
+    Results
+</div>
 {{ endblock }}
 
 {{ block content }}
@@ -65,8 +67,29 @@
         <td> </td>
     </tr>
     <tr>
+        <td> Your earnings are </td>
+        <td> <b> {{player.earnings}} tokens</b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Exchange rate is </td>
+        <td> <b> {{C.EXCHANGE_RATE}} tokens per £1</b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
         <td> Your payment is </td>
         <td> <b> {{player.payoff}} </b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Please click the link to complete the study </td>
+        <td> <b> <a href="https://app.prolific.co/submissions/complete?cc=5996CFA2">Complete</a> </b> </td>
         <td> </td>
         <td> </td>
         <td> </td>

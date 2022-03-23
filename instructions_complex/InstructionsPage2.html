@@ -1,6 +1,6 @@
 {{ block title }}
 <div style="float: center; text-align: center;">
-Block 1: Instructions (2)
+Instructions (Page 2 out of 3)
 </div>
 {{ endblock }}
 {{ block content }}
@@ -9,20 +9,25 @@ Block 1: Instructions (2)
 <div class="card bg-light">
     <div class="card-body">
 
-You will be given a budget of 100 tokens and your task is to allocate this across the assets available. Your overall payoff will depend on how much you choose to allocate in each of the assets and on the outcome of the coin flip.
+You will be given a budget of 100 tokens and your task is to allocate this across the assets available. 
+Your overall payoff will depend on how much you choose to allocate in each of the assets and on the outcome of the coin flip.
 
 <br><br> 
 
-In the example below, we explain the payments depending on the asset chosen. If you choose to invest 100 tokens in Option 1 and the coin comes up heads you will receive 100*90 = 9000 tokens. If the coin comes up tails, you will receive 1000 tokens. If you choose to invest 50 tokens in Option 2 and 50 tokens in Option 3 then you will receive *.+.*=6000 if the coin comes up heads or 3500 tokens if it comes up tails.
-
-<br><br>
-
-To change the allocation you can move the horizontal bar or use the <b>"+"</b> and <b>"-"</b> buttons.
+In the example below, we explain the payments depending on the asset chosen. 
+If you choose to invest 100 tokens in Option 1 and the coin comes up heads, you would receive 100*100 = 10000 tokens, while if the coin comes up tails, you would receive 0 tokens. 
+If you choose to invest 50 tokens in Option 2 and 50 tokens in Option 4 and coin comes up heands, you would receive 50*50+30*30=4000, while if the coin comes up tails you would receive 50*10+30*14=1200 tokens.
 
 <br>
 <br>
 
-<img src="{{ static 'pictures/complex_decision_1.png' }}" class="center"/>
+<img src="{{ static 'images/complex_decision_1.png' }}" class="center"/>
+
+<br>
+<br>
+
+The exchange rate is 2000 tokes per £1. 
+That is the earnings of 10000 tokens would correspond to £5, earnings of 4000 tokens would correspond to £4, and earnings of 1200 tokens would correspond to  £0.6 (60 pence).
 
     </div>
 </div>

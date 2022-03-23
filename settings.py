@@ -8,7 +8,7 @@ SESSION_CONFIGS = [
      ),
      dict(
          name='Trivial_No_Delegation',
-         app_sequence=['consent_form','instructions_trivial','trivial_nodelegation'],
+         app_sequence=['consent_form','instructions_trivial','trivial_quizz','trivial_nodelegation'],
          num_demo_participants=1,
      ),
      dict(
@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
      ),
      dict(
          name='Complex_No_Delegation',
-         app_sequence=['consent_form','instructions_complex','complex_nodelegation'],
+         app_sequence=['consent_form','instructions_complex','complex_quiz','complex_nodelegation'],
          num_demo_participants=1,
      ),   
      dict(

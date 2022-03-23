@@ -33,7 +33,11 @@ class Player(BasePlayer):
     question2 = models.IntegerField(min=0,max=1000)
 
 
+
 # PAGES
+class Welcome(Page):
+    template_name = '_static/templates/Welcome.html'
+
 class Question1(Page):
     def is_displayed(player):
         return player.attempts1 < C.MAX_ATTEMPTS
@@ -74,11 +78,14 @@ class Question2(Page):
 
 
 class ReturnStudy(Page):
+    template_name = '_static/templates/ReturnStudy.html'
+
     def is_displayed(player):
         return player.attempts1 >= C.MAX_ATTEMPTS or player.attempts2 >= C.MAX_ATTEMPTS
 
 
 page_sequence = [
+            Welcome,
             Question1,
             Question2,
             ReturnStudy
