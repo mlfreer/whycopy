@@ -51,6 +51,10 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    # prolific ID:
+    ProlificID = models.StringField()
+
+    # token earnings from the experment
     earnings = models.IntegerField(min=0,max=100)
 
     # index of the budget subejct is facing
@@ -159,6 +163,12 @@ class ResultsComputePage(Page):
     def before_next_page(player, timeout_happened):
         set_payoffs(player)
 
+class ProlificID(Page):
+    form_model = 'player'
+    form_fields = ['ProlificID']
+    template_name = '_static/templates/ProlificID.html'
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
     
 
 
@@ -181,6 +191,7 @@ class Results(Page):
 page_sequence = [
 #                Welcome,
                 DecisionScreen,
+                ProlificID,
 #                ResultsComputePage, 
                 Results
                 ]
