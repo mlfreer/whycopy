@@ -24,6 +24,12 @@ var option5_form = document.getElementById("option5_form");
 option5_form.value = option5_slider.value;
 
 
+// fixing option 6:
+var option6_slider = document.getElementById("option6");
+var option6_form = document.getElementById("option6_form");
+option6_form.value = option6_slider.value;
+
+
 // fixing tokens:
 var tokens_slider = document.getElementById("tokens_slider");
 var tokens_form = document.getElementById("tokens_form");
@@ -63,12 +69,14 @@ function reset_values() {
     option3_form.value = 0
     option4_form.value = 0
     option5_form.value = 0
+    option6_form.value = 0
 
     option1_slider.value = 0
     option2_slider.value = 0
     option3_slider.value = 0
     option4_slider.value = 0
     option5_slider.value = 0
+    option6_slider.value = 0
 
     tokens_form.value = 100
     tokens_slider.value = 100

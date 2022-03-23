@@ -119,6 +119,27 @@
             </td>
         </tr>
 
+        <tr>
+            <td> <b> Option 6 </b>
+            </td>
+            <td>
+                <b> {{ lottery_6.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_6.1 }} </b>
+            </td>
+            <td>
+                <input type="range" oninput = "update_value(option6_slider,option6_form)" min="0" max="100" step="1" id="option6" value="0" name="portfolio_shares_a6">
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option6_form,option6_slider)"  class="btn btn-outline-secondary" id="option6_form_dec" value="-">
+                <input type="number" oninput = "update_value(option6_form,option6_slider)" class="form-control" id="option6_form" name="portfolio_shares_a6" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option6_form,option6_slider)" class="btn btn-outline-secondary" id="option6_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
 
         <tr>
             <td> <b>Leftover Tokens</b> </td>
@@ -157,6 +178,18 @@
 </script>
 
 <script>
+function round6(x)
+{
+    return Math.ceil(x/6)*6;
+}
+
+
+// fixing option 6:
+var option6_slider = document.getElementById("option6");
+var option6_form = document.getElementById("option6_form");
+option6_form.value = option6_slider.value;
+
+
 // updating value from x to y:
 function update_value(x,y) {
     next_button.style.visibility = "hidden";
@@ -175,19 +208,20 @@ function update_value(x,y) {
 
     if ((x.id=="tokens_form") || (x.id=="tokens_slider"))
     {
-        temp = round5(b-c);
+        temp = round6(b-c);
         x.value = parseInt(y.value) + temp
         b = parseInt(x.value)
         
-        diff = temp/5
+        diff = temp/6
 
         option1 = parseInt(option1_form.value)
         option2 = parseInt(option2_form.value)
         option3 = parseInt(option3_form.value)
         option4 = parseInt(option4_form.value)
         option5 = parseInt(option5_form.value)
+        option6 = parseInt(option6_form.value)
 //        window.alert(option1-diff)
-        if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100))
+        if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100) && (option6-diff <=100))
         {
             
             y.value = x.value
@@ -196,16 +230,18 @@ function update_value(x,y) {
                 option3_form.value = option3 - diff;
                 option4_form.value = option4 - diff;
                 option5_form.value = option5 - diff;
+                option6_form.value = option6 - diff;
 
                 option1_slider.value = option1 - diff;
                 option2_slider.value = option2 - diff;
                 option3_slider.value = option3 - diff;
                 option4_slider.value = option4 - diff;
                 option5_slider.value = option5 - diff;
+                option6_slider.value = option6 - diff;
         }
         else
         {
-            if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0))
+            if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0) && (option6-diff >=0))
             {
                 y.value = x.value;
                 option1_form.value = option1 - diff;
@@ -213,12 +249,14 @@ function update_value(x,y) {
                 option3_form.value = option3 - diff;
                 option4_form.value = option4 - diff;
                 option5_form.value = option5 - diff;
+                option6_form.value = option6 - diff;
 
                 option1_slider.value = option1 - diff;
                 option2_slider.value = option2 - diff;
                 option3_slider.value = option3 - diff;
                 option4_slider.value = option4 - diff;
                 option5_slider.value = option5 - diff;
+                option6_slider.value = option6 - diff;
             }
             else
             {
@@ -254,8 +292,8 @@ function update_value(x,y) {
 // to operationlize the buttons
 function dec5(form,slider) {
     a = parseInt(form.value)
-    if (a >= 5) {       
-        form.value = parseInt(form.value)-5
+    if (a >= 6) {       
+        form.value = parseInt(form.value)-6
 //        window.alert(slider.value)
         update_value(form,slider)
     };
@@ -263,8 +301,8 @@ function dec5(form,slider) {
 
 function inc5(form,slider) {
     a = parseInt(form.value)
-    if (a <= 95) {       
-        form.value = parseInt(form.value)+5
+    if (a <= 94) {       
+        form.value = parseInt(form.value)+6
         update_value(form,slider)
     };
 }
@@ -288,6 +326,28 @@ function inc(form,slider) {
     }
 }
 
+
+// resetting the values
+function reset_values() {
+    next_button.style.visibility = "hidden";
+
+    option1_form.value = 0
+    option2_form.value = 0
+    option3_form.value = 0
+    option4_form.value = 0
+    option5_form.value = 0
+    option6_form.value = 0
+
+    option1_slider.value = 0
+    option2_slider.value = 0
+    option3_slider.value = 0
+    option4_slider.value = 0
+    option5_slider.value = 0
+    option6_slider.value = 0
+
+    tokens_form.value = 100
+    tokens_slider.value = 100
+}
 </script>
 
 
