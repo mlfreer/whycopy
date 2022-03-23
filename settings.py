@@ -36,6 +36,11 @@ SESSION_CONFIGS = [
          app_sequence=['trivial_quizz'],
          num_demo_participants=1,
      ),
+     dict(
+         name='Complex_Quiz',
+         app_sequence=['complex_quiz'],
+         num_demo_participants=1,
+     ),
 
 ]
 

@@ -1,0 +1,90 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Question 1
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+<font size="4">
+
+<table class="table">
+    <tr style="border-bottom:2pt solid black;">
+        <td> Options </td>
+        <td> Payment if <b> Heads </b> </td>
+        <td> Payment if <b> Tails </b> </td>
+        <td> Chosen to invest </td>
+    </tr>
+    <tr>
+        <td> Option 1 </td>
+        <td> 34 </td>
+        <td> 22 </td>
+        <td> <b>30</b> </td>
+    </tr>
+    <tr>
+        <td> Option 2 </td>
+        <td> 70 </td>
+        <td> 10 </td>
+        <td> <b>50 </b> </td>
+    </tr>
+    <tr>
+        <td> Option 3 </td>
+        <td> 50 </td>
+        <td> 10 </td>
+        <td> <b>0</b> </td>
+    </tr>
+    <tr>
+        <td> Option 4 </td>
+        <td> 40</td>
+        <td> 20 </td>
+        <td> <b> 20 </b> </td>
+    </tr>
+    <tr>
+        <td> Option 5 </td>
+        <td> 91 </td>
+        <td> 3 </td>
+        <td> <b>0</b> </td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Option 6 </td>
+        <td> 13 </td>
+        <td> 27 </td>
+        <td> <b> 10 </b> </td>
+    </tr>
+    <tr>
+        <td> The state of the world is </td>
+        <td> <b> Tails </b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Exchange Rate</td>
+        <td> 2000 tokens per  £1 </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> What is the payment for this choice (<b>in tokens</b>)? </td>
+        <td> <input type="number" class="form-control" id="question1" name="question1" min="0" max="10000"> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+</table>
+
+</font>
+</div>
+</div>
+
+<br>
+
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+{{ endblock }}
