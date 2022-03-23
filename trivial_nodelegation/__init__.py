@@ -14,7 +14,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 5
 
     # setting the exchange rate:
-    EXCHANGE_RATE = .1
+    EXCHANGE_RATE = 20
     
     # Probability of HEADS:
     P_HEADS = .5
@@ -51,6 +51,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    earnings = models.IntegerField(min=0,max=100)
 
     # index of the budget subejct is facing
     budget_index = models.IntegerField(min=0,max=4)
@@ -119,7 +120,8 @@ def set_payoffs(player: Player):
             player.state_of_the_world = False
             payoff = C.Lottery2[budget_index][1]
 
-    player.payoff = cu(payoff)*C.EXCHANGE_RATE
+    player.earnings=payoff
+    player.payoff = cu(payoff)/C.EXCHANGE_RATE
 
 
 

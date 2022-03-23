@@ -25,13 +25,13 @@
         <td> Option 1 </td>
         <td> {{lottery_1.0}} </td>
         <td> {{lottery_1.1}} </td>
-        <td> {% if player.final_choice == 1 %} <b> YES </b> {% endif %} </td>
+        <td> {% if player.final_choice == 1 %} <b> &#10003 </b> {% endif %} </td>
     </tr>
     <tr style="border-bottom:2pt solid black;">
         <td> Option 2 </td>
         <td> {{lottery_2.0}} </td>
         <td> {{lottery_2.1}} </td>
-        <td> {% if player.final_choice == 2 %} <b> YES </b> {% endif %} </td>
+        <td> {% if player.final_choice == 2 %} <b> &#10003 </b> {% endif %} </td>
     </tr>
     <tr>
         <td> The state of the world is </td>
@@ -40,6 +40,20 @@
         {% else %}
         <td> <b> Tails </b> </td>
         {% endif %}
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Your earning is </td>
+        <td> {{player.earnings}} tokens </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Exchange rate is </td>
+        <td> {{C.EXCHANGE_RATE}} tokens per £1 </td>
         <td> </td>
         <td> </td>
         <td> </td>
