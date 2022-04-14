@@ -13,8 +13,8 @@ class C(BaseConstants):
 
     MAX_ATTEMPTS = 3
 
-    ANSWER1 = 1830
-    ANSWER2 = 2
+    ANSWER1 = 1000
+    ANSWER2 = 4
 
 
 class Subsession(BaseSubsession):
