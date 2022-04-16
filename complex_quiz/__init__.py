@@ -13,7 +13,7 @@ class C(BaseConstants):
 
     MAX_ATTEMPTS = 3
 
-    ANSWER1 = 1000
+    ANSWER1 = 1400
     ANSWER2 = 4
 
 
