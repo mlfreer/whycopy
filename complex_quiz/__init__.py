@@ -53,7 +53,7 @@ class Question1(Page):
                 result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
                 return result
             else:
-                result = 'Wrong Answer. The correct Answer is  ' + str(C.ANSWER1)+ '. Please input it to proceed.'
+                result = 'Wrong Answer. The correct Answer is  10*20 + 10*40 + 20*40 = 1400. Please input it to proceed.'
                 return result
 
 
@@ -72,7 +72,7 @@ class Question2(Page):
                 result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
                 return result
             else:
-                result = 'Wrong Answer. The correct Answer is  ' + str(C.ANSWER2)+ '. Please input it to proceed.'
+                result = 'Wrong Answer. The correct Answer is  (50*40 + 100*60)/1000 = 8. Please input it to proceed.'
                 return result
 
 
