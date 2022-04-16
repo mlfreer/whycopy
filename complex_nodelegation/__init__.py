@@ -16,7 +16,7 @@ class C(BaseConstants):
     P_HEADS = .5
 
     # Tokens budget:
-    EXCHANGE_RATE = 2000
+    EXCHANGE_RATE = 1000
     TOKEN_BUDGET = 100
 
     Lottery1 = [[0 for i in range(0,5)] for i in range(0,5)]

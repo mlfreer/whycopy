@@ -13,8 +13,8 @@ class C(BaseConstants):
 
     MAX_ATTEMPTS = 3
 
-    ANSWER1 = 1400
-    ANSWER2 = 4
+    ANSWER1 = 3
+    ANSWER2 = 2
 
 
 class Subsession(BaseSubsession):
@@ -29,8 +29,8 @@ class Player(BasePlayer):
     attempts1 = models.IntegerField(min=0, max=10, initial=0)
     attempts2 = models.IntegerField(min=0, max=10, initial=0)
 
-    question1 = models.IntegerField(min=0,max=10000)
-    question2 = models.IntegerField(min=0,max=10000)
+    question1 = models.IntegerField(min=1,max=4)
+    question2 = models.IntegerField(min=1,max=4)
 
 
 # PAGES
