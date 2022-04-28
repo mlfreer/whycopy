@@ -31,7 +31,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_dec" value="-">
-                <input type="number" oninput = "form_update(option1_form,option1_slider)" class="form-control" id="option1_form" name="portfolio_shares_a1" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option1_form,option1_slider)" class="form-control" id="option1_form" name="portfolio_shares_a1" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_inc" value="+">
             </div>
             </td>
@@ -228,18 +228,18 @@ function update_value(x,y) {
             
             y.value = x.value
             option1_form.value = option1 - diff;
-                option2_form.value = option2 - diff;
-                option3_form.value = option3 - diff;
-                option4_form.value = option4 - diff;
-                option5_form.value = option5 - diff;
-                option6_form.value = option6 - diff;
+            option2_form.value = option2 - diff;
+            option3_form.value = option3 - diff;
+            option4_form.value = option4 - diff;
+            option5_form.value = option5 - diff;
+            option6_form.value = option6 - diff;
 
-                option1_slider.value = option1 - diff;
-                option2_slider.value = option2 - diff;
-                option3_slider.value = option3 - diff;
-                option4_slider.value = option4 - diff;
-                option5_slider.value = option5 - diff;
-                option6_slider.value = option6 - diff;
+            option1_slider.value = option1 - diff;
+            option2_slider.value = option2 - diff;
+            option3_slider.value = option3 - diff;
+            option4_slider.value = option4 - diff;
+            option5_slider.value = option5 - diff;
+            option6_slider.value = option6 - diff;
         }
         else
         {

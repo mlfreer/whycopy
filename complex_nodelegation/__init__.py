@@ -219,6 +219,10 @@ class DecisionScreen(Page):
     def error_message(player, values):
         if values['tokens']>0:
             return 'Please spend the entire budget'
+        temp = values['portfolio_shares_a1']+values['portfolio_shares_a2']+values['portfolio_shares_a3']+values['portfolio_shares_a4']+values['portfolio_shares_a5']+values['portfolio_shares_a6']
+        if temp>100:
+            return 'Please reset the choice and make sure to meet the budget constaint'
+
 
     def before_next_page(player, timeout_happened):
         if player.subsession.round_number == C.NUM_ROUNDS:
