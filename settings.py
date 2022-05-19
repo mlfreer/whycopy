@@ -23,12 +23,17 @@ SESSION_CONFIGS = [
      ),  
      dict(
          name='Simple_No_Delegation',
-         app_sequence=['simple_nodelegation'],
+         app_sequence=['consent_form','simple_instructions','simple_quiz','simple_nodelegation'],
          num_demo_participants=1,
      ), 
      dict(
          name='Trivial_Instructions',
          app_sequence=['consent_form','instructions_trivial'],
+         num_demo_participants=1,
+     ),
+     dict(
+         name='Simple_Instructions',
+         app_sequence=['consent_form','simple_instructions'],
          num_demo_participants=1,
      ),
      dict(
@@ -44,6 +49,11 @@ SESSION_CONFIGS = [
      dict(
          name='Trivial_Quiz',
          app_sequence=['trivial_quizz'],
+         num_demo_participants=1,
+     ),
+     dict(
+         name='Simple_Quiz',
+         app_sequence=['simple_quiz'],
          num_demo_participants=1,
      ),
      dict(
