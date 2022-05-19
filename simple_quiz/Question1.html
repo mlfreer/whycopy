@@ -1,0 +1,103 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Question 1
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+<font size="4">
+
+The menu choices made are presented below.
+
+<table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if Heads </b> </td>
+            <td> <b> Payment if Tails </b> </td>
+        </tr>
+
+        <tr>
+            <td>  <b> Option 1 </b>
+            </td>
+            <td>
+                <b> 100 </b>
+            </td>
+            <td>
+                <b> 0 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 2 </b>
+            </td>
+            <td>
+                <b> 50 </b>
+            </td>
+            <td>
+                <b> 10 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 3 </b>
+            </td>
+            <td>
+                <b> 20 </b>
+            </td>
+            <td>
+                <b> 16 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 4 </b>
+            </td>
+            <td>
+                <b> 30 </b>
+            </td>
+            <td>
+                <b> 14 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 5 </b>
+            </td>
+            <td>
+                <b> 60 </b>
+            </td>
+            <td>
+                <b> 4 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 6 </b>
+            </td>
+            <td>
+                <b> 10 </b>
+            </td>
+            <td>
+                <b> 18 </b>
+            </td>
+        </tr>
+</table>
+
+Given that <b>Option 4</b> was chosen and the randomly determined state of the world is <b>Heads</b>.
+
+<table class="table">
+<tr>
+    <td> What is the payment for this choice (<b>in tokens</b>)? </td>
+    <td> <input type="number" class="form-control" id="question1" name="question1" min="0" max="100"> </td>
+</tr>
+</table>
+</font>
+</div>
+</div>
+
+<br>
+
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+{{ endblock }}
