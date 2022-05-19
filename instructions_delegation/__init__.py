@@ -22,19 +22,18 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     pass
+    
+#--------------------------------------------
+
+class DelegationInstructions(Page):
+    template_name = '_static/templates/DelegationInstructions.html'
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
 
 
-# PAGES
-class MyPage(Page):
-    pass
+#--------------------------------------------
+# PAGE SEQUENCE
+#--------------------------------------------
 
 
-class ResultsWaitPage(WaitPage):
-    pass
-
-
-class Results(Page):
-    pass
-
-
-page_sequence = [MyPage, ResultsWaitPage, Results]
+page_sequence = [DelegationInstructions]

@@ -1,0 +1,85 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Please choose an option (Decison {{player.subsession.round_number}} out of {{C.NUM_ROUNDS}})
+</div>
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+    <table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if Heads </b> </td>
+            <td> <b> Payment if Tails </b> </td>
+        </tr>
+
+        <tr>
+            <td> <input id="Option1" type="radio" name="lottery_choice" value="1" required>  <b> Option 1 </b>
+            </td>
+            <td>
+                <b> {{ lottery_1.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_1.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> <input id="Option2" type="radio" name="lottery_choice" value="2" required>  <b> Option 2 </b>
+            </td>
+            <td>
+                <b> {{ lottery_2.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_2.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> <input id="Option3" type="radio" name="lottery_choice" value="3" required>  <b> Option 3 </b>
+            </td>
+            <td>
+                <b> {{ lottery_3.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_3.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> <input id="Option4" type="radio" name="lottery_choice" value="4" required>  <b> Option 4 </b>
+            </td>
+            <td>
+                <b> {{ lottery_4.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_4.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> <input id="Option5" type="radio" name="lottery_choice" value="5" required>  <b> Option 5 </b>
+            </td>
+            <td>
+                <b> {{ lottery_5.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_5.1 }} </b>
+            </td>
+        </tr>
+        <tr>
+            <td> <input id="Option6" type="radio" name="lottery_choice" value="6" required>  <b> Option 6 </b>
+            </td>
+            <td>
+                <b> {{ lottery_6.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_6.1 }} </b>
+            </td>
+        </tr>
+    </table>
+</font>
+
+<div style="float: right; text-align: right;">
+{% next_button %}
+</div>
+    
+
+{{ endblock }}

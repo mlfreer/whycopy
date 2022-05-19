@@ -20,7 +20,12 @@ SESSION_CONFIGS = [
          name='Complex_No_Delegation',
          app_sequence=['consent_form','instructions_complex','complex_quiz','complex_nodelegation'],
          num_demo_participants=1,
-     ),   
+     ),  
+     dict(
+         name='Simple_No_Delegation',
+         app_sequence=['simple_nodelegation'],
+         num_demo_participants=1,
+     ), 
      dict(
          name='Trivial_Instructions',
          app_sequence=['consent_form','instructions_trivial'],
@@ -29,6 +34,11 @@ SESSION_CONFIGS = [
      dict(
          name='Complex_Instructions',
          app_sequence=['consent_form','instructions_complex'],
+         num_demo_participants=1,
+     ),
+     dict(
+         name='Instructions_Delegation',
+         app_sequence=['instructions_delegation'],
          num_demo_participants=1,
      ),
      dict(
@@ -60,7 +70,7 @@ SESSION_FIELDS = []
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
 
-DEBUG=False
+#DEBUG=False
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False

@@ -1,0 +1,111 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Results
+</div>
+{{ endblock }}
+
+{{ block content }}
+
+
+<font size="4">
+<table class="table">
+    <tr style="border-bottom:2pt solid black;">
+        <td> Round chosen for payment </td>
+        <td> {{player.payment_round}} </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+
+    <tr>
+        <td> Options </td>
+        <td> Payment if <b> Heads </b> </td>
+        <td> Payment if <b> Tails </b> </td>
+        <td> Chosen </td>
+    </tr>
+    <tr>
+        <td> Option 1 </td>
+        <td> {{lottery_1.0}} </td>
+        <td> {{lottery_1.1}} </td>
+        <td> {% if player.final_choice == 1 %} <b> &#10003 </b> {% endif %} </td>
+    </tr>
+    <tr>
+        <td> Option 2 </td>
+        <td> {{lottery_2.0}} </td>
+        <td> {{lottery_2.1}} </td>
+        <td> {% if player.final_choice == 2 %} <b> &#10003 </b> {% endif %} </td>
+    </tr>
+    <tr>
+        <td> Option 3 </td>
+        <td> {{lottery_3.0}} </td>
+        <td> {{lottery_3.1}} </td>
+        <td> {% if player.final_choice == 3 %} <b> &#10003 </b> {% endif %} </td>
+    </tr>
+    <tr>
+        <td> Option 4 </td>
+        <td> {{lottery_4.0}} </td>
+        <td> {{lottery_4.1}} </td>
+        <td> {% if player.final_choice == 4 %} <b> &#10003 </b> {% endif %} </td>
+    </tr>
+    <tr>
+        <td> Option 5 </td>
+        <td> {{lottery_5.0}} </td>
+        <td> {{lottery_5.1}} </td>
+        <td> {% if player.final_choice == 5 %} <b> &#10003 </b> {% endif %} </td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Option 6 </td>
+        <td> {{lottery_6.0}} </td>
+        <td> {{lottery_6.1}} </td>
+        <td> {% if player.final_choice == 6 %} <b> &#10003 </b> {% endif %} </td>
+    </tr>
+
+    <tr>
+        <td> The state of the world is </td>
+        {% if state_of_the_world == True %}
+        <td> <b> Heads </b> </td>
+        {% else %}
+        <td> <b> Tails </b> </td>
+        {% endif %}
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Your earning is </td>
+        <td> {{player.earnings}} tokens </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Exchange rate is </td>
+        <td> {{C.EXCHANGE_RATE}} tokens per £1 </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Your payment is </td>
+        <td> {{player.payoff}}</td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Please click the link to complete the study </td>
+        <td> <b> <a href="https://app.prolific.co/submissions/complete?cc=352A7DD0">Complete</a> </b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+</table>
+</font>
+
+
+
+
+
+{{ endblock }}
+
+
