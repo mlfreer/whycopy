@@ -1,0 +1,30 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Congratulations!
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+<font size="4">
+
+<b> Congratulations</b> you have successfully completed the comprehension check.
+
+<br>
+<br>
+
+Please click the <b>"Next"</b> button below to proceed to taking decisions.
+
+</font>
+</div>
+</div>
+
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+{{ endblock }}

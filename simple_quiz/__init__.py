@@ -82,10 +82,16 @@ class ReturnStudy(Page):
     def is_displayed(player):
         return player.attempts1 >= C.MAX_ATTEMPTS or player.attempts2 >= C.MAX_ATTEMPTS
 
+class Success(Page):
+    template_name = '_static/templates/Success.html'
+    def is_displayed(player):
+        return player.attempts1 < C.MAX_ATTEMPTS and player.attempts2 < C.MAX_ATTEMPTS
+    
 
 
 page_sequence = [Welcome, 
             Question1,
             Question2,
-            ReturnStudy
+            ReturnStudy,
+            Success
             ]
