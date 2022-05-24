@@ -210,8 +210,6 @@ class ProlificID(Page):
     
 
 class Results(Page):
-#    template_name = '_static/templates/Trivial_Results.html'
-
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
 
