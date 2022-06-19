@@ -61,6 +61,11 @@ SESSION_CONFIGS = [
          app_sequence=['complex_quiz'],
          num_demo_participants=1,
      ),
+     dict(
+         name='Simple_No_Delegation_LAB',
+         app_sequence=['simple_no_delegation_lab'],
+         num_demo_participants=1,
+     ),
 
 ]
 
@@ -80,7 +85,7 @@ SESSION_FIELDS = []
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
 
-DEBUG=False
+#DEBUG=False
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False
