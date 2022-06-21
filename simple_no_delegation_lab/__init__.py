@@ -182,8 +182,8 @@ def set_payoffs(player: Player):
             player.state_of_the_world = False
             payoff = C.Lottery6[budget_index][1]
 
-    player.earnings=payoff
-    player.payoff = cu(payoff)/C.EXCHANGE_RATE + C.SHOWUP_FEE
+    player.earnings=round(payoff,1)
+    player.payoff = round(cu(payoff)/C.EXCHANGE_RATE + C.SHOWUP_FEE,1)
 
 
 # PAGES
