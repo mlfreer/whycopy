@@ -1,6 +1,6 @@
 {{ block title }}
 <div style="float: center; text-align: center;">
-    Please take a decision (Decison {{player.subsession.round_number}} out of {{C.NUM_ROUNDS}})
+    Please choose an option (Decison <b style ="color:#0d6efd">{{player.subsession.round_number}}</b> out of <b>{{C.NUM_ROUNDS}}</b>)
 </div>
 {{ endblock }}
 
@@ -26,12 +26,12 @@
                 <b> {{ lottery_1.1 }} </b>
             </td>
             <td> 
-                <input type="range" oninput = "update_value(option1_slider,option1_form)" min="0" max="100" step="1" class="slider" id="option1" value="0" name="portfolio_shares_a1">
+                <input type="range" oninput = "update_value(option1_slider,option1_form)" min="0" max="100" step="1" class="slider" id="option1" value="0" name="complex_shares_1">
             </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_dec" value="-">
-                <input type="number" oninput = "update_value(option1_form,option1_slider)" class="form-control" id="option1_form" name="portfolio_shares_a1" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option1_form,option1_slider)" class="form-control" id="option1_form" name="complex_shares_1" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option1_form,option1_slider)" class="btn btn-outline-secondary" id="option1_form_inc" value="+">
             </div>
             </td>
@@ -46,12 +46,12 @@
                 <b> {{ lottery_2.1 }} </b>
             </td>
             <td>
-                <input type="range" oninput = "update_value(option2_slider,option2_form)" min="0" max="100" step="1" id="option2" value="0" name="portfolio_shares_a2">
+                <input type="range" oninput = "update_value(option2_slider,option2_form)" min="0" max="100" step="1" id="option2" value="0" name="complex_shares_2">
             </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option2_form,option2_slider)"  class="btn btn-outline-secondary" id="option2_form_dec" value="-">
-                <input type="number" oninput = "update_value(option2_form,option2_slider)" class="form-control" id="option2_form" name="portfolio_shares_a2" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option2_form,option2_slider)" class="form-control" id="option2_form" name="complex_shares_2" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option2_form,option2_slider)" class="btn btn-outline-secondary" id="option2_form_inc" value="+">
             </div>
             </td>
@@ -67,12 +67,12 @@
                 <b> {{ lottery_3.1 }} </b>
             </td>
             <td>
-                <input type="range" oninput = "update_value(option3_slider,option3_form)" min="0" max="100" step="1" id="option3" value="0" name="portfolio_shares_a3">
+                <input type="range" oninput = "update_value(option3_slider,option3_form)" min="0" max="100" step="1" id="option3" value="0" name="complex_shares_3">
             </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option3_form,option3_slider)"  class="btn btn-outline-secondary" id="option3_form_dec" value="-">
-                <input type="number" oninput = "update_value(option3_form,option3_slider)" class="form-control" id="option3_form" name="portfolio_shares_a3" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option3_form,option3_slider)" class="form-control" id="option3_form" name="complex_shares_3" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option3_form,option3_slider)" class="btn btn-outline-secondary" id="option3_form_inc" value="+">
             </div>
             </td>
@@ -88,12 +88,12 @@
                 <b> {{ lottery_4.1 }} </b>
             </td>
             <td>
-                <input type="range" oninput = "update_value(option4_slider,option4_form)" min="0" max="100" step="1" id="option4" value="0" name="portfolio_shares_a4">
+                <input type="range" oninput = "update_value(option4_slider,option4_form)" min="0" max="100" step="1" id="option4" value="0" name="complex_shares_4">
             </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option4_form,option4_slider)"  class="btn btn-outline-secondary" id="option4_form_dec" value="-">
-                <input type="number" oninput = "update_value(option4_form,option4_slider)" class="form-control" id="option4_form" name="portfolio_shares_a4" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option4_form,option4_slider)" class="form-control" id="option4_form" name="complex_shares_4" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option4_form,option4_slider)" class="btn btn-outline-secondary" id="option4_form_inc" value="+">
             </div>
             </td>
@@ -110,12 +110,12 @@
                 <b> {{ lottery_5.1 }} </b>
             </td>
             <td>
-                <input type="range" oninput = "update_value(option5_slider,option5_form)" min="0" max="100" step="1" id="option5" value="0" name="portfolio_shares_a5">
+                <input type="range" oninput = "update_value(option5_slider,option5_form)" min="0" max="100" step="1" id="option5" value="0" name="complex_shares_5">
             </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option5_form,option5_slider)"  class="btn btn-outline-secondary" id="option5_form_dec" value="-">
-                <input type="number" oninput = "update_value(option5_form,option5_slider)" class="form-control" id="option5_form" name="portfolio_shares_a5" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option5_form,option5_slider)" class="form-control" id="option5_form" name="complex_shares_5" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option5_form,option5_slider)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
             </div>
             </td>
@@ -131,12 +131,12 @@
                 <b> {{ lottery_6.1 }} </b>
             </td>
             <td>
-                <input type="range" oninput = "update_value(option6_slider,option6_form)" min="0" max="100" step="1" id="option6" value="0" name="portfolio_shares_a6">
+                <input type="range" oninput = "update_value(option6_slider,option6_form)" min="0" max="100" step="1" id="option6" value="0" name="complex_shares_6">
             </td>
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option6_form,option6_slider)"  class="btn btn-outline-secondary" id="option6_form_dec" value="-">
-                <input type="number" oninput = "update_value(option6_form,option6_slider)" class="form-control" id="option6_form" name="portfolio_shares_a6" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_value(option6_form,option6_slider)" class="form-control" id="option6_form" name="complex_shares_6" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option6_form,option6_slider)" class="btn btn-outline-secondary" id="option6_form_inc" value="+">
             </div>
             </td>

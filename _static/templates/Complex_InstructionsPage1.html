@@ -1,0 +1,51 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Instructions (Page 1 out of 3)
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+        <font size="4">
+
+In this experiment, you will make five decisions. In each of these decisions, you will distribute 100 tokens among six investment options. At the end of the experiment, one of the decisions will be randomly chosen and it will determine your payment.
+
+<br><br>
+
+The table on the decision screen shows how the payoff of each option depends on the state of the world. There are two equally likely states of the world: Heads and Tails. The actual state will be determined by a virtual coin flip (using the computer’s random number generator).
+
+
+
+<br>
+<br>
+
+<img src="{{static 'pictures/complex_decision_2.png' }}" class="center"/>
+
+      </font>
+    </div>
+</div>
+
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  float: center;
+  text-align: center;
+}
+</style>
+{{ endblock }}

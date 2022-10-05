@@ -1,0 +1,30 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Results
+</div>
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+<table class="table">
+    <tr>
+        <td> Payment Block </td>
+        <td> {{payment_block}}</td>
+    </tr>
+    <tr>
+        <td> Payment Task </td>
+        <td> {{player.treatment_index}}</td>
+    </tr>
+    <tr>
+        <td> Payment Rounds </td>
+        <td> {{first_payment_round}} and {{second_payment_round}}</td>
+    </tr>
+    <tr>
+        <td> Payoff </td>
+        <td> {{player.payoff}}</td>
+    </tr>
+</table>
+</font>
+{{ endblock }}
+

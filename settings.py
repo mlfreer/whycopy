@@ -2,31 +2,6 @@ from os import environ
 
 SESSION_CONFIGS = [
      dict(
-         name='Trivial_Delegation',
-         app_sequence=['consent_form','instructions_trivial','trivial'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Trivial_No_Delegation',
-         app_sequence=['consent_form','instructions_trivial','trivial_quizz','trivial_nodelegation'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Complex_Delegation',
-         app_sequence=['consent_form','instructions_complex','complex'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Complex_No_Delegation',
-         app_sequence=['consent_form','instructions_complex','complex_quiz','complex_nodelegation'],
-         num_demo_participants=1,
-     ),  
-     dict(
-         name='Simple_No_Delegation',
-         app_sequence=['consent_form','simple_instructions','simple_quiz','simple_nodelegation'],
-         num_demo_participants=1,
-     ), 
-     dict(
          name='Trivial_Instructions',
          app_sequence=['consent_form','instructions_trivial'],
          num_demo_participants=1,
@@ -62,8 +37,8 @@ SESSION_CONFIGS = [
          num_demo_participants=1,
      ),
      dict(
-         name='Simple_No_Delegation_LAB',
-         app_sequence=['simple_no_delegation_lab'],
+         name='No_Delegation_Online',
+         app_sequence=['no_delegation'],
          num_demo_participants=1,
      ),
 
@@ -85,7 +60,7 @@ SESSION_FIELDS = []
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
 
-DEBUG=False
+DEBUG=True
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False
