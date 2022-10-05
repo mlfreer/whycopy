@@ -330,7 +330,7 @@ def set_simple_payoffs(player: Player, round):
 #----------------------------------------------------------------
 
 
-def set_complex_payoffs(player: Player):
+def set_complex_payoffs(player: Player, round):
     choice = [0 for i in range(0,5)]
     
     choice = [p.complex_shares_1, p.complex_shares_2, p.complex_shares_3, p.complex_shares_4, p.complex_shares_5, p.complex_shares_6]

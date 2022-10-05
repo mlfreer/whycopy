@@ -38,7 +38,7 @@ SESSION_CONFIGS = [
      ),
      dict(
          name='No_Delegation_Online',
-         app_sequence=['no_delegation'],
+         app_sequence=['consent_form','no_delegation'],
          num_demo_participants=1,
      ),
 
