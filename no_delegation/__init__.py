@@ -15,7 +15,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 15
     BLOCK_SIZE = 5
 
-    PARTICIPATION_FEE = 3
+    PARTICIPATION_FEE = cu(3)
 
     EXCHANGE_RATE = 20;
 
@@ -121,12 +121,19 @@ class Player(BasePlayer):
     # treatment independent variables
     treatment_index = models.IntegerField(min=0,max=2)
     budget_index = models.IntegerField(min=0,max=2)
-    earnings = models.IntegerField(initial=0)
+    earnings = models.FloatField(default=0)
     payment_block = models.IntegerField(min=0,max=2)
     payment_round = models.IntegerField(min=1,max=4)
     state_of_the_world = models.BooleanField(initial=False)
 
     return_study = models.BooleanField(initial=False)
+
+    # first period earnings
+    earnings_period_one = models.CurrencyField()
+    earnings_period_two = models.CurrencyField()
+
+    # prolific ID:
+    ProlificID = models.StringField()
     #------------------------------------------------------------
 
     #------------------------------------------------------------
@@ -286,13 +293,19 @@ def set_payoffs(player: Player):
 
     if p.treatment_index==0:
         set_trivial_payoffs(player,first_payment_round)
+        player.earnings_period_one = cu(player.earnings/C.EXCHANGE_RATE)
         set_trivial_payoffs(player,second_payment_round)
+        player.earnings_period_two = cu(player.earnings/C.EXCHANGE_RATE - player.earnings_period_one)
     elif p.treatment_index==1:
         set_simple_payoffs(player,first_payment_round)
+        player.earnings_period_one = cu(player.earnings/C.EXCHANGE_RATE)
         set_simple_payoffs(player,second_payment_round)
+        player.earnings_period_two = cu(player.earnings/C.EXCHANGE_RATE - player.earnings_period_one)
     elif p.treatment_index==2:
         set_complex_payoffs(player,first_payment_round)
+        player.earnings_period_one = cu(player.earnings/C.EXCHANGE_RATE)
         set_complex_payoffs(player,second_payment_round)
+        player.earnings_period_two = cu(player.earnings/C.EXCHANGE_RATE - player.earnings_period_one)
     #------------------------------------------------------------
     player.payoff = cu(player.earnings)/C.EXCHANGE_RATE
 
@@ -306,17 +319,17 @@ def set_trivial_payoffs(player: Player, round):
     if choice == 1:
         if r<C.P_HEADS:
             player.state_of_the_world = True
-            payoff = C.Lottery1[budget_index][0]
+            payoff = C.trivial_Lottery1[budget_index][0]
         else:
             player.state_of_the_world = False
-            payoff = C.Lottery1[budget_index][1]
+            payoff = C.trivial_Lottery1[budget_index][1]
     if choice == 2:
         if r<C.P_HEADS:
             player.state_of_the_world = True
-            payoff = C.Lottery2[budget_index][0]
+            payoff = C.trivial_Lottery2[budget_index][0]
         else:
             player.state_of_the_world = False
-            payoff = C.Lottery2[budget_index][1]
+            payoff = C.trivial_Lottery2[budget_index][1]
     player.earnings=player.earnings + payoff
 #----------------------------------------------------------------
 
@@ -395,7 +408,7 @@ def set_complex_payoffs(player: Player, round):
     for i in range(0,6):
         temp2 = temp2+choice[i]*lottery_payoffs[i]
     #----------------------------------------------------------------
-    player.earnings = player.earnings+temp2
+    player.earnings = player.earnings+temp2/100
 #----------------------------------------------------------------
 
 
@@ -535,7 +548,7 @@ class Complex_DecisionScreen(Page):
             lottery_3 = C.Lottery3[i],
             lottery_4 = C.Lottery4[i],
             lottery_5 = C.Lottery5[i],
-            lottery_6 = C.Lottery5[i],
+            lottery_6 = C.Lottery6[i],
             )
 
     def error_message(player, values):
@@ -695,17 +708,6 @@ class Simple_Question2(Page):
             else:
                 result = 'Wrong Answer. The correct Answer is  ' + str(C.SIMPLE_ANSWER2)+ '. Please input it to proceed.'
                 return result
-
-
-class ReturnStudy(Page):
-    template_name = '_static/templates/ReturnStudy.html'
-
-    def is_displayed(player):
-        return player.return_study==True
-
-
-
-
 #----------------------------------------------------------------
 
 
@@ -719,13 +721,28 @@ class Results(Page):
 
     @staticmethod
     def vars_for_template(player):
-        i = player.budget_index
+        p = player.in_round(player.payment_round)
         return dict(
             first_payment_round = player.payment_round,
             second_payment_round = player.payment_block*5 + 5,
             payment_block = player.payment_block + 1,
-            paricipation_fee = cu(C.PARTICIPATION_FEE)
+            paricipation_fee = (C.PARTICIPATION_FEE),
+            treatment_index = p.treatment_index
             )
+
+class ProlificID(Page):
+    form_model = 'player'
+    form_fields = ['ProlificID']
+    template_name = '_static/templates/ProlificID.html'
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
+
+
+class ReturnStudy(Page):
+    template_name = '_static/templates/ReturnStudy.html'
+
+    def is_displayed(player):
+        return player.return_study==True
 
 
 #------------------------------------------------------------
@@ -748,5 +765,6 @@ page_sequence = [Trivial_Instructions,
                 Complex_Question2,
                 ReturnStudy,
                 Complex_DecisionScreen,
+                ProlificID,
                 Results
                 ]
