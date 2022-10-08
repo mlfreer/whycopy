@@ -633,7 +633,7 @@ class Complex_Question1(Page):
                 result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
                 return result
             else:
-                result = 'Wrong Answer. The correct Answer is  ' + str(C.ANSWER1)+ '. Please input it to proceed.'
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.COMPLEX_ANSWER1)+ '. Please input it to proceed.'
                 return result
 
 
@@ -657,7 +657,7 @@ class Complex_Question2(Page):
                 result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
                 return result
             else:
-                result = 'Wrong Answer. The correct Answer is  ' + str(C.ANSWER2)+ '. Please input it to proceed.'
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.COMPLEX_ANSWER2)+ '. Please input it to proceed.'
                 return result
 
 
