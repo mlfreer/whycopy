@@ -1,6 +1,6 @@
 from otree.api import *
 import random
-
+import math
 
 doc = """
 Your app description
@@ -15,7 +15,23 @@ class C(BaseConstants):
     NUM_ROUNDS = 15
     BLOCK_SIZE = 5
 
+    PARTICIPATION_FEE = 3
+
     EXCHANGE_RATE = 20;
+
+    #------------------------------------------------------------
+    # QUIZ ANSWERS:
+    MAX_ATTEMPTS = 3
+
+    TRIVIAL_ANSWER1 = 30
+    TRIVIAL_ANSWER2 = 4
+
+    SIMPLE_ANSWER1 = 30
+    SIMPLE_ANSWER2 = 1
+
+    COMPLEX_ANSWER1 = 3
+    COMPLEX_ANSWER2 = 2
+    #------------------------------------------------------------
 
     # Probability of HEADS:
     P_HEADS = .5
@@ -109,6 +125,8 @@ class Player(BasePlayer):
     payment_block = models.IntegerField(min=0,max=2)
     payment_round = models.IntegerField(min=1,max=4)
     state_of_the_world = models.BooleanField(initial=False)
+
+    return_study = models.BooleanField(initial=False)
     #------------------------------------------------------------
 
     #------------------------------------------------------------
@@ -139,6 +157,32 @@ class Player(BasePlayer):
     # state of the world
     #------------------------------------------------------------
 
+    #------------------------------------------------------------
+    # trivial quiz:
+    trivial_attempts_1 = models.IntegerField(min=0, max=10, initial=0)
+    trivial_attempts_2 = models.IntegerField(min=0, max=10, initial=0)
+
+    trivial_question_1 = models.IntegerField(min=0,max=1000)
+    trivial_question_2 = models.IntegerField(min=0,max=1000)
+    #------------------------------------------------------------
+
+    #------------------------------------------------------------
+    # simple quiz:
+    simple_attempts_1 = models.IntegerField(min=0, max=10, initial=0)
+    simple_attempts_2 = models.IntegerField(min=0, max=10, initial=0)
+
+    simple_question_1 = models.IntegerField(min=0,max=1000)
+    simple_question_2 = models.IntegerField(min=0,max=1000)
+    #------------------------------------------------------------
+
+    #------------------------------------------------------------
+    # complex quiz:
+    complex_attempts_1 = models.IntegerField(min=0, max=10, initial=0)
+    complex_attempts_2 = models.IntegerField(min=0, max=10, initial=0)
+
+    complex_question_1 = models.IntegerField(min=0,max=1000)
+    complex_question_2 = models.IntegerField(min=0,max=1000)
+    #------------------------------------------------------------
 
 #------------------------------------------------------------
 # GLOBAL FUNCTIONS
@@ -332,7 +376,7 @@ def set_simple_payoffs(player: Player, round):
 
 def set_complex_payoffs(player: Player, round):
     choice = [0 for i in range(0,5)]
-    
+    p = player.in_round(round)
     choice = [p.complex_shares_1, p.complex_shares_2, p.complex_shares_3, p.complex_shares_4, p.complex_shares_5, p.complex_shares_6]
     
     final_budget_index = p.budget_index
@@ -341,10 +385,10 @@ def set_complex_payoffs(player: Player, round):
     lottery_payoffs = [0 for i in range(0,6)]
     if r<C.P_HEADS:
         player.state_of_the_world = True
-        lottery_payoffs = [C.Lottery1[player.final_budget_index][0], C.Lottery2[player.final_budget_index][0], C.Lottery3[player.final_budget_index][0], C.Lottery4[player.final_budget_index][0], C.Lottery5[player.final_budget_index][0], C.Lottery6[player.final_budget_index][0]]
+        lottery_payoffs = [C.Lottery1[final_budget_index][0], C.Lottery2[final_budget_index][0], C.Lottery3[final_budget_index][0], C.Lottery4[final_budget_index][0], C.Lottery5[final_budget_index][0], C.Lottery6[final_budget_index][0]]
     else:
         player.state_of_the_world = False
-        lottery_payoffs = [C.Lottery1[player.final_budget_index][1], C.Lottery2[player.final_budget_index][1], C.Lottery3[player.final_budget_index][1], C.Lottery4[player.final_budget_index][1], C.Lottery5[player.final_budget_index][1], C.Lottery6[player.final_budget_index][1]]
+        lottery_payoffs = [C.Lottery1[final_budget_index][1], C.Lottery2[final_budget_index][1], C.Lottery3[final_budget_index][1], C.Lottery4[final_budget_index][1], C.Lottery5[final_budget_index][1], C.Lottery6[final_budget_index][1]]
 
     temp = 0
     temp2 = 0
@@ -358,37 +402,76 @@ def set_complex_payoffs(player: Player, round):
 #------------------------------------------------------------
 # PAGES
 #------------------------------------------------------------
+
+
+#----------------------------------------------------------------
+# INSTRUCTIONS
+#----------------------------------------------------------------
 class Trivial_Instructions(Page):
     def is_displayed(player):
         return player.treatment_index==0 and player.subsession.round_number % C.BLOCK_SIZE == 1
     template_name = '_static/templates/Trivial_Instructions.html'
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            block_number = player.subsession.round_number // C.BLOCK_SIZE + 1
+            )
     #------------------------------------------------------------
 
 class Simple_Instructions(Page):
     def is_displayed(player):
         return player.treatment_index==1 and player.subsession.round_number % C.BLOCK_SIZE == 1
     template_name = '_static/templates/Simple_Instructions.html'
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            block_number = player.subsession.round_number // C.BLOCK_SIZE + 1
+            )
     #------------------------------------------------------------
 
 class Complex_Instructions_P1(Page):
     def is_displayed(player):
         return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1
     template_name = '_static/templates/Complex_InstructionsPage1.html'
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            block_number = player.subsession.round_number // C.BLOCK_SIZE + 1
+            )
     #------------------------------------------------------------
 
 class Complex_Instructions_P2(Page):
     def is_displayed(player):
         return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1
     template_name = '_static/templates/Complex_InstructionsPage2.html'
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            block_number = player.subsession.round_number // C.BLOCK_SIZE + 1
+            )
     #------------------------------------------------------------
 
 class Complex_Instructions_P3(Page):
     def is_displayed(player):
         return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1
     template_name = '_static/templates/Complex_InstructionsPage3.html'
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            block_number = player.subsession.round_number // C.BLOCK_SIZE + 1
+            )
     #------------------------------------------------------------
+#----------------------------------------------------------------
 
 
+#----------------------------------------------------------------
+# DECISION PAGES
+#----------------------------------------------------------------
 class Trivial_DecisionScreen(Page):
     def is_displayed(player):
         return player.treatment_index==0
@@ -409,8 +492,6 @@ class Trivial_DecisionScreen(Page):
         if player.subsession.round_number == C.NUM_ROUNDS:
             set_payoffs(player)
     #------------------------------------------------------------
-
-
 
 class Simple_DecisionScreen(Page):
     def is_displayed(player):
@@ -465,7 +546,172 @@ class Complex_DecisionScreen(Page):
         if player.subsession.round_number == C.NUM_ROUNDS:
             set_payoffs(player)
     #------------------------------------------------------------
+#----------------------------------------------------------------
 
+
+#----------------------------------------------------------------
+# QUIZZES
+#----------------------------------------------------------------
+class Trivial_Question1(Page):
+    template_name = '_static/templates/Trivial_Question1.html'
+    def is_displayed(player):
+        return player.treatment_index==0 and player.subsession.round_number % C.BLOCK_SIZE == 1 and player.trivial_attempts_1 < C.MAX_ATTEMPTS
+
+    form_model = 'player'
+    form_fields = ['trivial_question_1']
+
+    def error_message(player, value):
+        if value['trivial_question_1'] != C.TRIVIAL_ANSWER1:
+            player.trivial_attempts_1 = player.trivial_attempts_1 + 1
+            left = C.MAX_ATTEMPTS - player.trivial_attempts_1
+            
+            if player.trivial_attempts_1 >= C.MAX_ATTEMPTS:
+                player.return_study=True
+
+            if player.trivial_attempts_1 < C.MAX_ATTEMPTS:
+                result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
+                return result
+            else:
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.TRIVIAL_ANSWER1)+ '. Please input it to proceed.'
+                return result
+
+
+class Trivial_Question2(Page):
+    template_name = '_static/templates/Trivial_Question2.html'
+    def is_displayed(player):
+        return player.treatment_index==0 and player.subsession.round_number % C.BLOCK_SIZE == 1 and player.trivial_attempts_1 < C.MAX_ATTEMPTS and player.trivial_attempts_2 < C.MAX_ATTEMPTS
+
+    form_model = 'player'
+    form_fields = ['trivial_question_2']
+
+    def error_message(player, value):
+        if value['trivial_question_2'] != C.TRIVIAL_ANSWER2:
+            player.trivial_attempts_2 = player.trivial_attempts_2 + 1
+            left = C.MAX_ATTEMPTS - player.trivial_attempts_2
+
+            if player.trivial_attempts_2 >= C.MAX_ATTEMPTS:
+                player.return_study=True
+
+            if player.trivial_attempts_2 < C.MAX_ATTEMPTS:
+                result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
+                return result
+            else:
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.TRIVIAL_ANSWER2)+ '. Please input it to proceed.'
+                return result
+
+
+class Complex_Question1(Page):
+    template_name = '_static/templates/Complex_Question1.html'
+    def is_displayed(player):
+        return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1 and player.complex_attempts_1 < C.MAX_ATTEMPTS
+
+    form_model = 'player'
+    form_fields = ['complex_question_1']
+
+    def error_message(player, value):
+        if value['complex_question_1'] != C.COMPLEX_ANSWER1:
+            player.complex_attempts_1 = player.complex_attempts_1 + 1
+            left = C.MAX_ATTEMPTS - player.complex_attempts_1
+            
+            if player.complex_attempts_1 >= C.MAX_ATTEMPTS:
+                player.return_study=True
+
+            if player.complex_attempts_1 < C.MAX_ATTEMPTS:
+                result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
+                return result
+            else:
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.ANSWER1)+ '. Please input it to proceed.'
+                return result
+
+
+class Complex_Question2(Page):
+    template_name = '_static/templates/Complex_Question2.html'
+    def is_displayed(player):
+        return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1 and player.complex_attempts_1 < C.MAX_ATTEMPTS and player.complex_attempts_2 < C.MAX_ATTEMPTS
+
+    form_model = 'player'
+    form_fields = ['complex_question_2']
+
+    def error_message(player, value):
+        if value['complex_question_2'] != C.COMPLEX_ANSWER2:
+            player.complex_attempts_2 = player.complex_attempts_2 + 1
+            left = C.MAX_ATTEMPTS - player.complex_attempts_2
+
+            if player.complex_attempts_2 >= C.MAX_ATTEMPTS:
+                player.return_study=True
+
+            if player.complex_attempts_2 < C.MAX_ATTEMPTS:
+                result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
+                return result
+            else:
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.ANSWER2)+ '. Please input it to proceed.'
+                return result
+
+
+
+class Simple_Question1(Page):
+    template_name = '_static/templates/Simple_Question1.html'
+    def is_displayed(player):
+        return player.treatment_index==1 and player.subsession.round_number % C.BLOCK_SIZE == 1 and player.simple_attempts_1 < C.MAX_ATTEMPTS
+
+    form_model = 'player'
+    form_fields = ['simple_question_1']
+
+    def error_message(player, value):
+        if value['simple_question_1'] != C.SIMPLE_ANSWER1:
+            player.simple_attempts_1 = player.simple_attempts_1 + 1
+            left = C.MAX_ATTEMPTS - player.simple_attempts_1
+            
+            if player.simple_attempts_1 >= C.MAX_ATTEMPTS:
+                player.return_study=True
+
+            if player.simple_attempts_1 < C.MAX_ATTEMPTS:
+                result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
+                return result
+            else:
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.SIMPLE_ANSWER1)+ '. Please input it to proceed.'
+                return result
+
+
+class Simple_Question2(Page):
+    template_name = '_static/templates/Simple_Question2.html'
+    def is_displayed(player):
+        return player.treatment_index==1 and player.subsession.round_number % C.BLOCK_SIZE == 1 and player.simple_attempts_1 < C.MAX_ATTEMPTS and player.simple_attempts_2 < C.MAX_ATTEMPTS
+
+    form_model = 'player'
+    form_fields = ['simple_question_2']
+
+    def error_message(player, value):
+        if value['simple_question_2'] != C.SIMPLE_ANSWER2:
+            player.simple_attempts_2 = player.simple_attempts_2 + 1
+            left = C.MAX_ATTEMPTS - player.simple_attempts_2
+
+            if player.simple_attempts_2 >= C.MAX_ATTEMPTS:
+                player.return_study=True
+
+            if player.simple_attempts_2 < C.MAX_ATTEMPTS:
+                result = 'Wrong Answer. Please Try Again. You have ' + str(left)+ ' attempts left.'
+                return result
+            else:
+                result = 'Wrong Answer. The correct Answer is  ' + str(C.SIMPLE_ANSWER2)+ '. Please input it to proceed.'
+                return result
+
+
+class ReturnStudy(Page):
+    template_name = '_static/templates/ReturnStudy.html'
+
+    def is_displayed(player):
+        return player.return_study==True
+
+
+
+
+#----------------------------------------------------------------
+
+
+#----------------------------------------------------------------
+# OUTCOMES AND PROLIFIC
+#----------------------------------------------------------------
 class Results(Page):
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
@@ -477,7 +723,8 @@ class Results(Page):
         return dict(
             first_payment_round = player.payment_round,
             second_payment_round = player.payment_block*5 + 5,
-            payment_block = player.payment_block + 1
+            payment_block = player.payment_block + 1,
+            paricipation_fee = cu(C.PARTICIPATION_FEE)
             )
 
 
@@ -485,12 +732,21 @@ class Results(Page):
 # PAGE SEQUENCE
 #------------------------------------------------------------
 page_sequence = [Trivial_Instructions,
+                Trivial_Question1,
+                Trivial_Question2,
+                ReturnStudy,
                 Trivial_DecisionScreen,
                 Simple_Instructions,
+                Simple_Question1,
+                Simple_Question2,
+                ReturnStudy,
                 Simple_DecisionScreen,
                 Complex_Instructions_P1,
                 Complex_Instructions_P2,
                 Complex_Instructions_P3,
+                Complex_Question1,
+                Complex_Question2,
+                ReturnStudy,
                 Complex_DecisionScreen,
                 Results
                 ]

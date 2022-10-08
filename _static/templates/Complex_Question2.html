@@ -1,0 +1,109 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Question 2
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+<font size="4">
+
+<table class="table">
+    <tr style="border-bottom:2pt solid black;">
+        <td> Options </td>
+        <td> Payment if <b> Heads </b> </td>
+        <td> Payment if <b> Tails </b> </td>
+        <td> Chosen to invest </td>
+    </tr>
+    <tr>
+        <td> Option 1 </td>
+        <td> 18 </td>
+        <td> 10 </td>
+        <td> <b> 0 </b> </td>
+    </tr>
+    <tr>
+        <td> Option 2 </td>
+        <td> 16 </td>
+        <td> 20 </td>
+        <td> <b> 0 </b> </td>
+    </tr>
+    <tr>
+        <td> Option 3 </td>
+        <td> 10 </td>
+        <td> 50 </td>
+        <td> <b> 40 </b> </td>
+    </tr>
+    <tr>
+        <td> Option 4 </td>
+        <td> 0 </td>
+        <td> 100 </td>
+        <td> <b> 60 </b> </td>
+    </tr>
+    <tr>
+        <td> Option 5 </td>
+        <td> 14 </td>
+        <td> 30 </td>
+        <td> <b> 0 </b> </td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Option 6 </td>
+        <td> 4 </td>
+        <td> 60 </td>
+        <td> <b> 0 </b> </td>
+    </tr>
+    <tr>
+        <td> The state of the world is </td>
+        <td> <b> Tails </b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Exchange Rate</td>
+        <td> 1000 units per  £1 </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <td> What is the payment for this choice (<b>in £</b>)? </td>
+    </tr>
+    <tr>
+        <td> 
+            <input id="question2" type="radio" name="complex_question_2" value="1" required> &nbsp; (10*40 + 100*60)/1000 = 6.4
+        </td>
+    </tr>
+    <tr>
+        <td> 
+            <input id="question2" type="radio" name="complex_question_2" value="2" required> &nbsp; (50*40 + 100*60)/1000 = 8
+        </td>
+    </tr>
+    <tr>
+        <td> 
+            <input id="question2" type="radio" name="complex_question_2" value="3" required> &nbsp; (10*40 + 0*60)/1000 = .4
+        </td>
+    </tr>
+    <tr>
+        <td> 
+            <input id="question2" type="radio" name="complex_question_2" value="4" required> &nbsp; (50*40 + 100*60) = 8000
+        </td>
+    </tr>
+</table>
+
+</font>
+</div>
+</div>
+
+<br>
+
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+{{ endblock }}

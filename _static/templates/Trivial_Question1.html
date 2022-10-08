@@ -1,0 +1,63 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Question 1
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+<font size="4">
+
+The menu choices made are presented below.
+
+<table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if Heads </b> </td>
+            <td> <b> Payment if Tails </b> </td>
+        </tr>
+
+        <tr>
+            <td>  <b> Option 1 </b>
+            </td>
+            <td>
+                <b> 30 </b>
+            </td>
+            <td>
+                <b> 70 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 2 </b>
+            </td>
+            <td>
+                <b> 70 </b>
+            </td>
+            <td>
+                <b> 30 </b>
+            </td>
+        </tr>
+</table>
+
+Given that <b>Option 1</b> was chosen and the randomly determined state of the world is <b>Heads</b>.
+
+<table class="table">
+<tr>
+    <td> What is the payment for this choice (<b>in tokens</b>)? </td>
+    <td> <input type="number" class="form-control" id="trivial_question_1" name="trivial_question_1" min="0" max="100"> </td>
+</tr>
+</table>
+</font>
+</div>
+</div>
+
+<br>
+
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+{{ endblock }}

@@ -1,0 +1,62 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Question 2
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+<font size="4">
+
+The menu choices made are presented below.
+
+<table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if Heads </b> </td>
+            <td> <b> Payment if Tails </b> </td>
+        </tr>
+
+        <tr>
+            <td>  <b> Option 1 </b>
+            </td>
+            <td>
+                <b> 80 </b>
+            </td>
+            <td>
+                <b> 20 </b>
+            </td>
+        </tr>
+        <tr>
+            <td>   <b> Option 2 </b>
+            </td>
+            <td>
+                <b> 20 </b>
+            </td>
+            <td>
+                <b> 80 </b>
+            </td>
+        </tr>
+</table>
+
+Given that <b>Option 2</b> was chosen, the randomly determined state of the world is <b>Tails</b> and the exchange rate is <b>20 tokens per £1</b>.
+
+<table class="table">
+<tr>
+    <td> What is the payment for this choice (<b>in GBP</b>)? </td>
+    <td> <input type="number" class="form-control" id="trivial_question_2" name="trivial_question_2" min="0" max="100"> </td>
+</tr>
+</table>
+</font>
+</div>
+</div>
+
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+{{ endblock }}
