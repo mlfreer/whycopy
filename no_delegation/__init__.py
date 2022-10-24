@@ -191,6 +191,31 @@ class Player(BasePlayer):
     complex_question_2 = models.IntegerField(min=0,max=1000)
     #------------------------------------------------------------
 
+
+    #------------------------------------------------------------
+    # BIG5 Questionnaire
+    #------------------------------------------------------------
+    big5_reserved = models.IntegerField(min=0,max=5, initial=0)
+    big5_trusting = models.IntegerField(min=0,max=5, initial=0)
+    big5_lazy = models.IntegerField(min=0,max=5, initial=0)
+    big5_relaxed = models.IntegerField(min=0,max=5, initial=0)
+    big5_artistic = models.IntegerField(min=0,max=5, initial=0)
+    big5_outgoing = models.IntegerField(min=0,max=5, initial=0)
+    big5_blameshifting = models.IntegerField(min=0,max=5, initial=0)
+    big5_job = models.IntegerField(min=0,max=5, initial=0)
+    big5_nervuous = models.IntegerField(min=0,max=5, initial=0)
+    big5_imagination = models.IntegerField(min=0,max=5, initial=0)
+    big5_considerate = models.IntegerField(min=0,max=5, initial=0)
+
+
+    #------------------------------------------------------------
+    # Risk TOLERANCE QUESTIONNAIRE
+    #------------------------------------------------------------
+    risk_general = models.IntegerField(min=0,max=5,initial=0)
+    risk_financial = models.IntegerField(min=0,max=5,initial=0)
+    risk_investment = models.IntegerField(min=0,max=5,initial=0)
+    risk_responsibility = models.IntegerField(min=0,max=5,initial=0)
+
 #------------------------------------------------------------
 # GLOBAL FUNCTIONS
 #------------------------------------------------------------
@@ -745,10 +770,29 @@ class ReturnStudy(Page):
         return player.return_study==True
 
 
+
+class Big5(Page):
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
+    template_name = '_static/templates/Big5_Questions.html'
+
+    form_model = 'player'
+    form_fields = ['big5_reserved','big5_trusting','big5_lazy','big5_relaxed','big5_artistic','big5_outgoing','big5_blameshifting','big5_job','big5_nervuous','big5_imagination']
+
+class Risk(Page):
+    def is_displayed(player):
+        return player.subsession.round_number == C.NUM_ROUNDS
+    template_name = '_static/templates/Risk_Questions.html'
+
+    form_model = 'player'
+    form_fields = ['risk_general','risk_financial','risk_investment','risk_responsibility']
+
+
 #------------------------------------------------------------
 # PAGE SEQUENCE
 #------------------------------------------------------------
-page_sequence = [Trivial_Instructions,
+page_sequence = [
+                Trivial_Instructions,
                 Trivial_Question1,
                 Trivial_Question2,
                 ReturnStudy,
@@ -765,6 +809,8 @@ page_sequence = [Trivial_Instructions,
                 Complex_Question2,
                 ReturnStudy,
                 Complex_DecisionScreen,
+                Big5,
+                Risk,
                 ProlificID,
                 Results
                 ]

@@ -1,0 +1,65 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Post-Experimental Survey 2 of 2
+</div>
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+    <table class="table">
+        <tr  style="border-bottom:2pt solid black;">
+            <td style="width: 30%">  </td>
+            <td style="width: 14%"> Disagree strongly </td>
+            <td style="width: 14%"> Disagree a little </td>
+            <td style="width: 14%"> Neither agree nor disagree </td>
+            <td style="width: 14%"> Agree a little </td>
+            <td style="width: 14%"> Agree strongly </td>
+        </tr>
+        <tr>
+            <td> I am generally a person who is willing to take risks </td>
+            <td> <input id="risk_general" type="radio" name="risk_general" value="1" required> </td>
+            <td> <input id="risk_general" type="radio" name="risk_general" value="2" required> </td>
+            <td> <input id="risk_general" type="radio" name="risk_general" value="3" required> </td>
+            <td> <input id="risk_general" type="radio" name="risk_general" value="4" required> </td>
+            <td> <input id="risk_general" type="radio" name="risk_general" value="5" required> </td>
+        </tr>
+        <tr>
+            <td> I am generally willing to take risks in financial matters. </td>
+            <td> <input id="risk_financial" type="radio" name="risk_financial" value="1" required> </td>
+            <td> <input id="risk_financial" type="radio" name="risk_financial" value="2" required> </td>
+            <td> <input id="risk_financial" type="radio" name="risk_financial" value="3" required> </td>
+            <td> <input id="risk_financial" type="radio" name="risk_financial" value="4" required> </td>
+            <td> <input id="risk_financial" type="radio" name="risk_financial" value="5" required> </td>
+        </tr>
+        <tr>
+            <td> I frequently invest in stocks and mutual funds myself (not through the national pension system). </td>
+            <td> <input id="risk_investment" type="radio" name="risk_investment" value="1" required> </td>
+            <td> <input id="risk_investment" type="radio" name="risk_investment" value="2" required> </td>
+            <td> <input id="risk_investment" type="radio" name="risk_investment" value="3" required> </td>
+            <td> <input id="risk_investment" type="radio" name="risk_investment" value="4" required> </td>
+            <td> <input id="risk_investment" type="radio" name="risk_investment" value="5" required> </td>
+        </tr>
+        <tr>
+            <td> I am solely responsible for financial decisions in my household. </td>
+            <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="1" required> </td>
+            <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="2" required> </td>
+            <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="3" required> </td>
+            <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="4" required> </td>
+            <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="5" required> </td>
+        </tr>
+    </table>
+</font>
+
+
+<div style="float: right; text-align: right;">
+{% next_button %}
+</div>
+
+
+
+
+
+
+
+{{ endblock }}
