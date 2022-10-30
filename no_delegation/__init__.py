@@ -524,6 +524,7 @@ class Trivial_DecisionScreen(Page):
         return dict(
             lottery_1 = C.trivial_Lottery1[i],
             lottery_2 = C.trivial_Lottery2[i],
+            residual = player.subsession.round_number % 5,
             )
          
     def before_next_page(player, timeout_happened):
@@ -549,6 +550,7 @@ class Simple_DecisionScreen(Page):
             lottery_4 = C.Lottery4[i],
             lottery_5 = C.Lottery5[i],
             lottery_6 = C.Lottery6[i],
+            residual = player.subsession.round_number % 5,
             )
 
     def before_next_page(player, timeout_happened):
@@ -574,6 +576,7 @@ class Complex_DecisionScreen(Page):
             lottery_4 = C.Lottery4[i],
             lottery_5 = C.Lottery5[i],
             lottery_6 = C.Lottery6[i],
+            residual = player.subsession.round_number % 5,
             )
 
     def error_message(player, values):
