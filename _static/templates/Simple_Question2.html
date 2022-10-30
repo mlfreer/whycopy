@@ -100,4 +100,60 @@ Given that <b>Option 1</b> was chosen and the randomly determined state of the w
 {% next_button %}
 </div>
 
+<br>
+
+<script>
+    var flag =0;
+    function InstructionsVisibility(){
+ //       alert(flag)
+        var form_instructions =  document.getElementById("FormInstructions");
+        if (flag == 0) {
+            form_instructions.style.visibility="visible";
+            flag=1
+        }
+        else {
+            form_instructions.style.visibility="hidden";
+            flag=0
+        }
+    }
+</script>
+
+<div class="card bg-light">
+<input type="button" onclick="InstructionsVisibility()"  class="btn btn-outline-secondary" value="Instructions">
+
+</div>
+
+<div id="FormInstructions" style="visibility: hidden;">
+    <div class="card bg-light">
+        <div class="card-body" >
+                <font size="4">
+In this block, you will make five decisions. In each of these decisions, you will choose one of six investment options. 
+
+<br><br>
+
+The table on the decision screen shows how the payoff of each option depends on the state of the world. There are two equally likely states of the world: Heads and Tails. The actual state will be determined by a virtual coin flip (using the computer’s random number generator).
+
+<br><br>
+
+In the example decision below, if you choose Option 1, then you will receive 55 tokens if the coin comes up Heads, and will receive 15 tokens if the coin comes up Tails. 
+If, for instance, you choose Option 3, then you will receive 40 tokens if the coin comes up Heads, and 30 tokens if Tails.
+If, for instance, you choose Option 4, then you will receive 88 tokens if the coin comes up Heads, and 6 tokens if Tails.
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/simple_decision.png' }}" class="center"/>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
 {{ endblock }}

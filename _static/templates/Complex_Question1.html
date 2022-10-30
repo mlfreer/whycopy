@@ -113,4 +113,85 @@ Question 1
 {% next_button %}
 </div>
 
+
+<br>
+
+
+<script>
+    var flag =0;
+    function InstructionsVisibility(){
+ //       alert(flag)
+        var form_instructions =  document.getElementById("FormInstructions");
+        if (flag == 0) {
+            form_instructions.style.visibility="visible";
+            flag=1
+        }
+        else {
+            form_instructions.style.visibility="hidden";
+            flag=0
+        }
+    }
+</script>
+
+<div class="card bg-light">
+<input type="button" onclick="InstructionsVisibility()"  class="btn btn-outline-secondary" value="Instructions">
+
+</div>
+
+<div id="FormInstructions" style="visibility: hidden;">
+    <div class="card bg-light">
+        <div class="card-body" >
+                <font size="4">
+
+In this block, you will make five decisions. In each of these decisions, you will distribute 100 units among six investment options. At the end of the experiment, one of the decisions will be randomly chosen and it will determine your payment.
+
+<br><br>
+
+The table on the decision screen shows how the payoff of each option depends on the state of the world. There are two equally likely states of the world: Heads and Tails. The actual state will be determined by a virtual coin flip (using the computer’s random number generator).
+
+
+
+<br>
+<br>
+
+<img src="{{static 'pictures/complex_decision_3.png' }}" class="center"/>
+
+<br><br>
+
+Your overall payoff will depend on how many units you choose to allocate to each option, and also on the outcome of a virtual coin flip. 
+In the example below, if you choose to invest all 100 units in Option 1, then you would receive 100*100 = 10000 tokens if the coin comes up Heads, and would receive 0 units if the coin comes up Tails. If you choose instead to invest 50 tokens in Option 2 and 50 tokens in Option 4, then you would receive 50*50+50*30 = 4000 units if the coin comes up Heads, and you would receive 50*10+50*14 = 1200 units if the coin comes up Tails.
+The exchange rate is 100 units per 1 token.
+
+<br><br>
+
+<img src="{{ static 'pictures/complex_decision_3.png' }}" class="center"/>
+
+<br><br>
+
+To distribute your 100 units, use your mouse to move the blue bars in the fourth column, or use the -/+ buttons in the last column. If you want to start over, just click the <b>"Reset"</b> button. 
+
+<br><br>
+
+To finalize your distribution, first check that you have distributed all 100 units. (To avoid unnecessary waste, the program will not let you proceed if there are leftover units.) Then click the <b>"Submit"</b> button and, if there are no leftover units, a <b>"Next"</b> button will appear. Clicking it will finalize your distribution on that task. 
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/complex_decision_1.png' }}" class="center"/>
+
+                </font>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
 {{ endblock }}
