@@ -41,6 +41,11 @@ SESSION_CONFIGS = [
          app_sequence=['consent_form','no_delegation'],
          num_demo_participants=1,
      ),
+     dict(
+         name='Delegation_Online',
+         app_sequence=['consent_form','delegation'],
+         num_demo_participants=1,
+     ),
 
 ]
 
@@ -60,7 +65,7 @@ SESSION_FIELDS = []
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
 
-DEBUG=False
+DEBUG=True
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False

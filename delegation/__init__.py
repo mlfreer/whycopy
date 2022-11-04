@@ -10,7 +10,7 @@ Your app description
 # CONSTANTS
 #------------------------------------------------------------
 class C(BaseConstants):
-    NAME_IN_URL = 'no_delegation'
+    NAME_IN_URL = 'delegation'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 15
     BLOCK_SIZE = 5
@@ -105,6 +105,15 @@ class C(BaseConstants):
     trivial_Lottery2[3] = [30, 70]
     trivial_Lottery2[4] = [40, 60]
 
+    #------------------------------------------------------------
+    # experts
+    NUM_EXPERTS = 5
+    E_PAYMENTS = [1,2,3,4,5] 
+    E_QUALITY = [1,1,1,0,0] # quality rating
+    E_RISK = [1,2,3,2,3] # risk rating
+    #------------------------------------------------------------
+
+
 #------------------------------------------------------------
 # CLASSES
 #------------------------------------------------------------
@@ -162,6 +171,13 @@ class Player(BasePlayer):
     # choice variables
     trivial_lottery_choice =  models.IntegerField(min=1,max=6)
     # state of the world
+    #------------------------------------------------------------
+
+    #------------------------------------------------------------
+    # delegation decisions
+    trivial_delegation = models.IntegerField(min=-1,max=5,initial=-1)
+    simple_delegation = models.IntegerField(min=-1,max=5,initial=-1)
+    complex_delegation = models.IntegerField(min=-1,max=5,initial=-1)
     #------------------------------------------------------------
 
     #------------------------------------------------------------
@@ -790,11 +806,29 @@ class Risk(Page):
     form_model = 'player'
     form_fields = ['risk_general','risk_financial','risk_investment','risk_responsibility']
 
+#----------------------------------------------------------------
+# Delegation Screens
+#----------------------------------------------------------------
+class TrivialDelegation(Page):
+    template_name='_static/templates/DelegationDecision.html'
+    form_model = 'player'
+    form_fields = ['trivial_delegation']
+    @staticmethod
+    def vars_for_template(player):
+        experts = [[0 for i in range(0,4)] for i in range(0,5)]
+        for i in range(0,5):
+            experts[i] = [C.E_PAYMENTS[i], C.E_RISK[i], C.E_QUALITY[i], i]
+
+        return dict(
+            experts = [experts[i] for i in range(0,5)],
+            )
+
 
 #------------------------------------------------------------
 # PAGE SEQUENCE
 #------------------------------------------------------------
 page_sequence = [
+                TrivialDelegation,
                 Trivial_Instructions,
                 Trivial_Question1,
                 Trivial_Question2,
