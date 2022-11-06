@@ -1,6 +1,6 @@
 {{ block title }}
 <div style="float: center; text-align: center;">
-    Delegation Deicision
+    Delegation Decision
 </div>
 {{ endblock }}
 
@@ -8,14 +8,10 @@
 <font size="4">
 <br>
 
+ <b> Plese take the delegation decision: </b>
 <table class="table">
     <tr>
-        <td> <b> Plese take the delegation decision: </b> </td>
-        <td> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td>
+        <td style="width:10%">
             <input id="NoDelegation" type="radio" name="simple_delegation" value="-1" required>
         </td>
         <td>
@@ -23,29 +19,45 @@
         </td>
     </tr>
     <tr>
+        <td style="width:10%">
+        </td>
+        <td>
+            To delegate, please select one of the investors below
+        </td>
+    </tr>
+    <tr>
     </tr>
 </table>
 
 <b>
-If you want to delegate please select one of the options below
 </b>
 
 <br>
 
 <table class="table">
     <tr>
-        <td> </td>
-        <td> <b> Payment </b> </td>
-        <td> <b> Risk Rating </b> </td>
+        <td style="width:10%"> </td>
+        <td> <b> Investor </b> </td>
         <td> <b> Quality Rating </b> </td>
+        <td> <b> Risk Rating </b> </td>
+        <td> <b> Earnings </b> </td>
     </tr>
     {% for e in experts %}
     <tr>
+
         <td> 
             <input id="1" type="radio" name="simple_delegation" value="{{e.3}}" required>
         </td>
+       <td>
+            {{e.4}}
+        </td>
         <td>
-            <i> £{{e.0}} </i>
+            {% if e.2 == 1 %}
+            <i> High </i>
+            {% endif %}
+            {% if e.2 == 0 %}
+            <i> Low </i>
+            {% endif %}
         </td>
         <td>
             {% if e.1 == 1 %}
@@ -60,13 +72,8 @@ If you want to delegate please select one of the options below
             <i> High </i>
             {% endif %}
         </td>
-        <td>
-            {% if e.2 == 1 %}
-            <i> High </i>
-            {% endif %}
-            {% if e.2 == 0 %}
-            <i> Low </i>
-            {% endif %}
+         <td>
+            <i> £{{e.0}} </i>
         </td>
     </tr>
     {% endfor %}
@@ -107,21 +114,34 @@ If you want to delegate please select one of the options below
     <div class="card bg-light">
         <div class="card-body" >
                 <font size="4">
-In the experiment you will face three blocks of five tasks each. Each task involves an economic decision. 
-At the end of the experiment, one of the blocks will be randomly (with equal likelihood) selected for payment. 
-Out of this block you will be paid for one out of your first four decisions (with equal likelihood), and you also will be paid for your last decision in that block.
+
+You now can select a previous investor and delegate the task to them, or else you can continue making your own choices as in the previous four rounds. If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
 
 <br><br>
 
-You will certainly receive <b>£1.5 for participation</b>. 
-You will also earn an <b>additional £0-10</b> depending on the random events described in these instructions and on the decisions you make. 
-Throughout experiment we use tokens as currency
-At the end of the experiments tokens will be converted the rate of <b>20 tokens per £1</b>.
+As usual, your screen will display information you will need if you decide to make your own choices. It will also display a list of five investors who have previously played this game. The display also tells you something about each of those previous investors: the final payments they received, their risk ratings and their quality ratings.
 
 <br><br>
 
-Before making decisions in each block, you will receive instructions for that block and a couple of questions to check your understanding.
-Please read the instructions carefully because fully understanding them will help you make better decisions and take home more money.
+<b>Their final payments</b>, like yours, come from a single randomly chosen round. Please note that it is often from a different round than that for which you delegate.
+
+<br>
+<br>
+
+<b>Their risk rating</b> --- High, Medium, or Low --- is based on all their choices during their session. High risk rating means they often made choices that result in a very high payment in one state and a very low payment in the other state, while low risk rating indicates mostly choices that give a moderate payout no matter what the state turns out to be.
+
+
+<br>
+<br>
+
+<b>Their quality rating</b> --- High or Low  --- indicates the “efficiency” of the investor's choices. A low rating indicates that they often could have obtained higher payments in both states if they had made different choices.  
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/delegation_decision.png' }}" class="center"/>
+ 
         </div>
     </div>
 </div>
