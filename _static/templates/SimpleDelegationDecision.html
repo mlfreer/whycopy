@@ -1,0 +1,138 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Delegation Deicision
+</div>
+{{ endblock }}
+
+{{ block content }}
+<font size="4">
+<br>
+
+<table class="table">
+    <tr>
+        <td> <b> Plese take the delegation decision: </b> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+            <input id="NoDelegation" type="radio" name="simple_delegation" value="-1" required>
+        </td>
+        <td>
+        I do not want to delegate my decision
+        </td>
+    </tr>
+    <tr>
+    </tr>
+</table>
+
+<b>
+If you want to delegate please select one of the options below
+</b>
+
+<br>
+
+<table class="table">
+    <tr>
+        <td> </td>
+        <td> <b> Payment </b> </td>
+        <td> <b> Risk Rating </b> </td>
+        <td> <b> Quality Rating </b> </td>
+    </tr>
+    {% for e in experts %}
+    <tr>
+        <td> 
+            <input id="1" type="radio" name="simple_delegation" value="{{e.3}}" required>
+        </td>
+        <td>
+            <i> £{{e.0}} </i>
+        </td>
+        <td>
+            {% if e.1 == 1 %}
+            <i> Low </i>
+            {% endif %}
+
+            {% if e.1 == 2 %}
+            <i> Medium </i>
+            {% endif %}
+
+            {% if e.1 == 3 %}
+            <i> High </i>
+            {% endif %}
+        </td>
+        <td>
+            {% if e.2 == 1 %}
+            <i> High </i>
+            {% endif %}
+            {% if e.2 == 0 %}
+            <i> Low </i>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<div id="NextButton" style="float: right;">
+{% next_button %}
+</div>
+
+</font>
+
+
+
+<br><br><br>
+
+<script>
+    var flag =0;
+    function InstructionsVisibility(){
+ //       alert(flag)
+        var form_instructions =  document.getElementById("FormInstructions");
+        if (flag == 0) {
+            form_instructions.style.visibility="visible";
+            flag=1
+        }
+        else {
+            form_instructions.style.visibility="hidden";
+            flag=0
+        }
+    }
+</script>
+
+<div class="card bg-light">
+<input type="button" onclick="InstructionsVisibility()"  class="btn btn-outline-secondary" value="Instructions">
+</div>
+
+<div id="FormInstructions" style="visibility: hidden;">
+    <div class="card bg-light">
+        <div class="card-body" >
+                <font size="4">
+In the experiment you will face three blocks of five tasks each. Each task involves an economic decision. 
+At the end of the experiment, one of the blocks will be randomly (with equal likelihood) selected for payment. 
+Out of this block you will be paid for one out of your first four decisions (with equal likelihood), and you also will be paid for your last decision in that block.
+
+<br><br>
+
+You will certainly receive <b>£1.5 for participation</b>. 
+You will also earn an <b>additional £0-10</b> depending on the random events described in these instructions and on the decisions you make. 
+Throughout experiment we use tokens as currency
+At the end of the experiments tokens will be converted the rate of <b>20 tokens per £1</b>.
+
+<br><br>
+
+Before making decisions in each block, you will receive instructions for that block and a couple of questions to check your understanding.
+Please read the instructions carefully because fully understanding them will help you make better decisions and take home more money.
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
+{{ endblock }}

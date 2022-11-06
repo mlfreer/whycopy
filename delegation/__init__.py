@@ -106,11 +106,79 @@ class C(BaseConstants):
     trivial_Lottery2[4] = [40, 60]
 
     #------------------------------------------------------------
-    # experts
+    # EXPERTS
     NUM_EXPERTS = 5
-    E_PAYMENTS = [1,2,3,4,5] 
+    E_PAYMENTS = [1,2,3,4,5] # earnings in the experiment
     E_QUALITY = [1,1,1,0,0] # quality rating
     E_RISK = [1,2,3,2,3] # risk rating
+    # replace the placeholders!
+    #------------------------------------------------------------
+
+    #------------------------------------------------------------
+    # EXPERT CHOICES
+    #------------------------------------------------------------
+    # TRIVIAL CHOICES:
+    E_TRIVIAL_CHOICES = [[0 for i in range(0,5)] for i in range(0,5)]
+    E_TRIVIAL_CHOICES[0] = [1,1,1,1,1]
+    E_TRIVIAL_CHOICES[1] = [1,1,1,1,2]
+    E_TRIVIAL_CHOICES[2] = [1,1,1,2,2]
+    E_TRIVIAL_CHOICES[3] = [1,1,2,2,2]
+    E_TRIVIAL_CHOICES[4] = [1,2,2,2,2]
+    # replace the placeholder!
+
+    # SIMPLE CHOICES:
+    E_SIMPLE_CHOICES = [[0 for i in range(0,5)] for i in range(0,5)]
+    E_SIMPLE_CHOICES[0] = [1,1,1,1,1]
+    E_SIMPLE_CHOICES[1] = [2,2,2,2,2]
+    E_SIMPLE_CHOICES[2] = [3,3,3,3,3]
+    E_SIMPLE_CHOICES[3] = [4,4,4,4,4]
+    E_SIMPLE_CHOICES[4] = [5,5,5,5,5]
+    # replace the placeholder!
+
+    # COMPLEX CHOICES:
+    E_COMPLEX_CHOICES = [[[0 for i in range(0,6)] for i in range(0,6)] for i in range(0,6)]
+
+    # EXPERT 1:
+    E_COMPLEX_CHOICES[0][0] = [1,0,0,0,0,0]
+    E_COMPLEX_CHOICES[0][1] = [0,1,0,0,0,0]
+    E_COMPLEX_CHOICES[0][2] = [0,0,1,0,0,0]
+    E_COMPLEX_CHOICES[0][3] = [0,0,0,1,0,0]
+    E_COMPLEX_CHOICES[0][4] = [0,0,0,0,1,0]
+    E_COMPLEX_CHOICES[0][5] = [0,0,0,0,0,1]
+
+    # EXPERT 2:
+    E_COMPLEX_CHOICES[1][0] = [1,0,0,0,0,0]
+    E_COMPLEX_CHOICES[1][1] = [0,1,0,0,0,0]
+    E_COMPLEX_CHOICES[1][2] = [0,0,1,0,0,0]
+    E_COMPLEX_CHOICES[1][3] = [0,0,0,1,0,0]
+    E_COMPLEX_CHOICES[1][4] = [0,0,0,0,1,0]
+    E_COMPLEX_CHOICES[1][5] = [0,0,0,0,0,1]
+
+    # EXPERT 3:
+    E_COMPLEX_CHOICES[2][0] = [1,0,0,0,0,0]
+    E_COMPLEX_CHOICES[2][1] = [0,1,0,0,0,0]
+    E_COMPLEX_CHOICES[2][2] = [0,0,1,0,0,0]
+    E_COMPLEX_CHOICES[2][3] = [0,0,0,1,0,0]
+    E_COMPLEX_CHOICES[2][4] = [0,0,0,0,1,0]
+    E_COMPLEX_CHOICES[2][5] = [0,0,0,0,0,1]
+
+    # EXPERT 4:
+    E_COMPLEX_CHOICES[3][0] = [1,0,0,0,0,0]
+    E_COMPLEX_CHOICES[3][1] = [0,1,0,0,0,0]
+    E_COMPLEX_CHOICES[3][2] = [0,0,1,0,0,0]
+    E_COMPLEX_CHOICES[3][3] = [0,0,0,1,0,0]
+    E_COMPLEX_CHOICES[3][4] = [0,0,0,0,1,0]
+    E_COMPLEX_CHOICES[3][5] = [0,0,0,0,0,1]
+
+    # EXPERT 5:
+    E_COMPLEX_CHOICES[4][0] = [1,0,0,0,0,0]
+    E_COMPLEX_CHOICES[4][1] = [0,1,0,0,0,0]
+    E_COMPLEX_CHOICES[4][2] = [0,0,1,0,0,0]
+    E_COMPLEX_CHOICES[4][3] = [0,0,0,1,0,0]
+    E_COMPLEX_CHOICES[4][4] = [0,0,0,0,1,0]
+    E_COMPLEX_CHOICES[4][5] = [0,0,0,0,0,1]
+    # replace the placeholder!
+
     #------------------------------------------------------------
 
 
@@ -175,9 +243,9 @@ class Player(BasePlayer):
 
     #------------------------------------------------------------
     # delegation decisions
-    trivial_delegation = models.IntegerField(min=-1,max=5,initial=-1)
-    simple_delegation = models.IntegerField(min=-1,max=5,initial=-1)
-    complex_delegation = models.IntegerField(min=-1,max=5,initial=-1)
+    trivial_delegation = models.IntegerField(min=-2,max=5,initial=-2)
+    simple_delegation = models.IntegerField(min=-2,max=5,initial=-2)
+    complex_delegation = models.IntegerField(min=-2,max=5,initial=-2)
     #------------------------------------------------------------
 
     #------------------------------------------------------------
@@ -528,7 +596,7 @@ class Complex_Instructions_P3(Page):
 #----------------------------------------------------------------
 class Trivial_DecisionScreen(Page):
     def is_displayed(player):
-        return player.treatment_index==0
+        return (player.treatment_index==0 and player.subsession.round_number % C.BLOCK_SIZE != 0) or (player.treatment_index==0 and player.subsession.round_number % C.BLOCK_SIZE == 0 and player.trivial_delegation<=-1)
 
     template_name = '_static/templates/Trivial_DecisionScreen.html'
     form_model = 'player'
@@ -550,7 +618,7 @@ class Trivial_DecisionScreen(Page):
 
 class Simple_DecisionScreen(Page):
     def is_displayed(player):
-        return player.treatment_index==1
+        return (player.treatment_index==1 and player.subsession.round_number % C.BLOCK_SIZE != 0) or (player.treatment_index==1 and player.subsession.round_number % C.BLOCK_SIZE == 0 and player.simple_delegation<=-1)
 
     template_name = '_static/templates/Simple_DecisionScreen.html'
     form_model = 'player'
@@ -576,7 +644,7 @@ class Simple_DecisionScreen(Page):
 
 class Complex_DecisionScreen(Page):
     def is_displayed(player):
-        return player.treatment_index == 2
+        return (player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE != 0) or (player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 0 and player.complex_delegation<=-1)
 
     template_name = '_static/templates/Complex_DecisionScreen.html'
     form_model = 'player'
@@ -810,7 +878,10 @@ class Risk(Page):
 # Delegation Screens
 #----------------------------------------------------------------
 class TrivialDelegation(Page):
-    template_name='_static/templates/DelegationDecision.html'
+    def is_displayed(player):
+        return player.treatment_index == 0 and player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    template_name='_static/templates/TrivialDelegationDecision.html'
     form_model = 'player'
     form_fields = ['trivial_delegation']
     @staticmethod
@@ -823,21 +894,88 @@ class TrivialDelegation(Page):
             experts = [experts[i] for i in range(0,5)],
             )
 
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if player.trivial_delegation>0:
+            budget_index = player.budget_index
+            expert_number = player.trivial_delegation
+            player.trivial_lottery_choice = C.E_TRIVIAL_CHOICES[expert_number][budget_index]
+
+    #----------------------------------------------------------------
+
+
+class SimpleDelegation(Page):
+    def is_displayed(player):
+        return player.treatment_index == 1 and player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    template_name='_static/templates/SimpleDelegationDecision.html'
+    form_model = 'player'
+    form_fields = ['simple_delegation']
+    @staticmethod
+    def vars_for_template(player):
+        experts = [[0 for i in range(0,4)] for i in range(0,5)]
+        for i in range(0,5):
+            experts[i] = [C.E_PAYMENTS[i], C.E_RISK[i], C.E_QUALITY[i], i]
+
+        return dict(
+            experts = [experts[i] for i in range(0,5)],
+            )
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if player.simple_delegation>0:
+            budget_index = player.budget_index
+            expert_number = player.simple_delegation
+            player.simple_lottery_choice = C.E_SIMPLE_CHOICES[expert_number][budget_index]
+    #----------------------------------------------------------------
+
+class ComplexDelegation(Page):
+    def is_displayed(player):
+        return player.treatment_index == 2 and player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    template_name='_static/templates/ComplexDelegationDecision.html'
+    form_model = 'player'
+    form_fields = ['complex_delegation']
+    @staticmethod
+    def vars_for_template(player):
+        experts = [[0 for i in range(0,4)] for i in range(0,5)]
+        for i in range(0,5):
+            experts[i] = [C.E_PAYMENTS[i], C.E_RISK[i], C.E_QUALITY[i], i]
+
+        return dict(
+            experts = [experts[i] for i in range(0,5)],
+            )
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if player.complex_delegation>0:
+            budget_index = player.budget_index
+            expert_number = player.complex_delegation
+            # assigning the shares
+            player.complex_shares_1 = C.E_COMPLEX_CHOICES[expert_number][budget_index][0]
+            player.complex_shares_2 = C.E_COMPLEX_CHOICES[expert_number][budget_index][1]
+            player.complex_shares_3 = C.E_COMPLEX_CHOICES[expert_number][budget_index][2]
+            player.complex_shares_4 = C.E_COMPLEX_CHOICES[expert_number][budget_index][3]
+            player.complex_shares_5 = C.E_COMPLEX_CHOICES[expert_number][budget_index][4]
+            player.complex_shares_6 = C.E_COMPLEX_CHOICES[expert_number][budget_index][5]
+    #----------------------------------------------------------------
+
 
 #------------------------------------------------------------
 # PAGE SEQUENCE
 #------------------------------------------------------------
 page_sequence = [
-                TrivialDelegation,
                 Trivial_Instructions,
                 Trivial_Question1,
                 Trivial_Question2,
                 ReturnStudy,
+                TrivialDelegation,
                 Trivial_DecisionScreen,
                 Simple_Instructions,
                 Simple_Question1,
                 Simple_Question2,
                 ReturnStudy,
+                SimpleDelegation,
                 Simple_DecisionScreen,
                 Complex_Instructions_P1,
                 Complex_Instructions_P2,
@@ -845,6 +983,7 @@ page_sequence = [
                 Complex_Question1,
                 Complex_Question2,
                 ReturnStudy,
+                ComplexDelegation,
                 Complex_DecisionScreen,
                 Big5,
                 Risk,
