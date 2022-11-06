@@ -121,7 +121,7 @@ class C(BaseConstants):
     E_TRIVIAL_CHOICES[0] = [1, 2, 2, 2, 2]
     E_TRIVIAL_CHOICES[1] = [1, 2, 2, 1, 1]
     E_TRIVIAL_CHOICES[2] = [1, 2, 1, 2, 1]
-    E_TRIVIAL_CHOICES[3] = [1,     1,     1,     2,     1]
+    E_TRIVIAL_CHOICES[3] = [1, 1,     1,     2,     1]
     E_TRIVIAL_CHOICES[4] = [1,     1,     1,     1,     1]
 
 
@@ -320,6 +320,7 @@ def creating_session(subsession):
         set_simple_budgets(p)
         set_complex_budgets(p)
         set_experts_index(p)
+        set_payment_round(p)
 
 
 def set_treatment_order(player: Player):
@@ -409,10 +410,16 @@ def set_complex_budgets(player: Player):
         i=i+1
     #------------------------------------------------------------
 
-def set_payoffs(player: Player):
+def set_payment_round(player: Player):
     player.payment_block = random.randint(0,2)
     payment_round = random.randint(1,4)
     player.payment_round = player.payment_block*5 + payment_round
+
+    for p in player.in_all_rounds():
+        p.payment_block = player.payment_block
+        p.payment_round = player.payment_round
+
+def set_payoffs(player: Player):
     p = player.in_round(player.payment_round)
     player.earnings = 0
     #------------------------------------------------------------
@@ -917,7 +924,7 @@ class TrivialDelegation(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        if player.trivial_delegation>0:
+        if player.trivial_delegation>=0:
             budget_index = player.budget_index
             expert_number = player.trivial_delegation
             player.trivial_lottery_choice = C.E_TRIVIAL_CHOICES[expert_number][budget_index]
@@ -946,7 +953,7 @@ class SimpleDelegation(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        if player.simple_delegation>0:
+        if player.simple_delegation>=0:
             budget_index = player.budget_index
             expert_number = player.simple_delegation
             player.simple_lottery_choice = C.E_SIMPLE_CHOICES[expert_number][budget_index]
@@ -973,7 +980,7 @@ class ComplexDelegation(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        if player.complex_delegation>0:
+        if player.complex_delegation>=0:
             budget_index = player.budget_index
             expert_number = player.complex_delegation
             # assigning the shares
