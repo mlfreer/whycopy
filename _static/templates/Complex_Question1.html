@@ -62,7 +62,7 @@ Question 1
     </tr>
     <tr>
         <td> Exchange Rate</td>
-        <td> 100 units per 1 token </td>
+        <td> 100 mini-tokens per 1 token </td>
         <td> </td>
         <td> </td>
         <td> </td>
@@ -78,21 +78,21 @@ Question 1
 
 <table class="table">
     <tr>
-        <td> What is the payment for this choice (<b>in units</b>)? </td>
+        <td> What is the payment for this choice (<b>in tokens</b>)? </td>
     </tr>
     <tr>
         <td> 
-            <input id="question1" type="radio" name="complex_question_1" value="1" required> &nbsp; (10*20 + 10*40 + 20*40)/100 = 14
+            <input id="question1" type="radio" name="complex_question_1" value="1" required> &nbsp; 10*20 + 10*40 + 20*40 = 1400
         </td>
     </tr>
     <tr>
         <td> 
-            <input id="question1" type="radio" name="complex_question_1" value="2" required> &nbsp; 10*20 + 10*40 + 40*40 = 2200
+            <input id="question1" type="radio" name="complex_question_1" value="2" required> &nbsp; (10*20 + 10*40 + 40*40)/100 = 22
         </td>
     </tr>
     <tr>
         <td> 
-            <input id="question1" type="radio" name="complex_question_1" value="3" required> &nbsp; 10*20 + 10*40 + 20*40 = 1400
+            <input id="question1" type="radio" name="complex_question_1" value="3" required> &nbsp; (10*20 + 10*40 + 20*40)/100 = 14
         </td>
     </tr>
     <tr>
@@ -158,9 +158,8 @@ The table on the decision screen shows how the payoff of each option depends on 
 
 <br><br>
 
-Your overall payoff will depend on how many units you choose to allocate to each option, and also on the outcome of a virtual coin flip. 
-In the example below, if you choose to invest all 100 units in Option 1, then you would receive 100*100 = 10000 tokens if the coin comes up Heads, and would receive 0 units if the coin comes up Tails. If you choose instead to invest 50 tokens in Option 2 and 50 tokens in Option 4, then you would receive 50*50+50*30 = 4000 units if the coin comes up Heads, and you would receive 50*10+50*14 = 1200 units if the coin comes up Tails.
-The exchange rate is 100 units per 1 token.
+
+Your payoff each round will depend on how you choose to allocate 100 units among the available options, and also on the outcome of a virtual coin flip. In the example below, if you choose to allocate all 100 units in Option 1, then you would receive 100*100 = 10,000 mini-tokens = 100 tokens if the coin comes up Heads, and would receive 0 tokens if the coin comes up Tails. If you choose instead to invest 50 units in Option 2 and 50 units in Option 4, then you would receive 50*50+50*30 = 4000 mini-tokens = 40 tokens if the coin comes up Heads, and you would receive 50*10+50*14 = 1200 mini-tokens = 12 tokens  if the coin comes up Tails.
 
 <br><br>
 

@@ -130,8 +130,8 @@ class C(BaseConstants):
     E_SIMPLE_CHOICES[0] = [3, 4, 1, 4, 1]
     E_SIMPLE_CHOICES[1] = [2, 1, 3, 1, 3]
     E_SIMPLE_CHOICES[2] = [3, 3, 1, 3, 3]
-    E_SIMPLE_CHOICES[3] = [1,     1,     1,     2,     1]
-    E_SIMPLE_CHOICES[4] = [3,     6,     1,     5,     5]
+    E_SIMPLE_CHOICES[3] = [1, 1, 1, 2, 1]
+    E_SIMPLE_CHOICES[4] = [3, 6, 1, 5, 5]
 
 
     # COMPLEX CHOICES:
