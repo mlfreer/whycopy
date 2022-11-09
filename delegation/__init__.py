@@ -440,6 +440,7 @@ def set_payoffs(player: Player):
         if player.trivial_delegation>=0:
             player.payoff = player.payoff - C.DELEGATION_COSTS
             player.delegation_decision = 1
+
     elif p.treatment_index==1:
         set_simple_payoffs(player,first_payment_round)
         player.earnings_period_one = cu(player.earnings/C.EXCHANGE_RATE)
@@ -448,6 +449,7 @@ def set_payoffs(player: Player):
         if player.simple_delegation>=0:
             player.payoff = player.payoff - C.DELEGATION_COSTS
             player.delegation_decision = 1
+
     elif p.treatment_index==2:
         set_complex_payoffs(player,first_payment_round)
         player.earnings_period_one = cu(player.earnings/C.EXCHANGE_RATE)
@@ -456,6 +458,7 @@ def set_payoffs(player: Player):
         if player.complex_delegation>=0:
             player.payoff = player.payoff - C.DELEGATION_COSTS
             player.delegation_decision = 1
+
     #------------------------------------------------------------
     player.payoff = player.payoff+cu(player.earnings)/C.EXCHANGE_RATE
 
@@ -978,20 +981,19 @@ class TrivialDelegation(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         p = player.in_round(player.subsession.round_number-1)
-        if p.trivial_delegation>=-1:
-            player.trivial_delegation=p.trivial_delegation
         if p.simple_delegation>=-1:
             player.simple_delegation = p.simple_delegation
         if p.complex_delegation>=-1:
             player.complex_delegation = p.complex_delegation
+        players = player.in_all_rounds()
+        for p in players:
+            p.trivial_delegation = player.trivial_delegation
         if player.trivial_delegation>=0:
             budget_index = player.budget_index
             expert_number = player.trivial_delegation
             player.trivial_lottery_choice = C.E_TRIVIAL_CHOICES[expert_number][budget_index]
             # making sure the decisions are passed down
-            players = player.in_all_rounds()
-            for p in players:
-                p.trivial_delegation = player.trivial_delegation
+            
 
     #----------------------------------------------------------------
 
@@ -1020,18 +1022,17 @@ class SimpleDelegation(Page):
         p = player.in_round(player.subsession.round_number-1)
         if p.trivial_delegation>=-1:
             player.trivial_delegation=p.trivial_delegation
-        if p.simple_delegation>=-1:
-            player.simple_delegation = p.simple_delegation
         if p.complex_delegation>=-1:
             player.complex_delegation = p.complex_delegation
+        players = player.in_all_rounds()
+        for p in players:
+            p.simple_delegation = player.simple_delegation
         if player.simple_delegation>=0:
             budget_index = player.budget_index
             expert_number = player.simple_delegation
             player.simple_lottery_choice = C.E_SIMPLE_CHOICES[expert_number][budget_index]
             # making sure the decisions are passed down
-            players = player.in_all_rounds()
-            for p in players:
-                p.simple_delegation = player.simple_delegation
+            
     #----------------------------------------------------------------
 
 class ComplexDelegation(Page):
@@ -1060,8 +1061,9 @@ class ComplexDelegation(Page):
             player.trivial_delegation=p.trivial_delegation
         if p.simple_delegation>=-1:
             player.simple_delegation = p.simple_delegation
-        if p.complex_delegation>=-1:
-            player.complex_delegation = p.complex_delegation
+        players = player.in_all_rounds()
+        for p in players:
+            p.complex_delegation = player.complex_delegation
         if player.complex_delegation>=0:
             budget_index = player.budget_index
             expert_number = player.complex_delegation
@@ -1073,9 +1075,7 @@ class ComplexDelegation(Page):
             player.complex_shares_5 = C.E_COMPLEX_CHOICES[expert_number][4][budget_index]*100
             player.complex_shares_6 = C.E_COMPLEX_CHOICES[expert_number][5][budget_index]*100
             # making sure the decisions are passed down
-            players = player.in_all_rounds()
-            for p in players:
-                p.complex_delegation = player.complex_delegation
+            
     #----------------------------------------------------------------
 
 
