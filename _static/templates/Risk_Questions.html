@@ -40,13 +40,21 @@
             <td> <input id="risk_investment" type="radio" name="risk_investment" value="4" required> </td>
             <td> <input id="risk_investment" type="radio" name="risk_investment" value="5" required> </td>
         </tr>
-        <tr>
+        <tr style="border-bottom:2pt solid black;">
             <td> I am solely responsible for financial decisions in my household. </td>
             <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="1" required> </td>
             <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="2" required> </td>
             <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="3" required> </td>
             <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="4" required> </td>
             <td> <input id="risk_responsibility" type="radio" name="risk_responsibility" value="5" required> </td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <td> What is the maximum amount you would be willing to pay to delegate the decision (in £)? </td>
+            <td style="width: 14%"> 
+                <input type="number" class="form-control" id="wtp_delegation" name="wtp_delegation" min="0" max="10" step=".1" value="0"/>
+            </td>
         </tr>
     </table>
 </font>

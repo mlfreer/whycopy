@@ -310,6 +310,11 @@ class Player(BasePlayer):
     risk_investment = models.IntegerField(min=0,max=5,initial=0)
     risk_responsibility = models.IntegerField(min=0,max=5,initial=0)
 
+    #------------------------------------------------------------
+    # WTP for delegation
+    #------------------------------------------------------------
+    wtp_delegation = models.CurrencyField(label="")
+
 #------------------------------------------------------------
 # GLOBAL FUNCTIONS
 #------------------------------------------------------------
@@ -948,7 +953,7 @@ class Risk(Page):
     template_name = '_static/templates/Risk_Questions.html'
 
     form_model = 'player'
-    form_fields = ['risk_general','risk_financial','risk_investment','risk_responsibility']
+    form_fields = ['risk_general','risk_financial','risk_investment','risk_responsibility','wtp_delegation']
 
 #----------------------------------------------------------------
 # Delegation Screens
