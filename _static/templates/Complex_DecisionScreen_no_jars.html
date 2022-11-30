@@ -1,0 +1,452 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Please choose an option (Decison <b style ="color:#0d6efd">{{player.subsession.round_number}}</b> out of <b>{{C.NUM_ROUNDS}}</b>)
+</div>
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+    <table class="table">
+        <tr>
+            <td> </td>
+            <td> <b> Payment if Heads </b> </td>
+            <td> <b> Payment if Tails </b> </td>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 1 </b>
+            </td>
+            <td>
+                <b> {{ lottery_1.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_1.1 }} </b>
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option1_form)" class="btn btn-outline-secondary" id="option1_form_dec" value="-">
+                <input type="number" oninput = "update_value(option1_form)" class="form-control" id="option1_form" name="complex_shares_1" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option1_form)" class="btn btn-outline-secondary" id="option1_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td> <b> Option 2 </b>
+            </td>
+            <td>
+                <b> {{ lottery_2.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_2.1 }} </b>
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option2_form)"  class="btn btn-outline-secondary" id="option2_form_dec" value="-">
+                <input type="number" oninput = "update_value(option2_form)" class="form-control" id="option2_form" name="complex_shares_2" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option2_form)" class="btn btn-outline-secondary" id="option2_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 3 </b>
+            </td>
+            <td>
+                <b> {{ lottery_3.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_3.1 }} </b>
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option3_form)"  class="btn btn-outline-secondary" id="option3_form_dec" value="-">
+                <input type="number" oninput = "update_value(option3_form)" class="form-control" id="option3_form" name="complex_shares_3" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option3_form)" class="btn btn-outline-secondary" id="option3_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 4 </b>
+            </td>
+            <td>
+                <b> {{ lottery_4.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_4.1 }} </b>
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option4_form)"  class="btn btn-outline-secondary" id="option4_form_dec" value="-">
+                <input type="number" oninput = "update_value(option4_form)" class="form-control" id="option4_form" name="complex_shares_4" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option4_form)" class="btn btn-outline-secondary" id="option4_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td> <b> Option 5 </b>
+            </td>
+            <td>
+                <b> {{ lottery_5.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_5.1 }} </b>
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option5_form)"  class="btn btn-outline-secondary" id="option5_form_dec" value="-">
+                <input type="number" oninput = "update_value(option5_form)" class="form-control" id="option5_form" name="complex_shares_5" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option5_form)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td> <b> Option 6 </b>
+            </td>
+            <td>
+                <b> {{ lottery_6.0 }} </b>
+            </td>
+            <td>
+                <b> {{ lottery_6.1 }} </b>
+            </td>
+            <td>
+                <div class="input-group">
+                <input type="button" onclick="dec(option6_form)"  class="btn btn-outline-secondary" id="option6_form_dec" value="-">
+                <input type="number" oninput = "update_value(option6_form)" class="form-control" id="option6_form" name="complex_shares_6" min="0" max="100" step="1" value="0"/>
+                <input type="button" onclick="inc(option6_form)" class="btn btn-outline-secondary" id="option6_form_inc" value="+">
+            </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td> <b>Leftover Units</b> </td>
+            <td> </td>
+            <td> </td>
+            <td> 
+                <div class="input-group">
+                <input type="button" onclick="dec5(tokens_form)"  class="btn btn-outline-secondary" id="tokens_dec" value="-">
+                <input type="number" oninput = "update_value(tokens_form)" class="form-control" id="tokens_form" name="tokens" min="0" max="100" step="1" value ="100"/>
+                <input type="button" onclick="inc5(tokens_form)" class="btn btn-outline-secondary" id="tokens_inc" value="+">
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td> <input type="button" onclick="reset_values()" class="btn btn-primary" value="Reset">  </td>
+            <td> <input type="button" onclick="validate()" class="btn btn-primary" value="Submit"> </td>
+        </tr>
+    </table>
+
+
+<div id="NextButton" style="float: right; visibility:hidden">
+{% next_button %}
+</div>
+
+
+<br><br>
+
+{% if residual == 0 %}
+
+<div class="card bg-light">
+<font size="4">
+    <div class="card-body">
+    Note that chance that this round will be chosen for payment is higher than usual (1 in 3 instead of 1 in 12).
+</div>
+</font>
+</div>
+
+{% endif %}
+
+
+<br><br>
+
+
+<script>
+    var flag =0;
+    function InstructionsVisibility(){
+ //       alert(flag)
+        var form_instructions =  document.getElementById("FormInstructions");
+        if (flag == 0) {
+            form_instructions.style.visibility="visible";
+            flag=1
+        }
+        else {
+            form_instructions.style.visibility="hidden";
+            flag=0
+        }
+    }
+</script>
+
+<div class="card bg-light">
+<input type="button" onclick="InstructionsVisibility()"  class="btn btn-outline-secondary" value="Instructions">
+
+</div>
+
+<div id="FormInstructions" style="visibility: hidden;">
+    <div class="card bg-light">
+        <div class="card-body" >
+                <font size="4">
+
+In this block, you will make five decisions. In each of these decisions, you will distribute 100 units among six investment options. At the end of the experiment, one of the decisions will be randomly chosen and it will determine your payment.
+
+<br><br>
+
+The table on the decision screen shows how the payoff of each option depends on the state of the world. There are two equally likely states of the world: Heads and Tails. The actual state will be determined by a virtual coin flip (using the computer’s random number generator).
+
+
+
+<br>
+<br>
+
+<img src="{{static 'pictures/complex_decision_3.png' }}" class="center"/>
+
+<br><br>
+
+Your payoff each round will depend on how you choose to allocate 100 units among the available options, and also on the outcome of a virtual coin flip. In the example below, if you choose to allocate all 100 units in Option 1, then you would receive 100*100 = 10,000 mini-tokens = 100 tokens if the coin comes up Heads, and would receive 0 tokens if the coin comes up Tails. If you choose instead to invest 50 units in Option 2 and 50 units in Option 4, then you would receive 50*50+50*30 = 4000 mini-tokens = 40 tokens if the coin comes up Heads, and you would receive 50*10+50*14 = 1200 mini-tokens = 12 tokens  if the coin comes up Tails.
+
+
+<br><br>
+
+<img src="{{ static 'pictures/complex_decision_3.png' }}" class="center"/>
+
+<br><br>
+
+To distribute your 100 units, use your mouse to move the blue bars in the fourth column, or use the -/+ buttons in the last column. If you want to start over, just click the <b>"Reset"</b> button. 
+
+<br><br>
+
+To finalize your distribution, first check that you have distributed all 100 units. (To avoid unnecessary waste, the program will not let you proceed if there are leftover units.) Then click the <b>"Submit"</b> button and, if there are no leftover units, a <b>"Next"</b> button will appear. Clicking it will finalize your distribution on that task. 
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/complex_decision_1.png' }}" class="center"/>
+
+                </font>
+        </div>
+    </div>
+</div>
+
+</font>
+
+
+
+{% load staticfiles %}
+
+<script>
+// fixing option 1:
+var option1_form = document.getElementById("option1_form");
+option1_form.value = option1_slider.value;
+
+// fixing option 2:
+var option2_form = document.getElementById("option2_form");
+option2_form.value = option2_slider.value;
+
+// fixing option 3:
+var option3_form = document.getElementById("option3_form");
+option3_form.value = option3_slider.value;
+
+// fixing option 4:
+var option4_form = document.getElementById("option4_form");
+option4_form.value = option4_slider.value;
+
+// fixing option 5:
+var option5_form = document.getElementById("option5_form");
+option5_form.value = option5_slider.value;
+
+
+// fixing option 6:
+var option6_form = document.getElementById("option6_form");
+option6_form.value = option6_slider.value;
+
+
+// fixing tokens:
+var tokens_form = document.getElementById("tokens_form");
+tokens_form.value = tokens_slider.value;
+
+
+// 
+var next_button = document.getElementById("NextButton");
+
+function validate()
+{
+    if ((tokens_form.value)==0)
+    {
+        next_button.style.visibility = "visible"
+    }
+    else
+    {
+        next_button.style.visibility = "hidden"
+    }
+}
+
+function round6(x)
+{
+    return Math.ceil(x/6)*6;
+}
+
+// fixing option 6:
+var option6_form = document.getElementById("option6_form");
+option6_form.value = option6_slider.value;
+
+
+// updating value from x to y:
+function update_value(x,y) {
+    next_button.style.visibility = "hidden";
+
+
+    a = parseInt(tokens_form.value)
+    b = parseInt(x.value)
+    c = parseInt(y.value)
+
+    if ((a<0)||(b<0)) {
+        reset_values();
+        window.alert('Negative values are prohibited. The values are reset.')
+        return;
+    }
+
+
+    if ((x.id=="tokens_form"))
+    {
+        temp = round6(b-c);
+        x.value = parseInt(y.value) + temp
+        b = parseInt(x.value)
+        
+        diff = temp/6
+
+        option1 = parseInt(option1_form.value)
+        option2 = parseInt(option2_form.value)
+        option3 = parseInt(option3_form.value)
+        option4 = parseInt(option4_form.value)
+        option5 = parseInt(option5_form.value)
+        option6 = parseInt(option6_form.value)
+//        window.alert(option1-diff)
+        if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100) && (option6-diff <=100))
+        {
+            
+            y.value = x.value
+            option1_form.value = option1 - diff;
+            option2_form.value = option2 - diff;
+            option3_form.value = option3 - diff;
+            option4_form.value = option4 - diff;
+            option5_form.value = option5 - diff;
+            option6_form.value = option6 - diff;
+        }
+        else
+        {
+            if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0) && (option6-diff >=0))
+            {
+                y.value = x.value;
+                option1_form.value = option1 - diff;
+                option2_form.value = option2 - diff;
+                option3_form.value = option3 - diff;
+                option4_form.value = option4 - diff;
+                option5_form.value = option5 - diff;
+                option6_form.value = option6 - diff;
+
+            }
+            else
+            {
+                x.value = y.value;
+
+            }
+        }
+    }
+    else
+    {
+        if (a-b+c >= 0) {
+            temp =a-b+c;
+//            if ((b-c<=1) && (b-c>=-1)) {window.alert(b-c)}
+            tokens_form.value=temp;
+//            window.alert(tokens_form.value)
+            y.value = x.value
+        }
+        else
+        {   
+            
+            x.value=y.value
+        }
+    }
+
+    if (tokens_form.value>100)
+    {
+        reset_values();
+    }
+
+}
+
+// to operationlize the buttons
+function dec5(form) {
+    a = parseInt(form.value)
+    if (a >= 6) {       
+        form.value = parseInt(form.value)-6
+//        window.alert(slider.value)
+        update_value(form)
+    };
+}
+
+function inc5(form) {
+    a = parseInt(form.value)
+    if (a <= 94) {       
+        form.value = parseInt(form.value)+6
+        update_value(form)
+    };
+}
+
+
+// to operationlize the buttons
+function dec(form) {
+    a = parseInt(form.value)
+    if ((a >= 1) && (a<=100)) {       
+        form.value--
+//        window.alert(slider.value)
+        update_value(form)
+    }
+}
+
+function inc(form) {
+    a = parseInt(form.value)
+    if ((a <= 99) && (a>=0)) {  
+        form.value++
+        update_value(form)
+    }
+}
+
+
+// resetting the values
+function reset_values() {
+    next_button.style.visibility = "hidden";
+
+    option1_form.value = 0
+    option2_form.value = 0
+    option3_form.value = 0
+    option4_form.value = 0
+    option5_form.value = 0
+    option6_form.value = 0
+
+    tokens_form.value = 100
+    tokens_slider.value = 100
+}
+</script>
+
+<link href="{{ static 'global/budget_jars.css' }}" rel="stylesheet"/>
+
+<style type="text/css">
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
+{{ endblock }}
