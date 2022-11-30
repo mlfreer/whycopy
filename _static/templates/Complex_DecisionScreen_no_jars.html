@@ -27,7 +27,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option1_form)" class="btn btn-outline-secondary" id="option1_form_dec" value="-">
-                <input type="number" oninput = "update_value(option1_form)" class="form-control" id="option1_form" name="complex_shares_1" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_values()" class="form-control" id="option1_form" name="complex_shares_1" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option1_form)" class="btn btn-outline-secondary" id="option1_form_inc" value="+">
             </div>
             </td>
@@ -44,7 +44,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option2_form)"  class="btn btn-outline-secondary" id="option2_form_dec" value="-">
-                <input type="number" oninput = "update_value(option2_form)" class="form-control" id="option2_form" name="complex_shares_2" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_values()" class="form-control" id="option2_form" name="complex_shares_2" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option2_form)" class="btn btn-outline-secondary" id="option2_form_inc" value="+">
             </div>
             </td>
@@ -62,7 +62,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option3_form)"  class="btn btn-outline-secondary" id="option3_form_dec" value="-">
-                <input type="number" oninput = "update_value(option3_form)" class="form-control" id="option3_form" name="complex_shares_3" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_values()" class="form-control" id="option3_form" name="complex_shares_3" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option3_form)" class="btn btn-outline-secondary" id="option3_form_inc" value="+">
             </div>
             </td>
@@ -80,7 +80,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option4_form)"  class="btn btn-outline-secondary" id="option4_form_dec" value="-">
-                <input type="number" oninput = "update_value(option4_form)" class="form-control" id="option4_form" name="complex_shares_4" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_values()" class="form-control" id="option4_form" name="complex_shares_4" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option4_form)" class="btn btn-outline-secondary" id="option4_form_inc" value="+">
             </div>
             </td>
@@ -99,7 +99,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option5_form)"  class="btn btn-outline-secondary" id="option5_form_dec" value="-">
-                <input type="number" oninput = "update_value(option5_form)" class="form-control" id="option5_form" name="complex_shares_5" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_values()" class="form-control" id="option5_form" name="complex_shares_5" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option5_form)" class="btn btn-outline-secondary" id="option5_form_inc" value="+">
             </div>
             </td>
@@ -117,7 +117,7 @@
             <td>
                 <div class="input-group">
                 <input type="button" onclick="dec(option6_form)"  class="btn btn-outline-secondary" id="option6_form_dec" value="-">
-                <input type="number" oninput = "update_value(option6_form)" class="form-control" id="option6_form" name="complex_shares_6" min="0" max="100" step="1" value="0"/>
+                <input type="number" oninput = "update_values()" class="form-control" id="option6_form" name="complex_shares_6" min="0" max="100" step="1" value="0"/>
                 <input type="button" onclick="inc(option6_form)" class="btn btn-outline-secondary" id="option6_form_inc" value="+">
             </div>
             </td>
@@ -131,7 +131,7 @@
             <td> 
                 <div class="input-group">
                 <input type="button" onclick="dec5(tokens_form)"  class="btn btn-outline-secondary" id="tokens_dec" value="-">
-                <input type="number" oninput = "update_value(tokens_form)" class="form-control" id="tokens_form" name="tokens" min="0" max="100" step="1" value ="100"/>
+                <input disabled type="number" class="form-control" id="tokens_form" name="tokens" min="0" max="100" step="1" value ="100"/>
                 <input type="button" onclick="inc5(tokens_form)" class="btn btn-outline-secondary" id="tokens_inc" value="+">
                 </div>
             </td>
@@ -245,33 +245,25 @@ To finalize your distribution, first check that you have distributed all 100 uni
 <script>
 // fixing option 1:
 var option1_form = document.getElementById("option1_form");
-option1_form.value = option1_slider.value;
 
 // fixing option 2:
 var option2_form = document.getElementById("option2_form");
-option2_form.value = option2_slider.value;
 
 // fixing option 3:
 var option3_form = document.getElementById("option3_form");
-option3_form.value = option3_slider.value;
 
 // fixing option 4:
 var option4_form = document.getElementById("option4_form");
-option4_form.value = option4_slider.value;
 
 // fixing option 5:
 var option5_form = document.getElementById("option5_form");
-option5_form.value = option5_slider.value;
 
 
 // fixing option 6:
 var option6_form = document.getElementById("option6_form");
-option6_form.value = option6_slider.value;
-
 
 // fixing tokens:
 var tokens_form = document.getElementById("tokens_form");
-tokens_form.value = tokens_slider.value;
 
 
 // 
@@ -300,105 +292,83 @@ option6_form.value = option6_slider.value;
 
 
 // updating value from x to y:
-function update_value(x,y) {
+function update_values() {
     next_button.style.visibility = "hidden";
 
 
-    a = parseInt(tokens_form.value)
-    b = parseInt(x.value)
-    c = parseInt(y.value)
+//    a = parseInt(tokens_form.value)
+//    b = parseInt(x.value)
 
-    if ((a<0)||(b<0)) {
-        reset_values();
-        window.alert('Negative values are prohibited. The values are reset.')
-        return;
-    }
+//    if ((a<0)||(b<0)) {
+//        reset_values();
+//       window.alert('Negative values are prohibited. The values are reset.')
+//        return;
+//    }
+
+    a1 = parseInt(option1_form.value)
+    a2 = parseInt(option2_form.value)
+    a3 = parseInt(option3_form.value)
+    a4 = parseInt(option4_form.value)
+    a5 = parseInt(option5_form.value)
+    a6 = parseInt(option6_form.value)
 
 
-    if ((x.id=="tokens_form"))
+    if (tokens_form.value=100-a1-a2-a3-a4-a5-a6>=0) 
     {
-        temp = round6(b-c);
-        x.value = parseInt(y.value) + temp
-        b = parseInt(x.value)
-        
-        diff = temp/6
-
-        option1 = parseInt(option1_form.value)
-        option2 = parseInt(option2_form.value)
-        option3 = parseInt(option3_form.value)
-        option4 = parseInt(option4_form.value)
-        option5 = parseInt(option5_form.value)
-        option6 = parseInt(option6_form.value)
-//        window.alert(option1-diff)
-        if ((b<=c) && (option1-diff <=100) && (option2-diff <=100) && (option3-diff <=100) && (option4-diff <=100) && (option5-diff <=100) && (option6-diff <=100))
-        {
-            
-            y.value = x.value
-            option1_form.value = option1 - diff;
-            option2_form.value = option2 - diff;
-            option3_form.value = option3 - diff;
-            option4_form.value = option4 - diff;
-            option5_form.value = option5 - diff;
-            option6_form.value = option6 - diff;
-        }
-        else
-        {
-            if ((b>c) && (option1-diff >=0) && (option2-diff  >=0) && (option3-diff  >=0) && (option4-diff  >=0) && (option5-diff  >=0) && (option6-diff >=0))
-            {
-                y.value = x.value;
-                option1_form.value = option1 - diff;
-                option2_form.value = option2 - diff;
-                option3_form.value = option3 - diff;
-                option4_form.value = option4 - diff;
-                option5_form.value = option5 - diff;
-                option6_form.value = option6 - diff;
-
-            }
-            else
-            {
-                x.value = y.value;
-
-            }
-        }
+        tokens_form.value=100-a1-a2-a3-a4-a5-a6;
     }
     else
     {
-        if (a-b+c >= 0) {
-            temp =a-b+c;
-//            if ((b-c<=1) && (b-c>=-1)) {window.alert(b-c)}
-            tokens_form.value=temp;
-//            window.alert(tokens_form.value)
-            y.value = x.value
-        }
-        else
-        {   
-            
-            x.value=y.value
-        }
+        window.alert('Exceeded the budget.')       
+        reset_values();
     }
+    
 
     if (tokens_form.value>100)
     {
+        window.alert('Exceeded the budget.') 
         reset_values();
     }
-
 }
 
 // to operationlize the buttons
 function dec5(form) {
+    a1 = parseInt(option1_form.value)
+    a2 = parseInt(option2_form.value)
+    a3 = parseInt(option3_form.value)
+    a4 = parseInt(option4_form.value)
+    a5 = parseInt(option5_form.value)
+    a6 = parseInt(option6_form.value)
+
     a = parseInt(form.value)
-    if (a >= 6) {       
+    if ((a >= 6) && (a1<=99) && (a2<=99) && (a3<=99) && (a4<=99) && (a5<=99) && (a6<=99)) {       
         form.value = parseInt(form.value)-6
-//        window.alert(slider.value)
-        update_value(form)
+        option1_form.value++
+        option2_form.value++
+        option3_form.value++
+        option4_form.value++
+        option5_form.value++
+        option6_form.value++
     };
 }
 
 function inc5(form) {
+    a1 = parseInt(option1_form.value)
+    a2 = parseInt(option2_form.value)
+    a3 = parseInt(option3_form.value)
+    a4 = parseInt(option4_form.value)
+    a5 = parseInt(option5_form.value)
+    a6 = parseInt(option6_form.value)
+
     a = parseInt(form.value)
-    if (a <= 94) {       
+    if ((a <= 94) && (a1>=1) && (a2>=1) && (a3>=1) && (a4>=1) && (a5>=1) && (a6>=1)) {       
         form.value = parseInt(form.value)+6
-        update_value(form)
+        option1_form.value--
+        option2_form.value--
+        option3_form.value--
+        option4_form.value--
+        option5_form.value--
+        option6_form.value--
     };
 }
 
@@ -409,17 +379,20 @@ function dec(form) {
     if ((a >= 1) && (a<=100)) {       
         form.value--
 //        window.alert(slider.value)
-        update_value(form)
+        update_values()
     }
 }
 
 function inc(form) {
+    t = parseInt(tokens_form.value)
+
     a = parseInt(form.value)
-    if ((a <= 99) && (a>=0)) {  
+    if ((a <= 99) && (a>=0) && (t>=1)) {  
         form.value++
-        update_value(form)
+        update_values()
     }
 }
+
 
 
 // resetting the values
@@ -436,6 +409,25 @@ function reset_values() {
     tokens_form.value = 100
     tokens_slider.value = 100
 }
+
+
+// 
+var next_button = document.getElementById("NextButton");
+
+function validate()
+{
+    update_values()
+    if ((tokens_form.value)==0)
+    {
+        next_button.style.visibility = "visible"
+    }
+    else
+    {
+        window.alert('Please spend the entire budget')
+        next_button.style.visibility = "hidden"
+    }
+}
+
 </script>
 
 <link href="{{ static 'global/budget_jars.css' }}" rel="stylesheet"/>

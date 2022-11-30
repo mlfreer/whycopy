@@ -638,7 +638,7 @@ class Complex_Instructions_P2(Page):
 class Complex_Instructions_P3(Page):
     def is_displayed(player):
         return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1
-    template_name = '_static/templates/Complex_InstructionsPage3.html'
+    template_name = '_static/templates/Complex_InstructionsPage3_no_jars.html'
 
     @staticmethod
     def vars_for_template(player):
@@ -720,7 +720,7 @@ class Complex_DecisionScreen(Page):
 
     template_name = '_static/templates/Complex_DecisionScreen_no_jars.html'
     form_model = 'player'
-    form_fields = ['tokens', 'complex_shares_1', 'complex_shares_2', 'complex_shares_3', 'complex_shares_4', 'complex_shares_5','complex_shares_6']
+    form_fields = ['complex_shares_1', 'complex_shares_2', 'complex_shares_3', 'complex_shares_4', 'complex_shares_5','complex_shares_6']
 
     @staticmethod
     def vars_for_template(player):
@@ -735,9 +735,9 @@ class Complex_DecisionScreen(Page):
             residual = player.subsession.round_number % 5,
             )
 
-    def error_message(player, values):
-        if values['tokens']>0:
-            return 'Please spend the entire budget'
+#    def error_message(player, values):
+#        if values['tokens']>0:
+#            return 'Please spend the entire budget'
 
     @staticmethod
     def before_next_page(player,timeout_happened):
@@ -918,7 +918,8 @@ class Results(Page):
             second_payment_round = player.payment_block*5 + 5,
             payment_block = player.payment_block + 1,
             paricipation_fee = (C.PARTICIPATION_FEE),
-            treatment_index = p.treatment_index
+            treatment_index = p.treatment_index,
+            endowment = C.ENDOWMENT
             )
 
 class ProlificID(Page):

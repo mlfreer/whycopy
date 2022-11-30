@@ -1,0 +1,50 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Instructions III (Block {{block_number}} out of 3)
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+      <font size="4">
+
+To distribute your 100 units, use the -/+ buttons or entry field in the last column. If you want to start over, just click the <b>"Reset"</b> button.
+
+<br><br>
+
+To finalize your distribution, first check that you have distributed all 100 units. (To avoid unnecessary waste, the program will not let you proceed if there are leftover units.) Then click the <b>"Submit"</b> button and, provided there are no leftover units, a <b>"Next"</b> button will appear. Clicking it will finalize your distribution on that task.
+
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/complex_decision_1.png' }}" class="center"/>
+      </font>
+    </div>
+</div>
+
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  float: center;
+  text-align: center;
+}
+</style>
+{{ endblock }}
