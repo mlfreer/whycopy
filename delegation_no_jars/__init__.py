@@ -735,9 +735,11 @@ class Complex_DecisionScreen(Page):
             residual = player.subsession.round_number % 5,
             )
 
-#    def error_message(player, values):
-#        if values['tokens']>0:
-#            return 'Please spend the entire budget'
+    def error_message(player, values):
+        if values['complex_shares_1']+values['complex_shares_2']+values['complex_shares_3']+values['complex_shares_4']+values['complex_shares_5']+values['complex_shares_6']<100:
+            return 'Please spend the entire budget'
+        if math.isnan(values['complex_shares_1']) or math.isnan(values['complex_shares_2']) or math.isnan(values['complex_shares_3']) or math.isnan(values['complex_shares_4']) or math.isnan(values['complex_shares_5']) or math.isnan(values['complex_shares_6']):
+            return 'Please fill the gaps' 
 
     @staticmethod
     def before_next_page(player,timeout_happened):

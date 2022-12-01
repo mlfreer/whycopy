@@ -312,7 +312,9 @@ function update_values() {
     a5 = parseInt(option5_form.value)
     a6 = parseInt(option6_form.value)
 
-
+    
+    if ( ((a1>=0) && (a1<=100)) && ((a2>=0) && (a2<=100)) && ((a3>=0) && (a3<=100)) && ((a4>=0) && (a4<=100)) && ((a5>=0) && (a5<=100)) && ((a6>=0) && (a6<=100)) )
+    {
     if (tokens_form.value=100-a1-a2-a3-a4-a5-a6>=0) 
     {
         tokens_form.value=100-a1-a2-a3-a4-a5-a6;
@@ -326,8 +328,15 @@ function update_values() {
 
     if (tokens_form.value>100)
     {
-        window.alert('Exceeded the budget.') 
+        window.alert('Values fall below zero.') 
         reset_values();
+    }
+
+    }
+    else
+    {   
+        console.log('exited')
+        return
     }
 }
 
