@@ -614,7 +614,7 @@ class Simple_Instructions(Page):
 class Complex_Instructions_P1(Page):
     def is_displayed(player):
         return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1
-    template_name = '_static/templates/Complex_InstructionsPage1.html'
+    template_name = '_static/templates/Complex_InstructionsPage1_no_jars.html'
 
     @staticmethod
     def vars_for_template(player):
@@ -626,7 +626,7 @@ class Complex_Instructions_P1(Page):
 class Complex_Instructions_P2(Page):
     def is_displayed(player):
         return player.treatment_index==2 and player.subsession.round_number % C.BLOCK_SIZE == 1
-    template_name = '_static/templates/Complex_InstructionsPage2.html'
+    template_name = '_static/templates/Complex_InstructionsPage2_no_jars.html'
 
     @staticmethod
     def vars_for_template(player):
