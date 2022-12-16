@@ -1,0 +1,57 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Instructions: Delegation
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+
+You can now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
+
+<br><br>
+
+As usual, your screen will display information you will need if you decide to make your own choices. It will also display a list of five investors who have previously played this game. The display also tells you something about each of those previous investors: the final payments they received and their risk ratings.
+
+<br><br>
+
+<b>Their final payments</b>, like yours, come from the last round and one of the other four rounds in a single randomly chosen block. Please note that it is often from a different block (and round) than that for which you delegate.
+
+<br>
+<br>
+
+<b>Their risk rating</b> --- High, Medium, or Low --- is based on all their choices during their session. High risk rating means they often made choices that result in a very high payment in one state and a very low payment in the other state, while low risk rating indicates mostly choices that give a moderate payout no matter what the state turns out to be.
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/delegation_decision_no_quality.png' }}" class="center"/>
+ 
+</div>
+</div>
+
+<br>
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  float: center;
+  text-align: center;
+}
+</style>
+{{ endblock }}
