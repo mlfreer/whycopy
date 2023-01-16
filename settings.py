@@ -2,41 +2,6 @@ from os import environ
 
 SESSION_CONFIGS = [
      dict(
-         name='Trivial_Instructions',
-         app_sequence=['consent_form','instructions_trivial'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Simple_Instructions',
-         app_sequence=['consent_form','simple_instructions'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Complex_Instructions',
-         app_sequence=['consent_form','instructions_complex'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Instructions_Delegation',
-         app_sequence=['instructions_delegation'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Trivial_Quiz',
-         app_sequence=['trivial_quizz'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Simple_Quiz',
-         app_sequence=['simple_quiz'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Complex_Quiz',
-         app_sequence=['complex_quiz'],
-         num_demo_participants=1,
-     ),
-     dict(
          name='No_Delegation_Online',
          app_sequence=['consent_form','no_delegation'],
          num_demo_participants=1,
@@ -54,6 +19,11 @@ SESSION_CONFIGS = [
      dict(
          name='Delegation_No_Quality_Online',
          app_sequence=['consent_form','delegation_no_quality'],
+         num_demo_participants=1,
+     ),
+     dict(
+         name='Delegation_WTP',
+         app_sequence=['consent_form','delegation_wtp'],
          num_demo_participants=1,
      ),
 
