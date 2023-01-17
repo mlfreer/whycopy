@@ -1,0 +1,53 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Results
+</div>
+{{ endblock }}
+
+{{ block content }}
+
+<font size="4">
+<table class="table">
+    <tr>
+        <td> Payment block </td>
+        <td> {{payment_block}}</td>
+    </tr>
+    <tr>
+        <td> Payment rounds </td>
+        <td> {{first_payment_round}} and {{second_payment_round}}</td>
+    </tr>
+     <tr>
+        <td> Payoff for round {{first_payment_round}}  </td>
+        <td> <b> {{player.earnings_period_one}}</b> </td>
+    </tr>
+    <tr>
+        <td> Payoff for round {{second_payment_round}} </td>
+        <td> <b> {{player.earnings_period_two}}</b> </td>
+    </tr>
+    <tr>
+        <td> Initial endowment </td>
+        <td> <b> {{C.ENDOWMENT}}</b> </td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Delegation Costs </td>
+        <td> <b> {{player.delegation_price}} </b> </td>
+    </tr>
+    <tr>
+        <td> Total variable payoff </td>
+        <td> <b>{{player.payoff}} </b></td>
+    </tr>
+    <tr>
+        <td> Participation fee </td>
+        <td> <b>{{paricipation_fee}} </b></td>
+    </tr>
+    <tr style="border-bottom:2pt solid black;">
+        <td> Please click the link to complete the study </td>
+        <td> <b> <a href="https://app.prolific.co/submissions/complete?cc=6E1B1776">Complete</a> </b> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+</table>
+</font>
+{{ endblock }}
+

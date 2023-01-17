@@ -322,9 +322,15 @@ class Player(BasePlayer):
     #------------------------------------------------------------
     wtp_delegation = models.CurrencyField(label="")
     #------------------------------------------------------------
-    trivial_wtp = models.FloatField()
-    simple_wtp = models.FloatField()
-    complex_wtp = models.FloatField()
+    trivial_wtp = models.IntegerField(initial=-2)
+    simple_wtp = models.IntegerField(initial=-2)
+    complex_wtp = models.IntegerField(initial=-2)
+    #------------------------------------------------------------
+    trivial_price = models.IntegerField(initial=0)
+    simple_price = models.IntegerField(initial=0)
+    complex_price = models.IntegerField(initial=0)
+    delegation_price = models.CurrencyField(default=0)
+
 
 
 
@@ -448,6 +454,7 @@ def set_payoffs(player: Player):
     # by the time the payment_round.
     first_payment_round = player.payment_round
     second_payment_round = player.payment_block*5 + 5
+    dp = player.in_round(second_payment_round)
     player.payoff = C.ENDOWMENT
 
     if p.treatment_index==0:
@@ -456,8 +463,9 @@ def set_payoffs(player: Player):
         set_trivial_payoffs(player,second_payment_round)
         player.earnings_period_two = cu(player.earnings/C.EXCHANGE_RATE - player.earnings_period_one)
         if player.trivial_delegation>=0:
-            player.payoff = player.payoff - C.DELEGATION_COSTS
+            player.payoff = player.payoff - cu(dp.trivial_price)/20
             player.delegation_decision = 1
+            player.delegation_price = cu(dp.trivial_price)/20
 
     elif p.treatment_index==1:
         set_simple_payoffs(player,first_payment_round)
@@ -465,8 +473,9 @@ def set_payoffs(player: Player):
         set_simple_payoffs(player,second_payment_round)
         player.earnings_period_two = cu(player.earnings/C.EXCHANGE_RATE - player.earnings_period_one)
         if player.simple_delegation>=0:
-            player.payoff = player.payoff - C.DELEGATION_COSTS
+            player.payoff = player.payoff - cu(dp.simple_price)/20
             player.delegation_decision = 1
+            player.delegation_price = cu(dp.simple_price)/20
 
     elif p.treatment_index==2:
         set_complex_payoffs(player,first_payment_round)
@@ -474,8 +483,9 @@ def set_payoffs(player: Player):
         set_complex_payoffs(player,second_payment_round)
         player.earnings_period_two = cu(player.earnings/C.EXCHANGE_RATE - player.earnings_period_one)
         if player.complex_delegation>=0:
-            player.payoff = player.payoff - C.DELEGATION_COSTS
+            player.payoff = player.payoff - cu(dp.complex_price)/20
             player.delegation_decision = 1
+            player.delegation_price = cu(dp.complex_price)/20
 
     #------------------------------------------------------------
     player.payoff = player.payoff+cu(player.earnings)/C.EXCHANGE_RATE
@@ -912,7 +922,7 @@ class Simple_Question2(Page):
 class Results(Page):
     def is_displayed(player):
         return player.subsession.round_number == C.NUM_ROUNDS
-    template_name = '_static/templates/Delegation_Results.html'
+    template_name = '_static/templates/WTP_Delegation_Results.html'
 
     @staticmethod
     def vars_for_template(player):
@@ -974,14 +984,14 @@ class Risk(Page):
 class DelegationInstructions(Page):
     def is_displayed(player):
         return player.subsession.round_number % C.BLOCK_SIZE == 0
-    template_name='_static/templates/DelegationInstructions_no_quality.html'
+    template_name='_static/templates/WTP_DelegationInstructions_no_payment.html'
 
 
 class TrivialDelegation(Page):
     def is_displayed(player):
-        return player.treatment_index == 0 and player.subsession.round_number % C.BLOCK_SIZE == 0
+        return player.treatment_index == 0 and player.subsession.round_number % C.BLOCK_SIZE == 0 and player.trivial_delegation>=0
 
-    template_name='_static/templates/TrivialDelegationDecision_no_quality.html'
+    template_name='_static/templates/WTP_TrivialDelegationDecision_no_payment.html'
     form_model = 'player'
     form_fields = ['trivial_delegation']
     @staticmethod
@@ -1018,9 +1028,9 @@ class TrivialDelegation(Page):
 
 class SimpleDelegation(Page):
     def is_displayed(player):
-        return player.treatment_index == 1 and player.subsession.round_number % C.BLOCK_SIZE == 0
+        return player.treatment_index == 1 and player.subsession.round_number % C.BLOCK_SIZE == 0 and player.simple_delegation>=0
 
-    template_name='_static/templates/SimpleDelegationDecision_no_quality.html'
+    template_name='_static/templates/WTP_SimpleDelegationDecision_no_payment.html'
     form_model = 'player'
     form_fields = ['simple_delegation']
     @staticmethod
@@ -1055,9 +1065,9 @@ class SimpleDelegation(Page):
 
 class ComplexDelegation(Page):
     def is_displayed(player):
-        return player.treatment_index == 2 and player.subsession.round_number % C.BLOCK_SIZE == 0
+        return player.treatment_index == 2 and player.subsession.round_number % C.BLOCK_SIZE == 0 and player.complex_delegation >= 0
 
-    template_name='_static/templates/ComplexDelegationDecision_no_quality.html'
+    template_name='_static/templates/WTP_ComplexDelegationDecision_no_payment.html'
     form_model = 'player'
     form_fields = ['complex_delegation']
     @staticmethod
@@ -1113,6 +1123,60 @@ class TrivialDelegationWTP(Page):
             costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
             )
 
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        price = random.randint(0,20)
+        if price <= player.trivial_wtp:
+            player.trivial_delegation = 10
+            player.trivial_price = price
+    #----------------------------------------------------------------
+
+
+class SimpleDelegationWTP(Page):
+    def is_displayed(player):
+        return player.treatment_index == 1 and player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    template_name='_static/templates/Simple_DelegationWTP.html'
+    form_model = 'player'
+    form_fields = ['simple_wtp']
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
+            )
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        price = random.randint(0,20)
+        if price <= player.simple_wtp:
+            player.simple_delegation = 10
+            player.simple_price = price
+    #----------------------------------------------------------------
+
+
+class ComplexDelegationWTP(Page):
+    def is_displayed(player):
+        return player.treatment_index == 2 and player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    template_name='_static/templates/Complex_DelegationWTP.html'
+    form_model = 'player'
+    form_fields = ['complex_wtp']
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
+            )
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        price = random.randint(0,20)
+        if price <= player.complex_wtp:
+            player.complex_delegation = 10
+            player.complex_price = price
+    #----------------------------------------------------------------
+
 
 
 #------------------------------------------------------------
@@ -1131,6 +1195,7 @@ page_sequence = [
                 Simple_Question1,
                 Simple_Question2,
                 ReturnStudy,
+                SimpleDelegationWTP,
                 SimpleDelegation,
                 Simple_DecisionScreen,
                 Complex_Instructions_P1,
@@ -1139,6 +1204,7 @@ page_sequence = [
                 Complex_Question1,
                 Complex_Question2,
                 ReturnStudy,
+                ComplexDelegationWTP,
                 ComplexDelegation,
                 Complex_DecisionScreen,
                 Big5,
