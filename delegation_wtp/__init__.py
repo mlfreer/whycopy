@@ -182,6 +182,12 @@ class C(BaseConstants):
     E_COMPLEX_CHOICES[4][5] = [0.4000,    0,    0.8000,         0,    0.8000]
     #------------------------------------------------------------
 
+    #------------------------------------------------------------
+    # WTP COSTS
+    #------------------------------------------------------------
+    WTP_COSTS = [0, .1, .25, .5, .75, 1]
+    #------------------------------------------------------------
+
 
 #------------------------------------------------------------
 # CLASSES
@@ -315,6 +321,12 @@ class Player(BasePlayer):
     # WTP for delegation
     #------------------------------------------------------------
     wtp_delegation = models.CurrencyField(label="")
+    #------------------------------------------------------------
+    trivial_wtp = models.FloatField()
+    simple_wtp = models.FloatField()
+    complex_wtp = models.FloatField()
+
+
 
 #------------------------------------------------------------
 # GLOBAL FUNCTIONS
@@ -1084,6 +1096,24 @@ class ComplexDelegation(Page):
             
     #----------------------------------------------------------------
 
+#----------------------------------------------------------------
+# WTP DELEGATION PAGES:
+#----------------------------------------------------------------
+class TrivialDelegationWTP(Page):
+    def is_displayed(player):
+        return player.treatment_index == 0 and player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    template_name='_static/templates/Trivial_DelegationWTP.html'
+    form_model = 'player'
+    form_fields = ['trivial_wtp']
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
+            )
+
+
 
 #------------------------------------------------------------
 # PAGE SEQUENCE
@@ -1094,6 +1124,7 @@ page_sequence = [
                 Trivial_Question1,
                 Trivial_Question2,
                 ReturnStudy,
+                TrivialDelegationWTP,
                 TrivialDelegation,
                 Trivial_DecisionScreen,
                 Simple_Instructions,
