@@ -487,7 +487,7 @@ def set_payoffs(player: Player):
             player.delegation_decision = 1
             player.delegation_price = cu(dp.complex_price)/20
 
-    #------------------------------------------------------------
+#------------------------------------------------------------
     player.payoff = player.payoff+cu(player.earnings)/C.EXCHANGE_RATE
 
 def set_trivial_payoffs(player: Player, round):
@@ -1148,7 +1148,7 @@ class SimpleDelegationWTP(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        price = random.randint(0,20)
+        price = random.randint(1,21)
         if price <= player.simple_wtp:
             player.simple_delegation = 10
             player.simple_price = price

@@ -97,18 +97,28 @@
         <div class="card-body" >
                 <font size="4">
 
-You now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
+You can now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. 
+If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
 
 <br><br>
 
-As usual, your screen will display information you will need if you decide to make your own choices. It will also display a list of five investors who have previously played this game. The display also tells you something about each of those previous investors: the final payments they received, their risk ratings and their quality ratings.
+If you choose not to delegate, then you will immediately proceed to the next round. 
+If you decide to delegate you need to determine the maximal price you are willing to pay for delegation. 
+The prices presented vary from 0 to 20 tokens. 
+Once you made a choice the computer will randomly draw a number between 0 and 20. 
+If the price is below your specified maximal willingness to pay, then you will proceed to the delegation screen. 
+Otherwise you will proceed to the last decision round.
 
 <br><br>
 
-<b>Their final payments</b>, like yours, come from a single randomly chosen round. Please note that it is often from a different round than that for which you delegate.
+<img src="{{ static 'pictures/WTP_delegation.png' }}" class="center"/>
 
-<br>
-<br>
+
+<br><br>
+
+If you are to proceed to delegation screen, your screen will display information you will need if you decide to make your own choices. It will also display a list of five investors who have previously played this game. The display also tells you something about each of those previous investors: their risk ratings and their quality ratings.
+
+<br><br>
 
 <b>Their risk rating</b> --- High, Medium, or Low --- is based on all their choices during their session. High risk rating means they often made choices that result in a very high payment in one state and a very low payment in the other state, while low risk rating indicates mostly choices that give a moderate payout no matter what the state turns out to be.
 
@@ -122,8 +132,9 @@ As usual, your screen will display information you will need if you decide to ma
 <br>
 <br>
 
-<img src="{{ static 'pictures/delegation_decision.png' }}" class="center"/>
+<img src="{{ static 'pictures/WTP_delegation_no_payment.png' }}" class="center"/>
  
+
         </div>
     </div>
 </div>
