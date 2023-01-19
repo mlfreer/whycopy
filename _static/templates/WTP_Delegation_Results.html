@@ -28,6 +28,14 @@
         <td> Initial endowment </td>
         <td> <b> {{C.ENDOWMENT}}</b> </td>
     </tr>
+    <tr>
+        {% if player.delegation_decision > 0%}
+        <td> Your willingness to pay was <b> above </b> the randomly drawn price </td>
+        {% else %}
+        <td> Your willingness to pay was <b> below </b> the randomly drawn price </td>
+        {% endif %}
+        <td></td>
+    </tr>
     <tr style="border-bottom:2pt solid black;">
         <td> Delegation Costs </td>
         <td> <b> {{player.delegation_price}} </b> </td>
