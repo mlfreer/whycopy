@@ -7,7 +7,9 @@
 {{ block content }}
 <font size="4">
 <div style="float: center; text-align: center;">
-<b>Your willingness to pay was  above  the randomly drawn price.</b>
+<b>
+    The cost of delegation this round is {{ player.complex_price }} tokens, which is below your maximum of {{ player.complex_wtp }} tokens.
+</b>
 </div>
 <br><br>
 <b> To delegate, please select one of the investors below: </b>
