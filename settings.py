@@ -28,6 +28,9 @@ SESSION_CONFIGS = [
      ),
 
 ]
+# DEBUG MODE:
+DEBUG=False
+
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -45,7 +48,6 @@ SESSION_FIELDS = []
 # for example: de, fr, ja, ko, zh-hans
 LANGUAGE_CODE = 'en'
 
-DEBUG=True
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = False
