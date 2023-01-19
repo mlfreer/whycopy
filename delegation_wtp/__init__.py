@@ -677,10 +677,13 @@ class Trivial_DecisionScreen(Page):
     @staticmethod
     def vars_for_template(player):
         i = player.budget_index
+#        temp = (player.subsession.round_number % C.BLOCK_SIZE == 0 and player.trivial_delegation<=-1)
+#        print(temp)
         return dict(
             lottery_1 = C.trivial_Lottery1[i],
             lottery_2 = C.trivial_Lottery2[i],
             residual = player.subsession.round_number % 5,
+            delegation = (player.subsession.round_number % C.BLOCK_SIZE == 0 and player.trivial_delegation<=-1)
             )
 
     @staticmethod
@@ -714,6 +717,7 @@ class Simple_DecisionScreen(Page):
             lottery_5 = C.Lottery5[i],
             lottery_6 = C.Lottery6[i],
             residual = player.subsession.round_number % 5,
+            delegation = player.subsession.round_number % C.BLOCK_SIZE == 0 and player.simple_delegation<=-1
             )
 
     @staticmethod
@@ -747,6 +751,7 @@ class Complex_DecisionScreen(Page):
             lottery_5 = C.Lottery5[i],
             lottery_6 = C.Lottery6[i],
             residual = player.subsession.round_number % 5,
+            delegation = player.subsession.round_number % C.BLOCK_SIZE == 0 and player.complex_delegation<=-1            
             )
 
     def error_message(player, values):

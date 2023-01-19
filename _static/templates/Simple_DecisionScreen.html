@@ -5,8 +5,13 @@
 {{ endblock }}
 
 {{ block content }}
-
 <font size="4">
+{% if delegation == 1  %}
+<div style="float: center; text-align: center;">
+<b>Your willingness to pay was below the randomly drawn price.</b>
+</div>
+{% endif %}
+<br><br>
     <table class="table">
         <tr>
             <td> </td>
