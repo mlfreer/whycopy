@@ -26,10 +26,15 @@ SESSION_CONFIGS = [
          app_sequence=['consent_form','delegation_wtp'],
          num_demo_participants=1,
      ),
+     dict(
+         name='Delegation_WTP_with_investors_list',
+         app_sequence=['consent_form','delegation_wtp_investors_list'],
+         num_demo_participants=1,
+     ),
 
 ]
 # DEBUG MODE:
-DEBUG=False
+DEBUG=True
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
