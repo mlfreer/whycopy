@@ -1,0 +1,71 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+Instructions: Delegation
+</div>
+{{ endblock }}
+{{ block content }}
+
+
+<div class="card bg-light">
+    <div class="card-body">
+
+You can now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. 
+If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
+
+<br><br>
+
+If you choose not to delegate, then you will immediately proceed to the next round. 
+If you want to delegate you will pay the cost of two tokens and proceed to the screen where you will choose one of the previous investors you can delegate your decisions to.
+
+<br><br>
+
+<img src="{{ static 'pictures/SP_delegation.png' }}" class="center"/>
+
+
+<br><br>
+
+If you reach the delegation screen, you will see a list of five investors who have previously played this game, together with their risk ratings and their quality ratings. 
+You will choose to which of these you want to delegate your choice. 
+
+<br><br>
+
+<b>Their risk rating</b> --- High, Medium, or Low --- is based on all their choices during their session. High risk rating means they often made choices that result in a very high payment in one state and a very low payment in the other state, while low risk rating indicates mostly choices that give a moderate payout no matter what the state turns out to be.
+
+
+<br>
+<br>
+
+<b>Their quality rating</b> --- High or Low  --- indicates the “efficiency” of the investor's choices. A low rating indicates that they often could have obtained higher payments in both states if they had made different choices.  
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/WTP_delegation_no_payment.png' }}" class="center"/>
+ 
+</div>
+</div>
+  
+<br>
+<br>
+
+<div style="float: center; text-align: center;">
+{% next_button %}
+</div>
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  float: center;
+  text-align: center;
+}
+</style>
+{{ endblock }}

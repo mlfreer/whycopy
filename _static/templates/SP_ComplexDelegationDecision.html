@@ -1,0 +1,148 @@
+{{ block title }}
+<div style="float: center; text-align: center;">
+    Delegation Decision
+</div>
+{{ endblock }}
+
+{{ block content }}
+<font size="4">
+<div style="float: center; text-align: center;">
+<b>
+    You chose to delegate your decision
+</b>
+</div>
+<br><br>
+<b> To delegate, please select one of the investors below: </b>
+<table class="table">
+    <tr>
+        <td style="width:10%"> </td>
+        <td> <b> Investor </b> </td>
+        <td> <b> Quality Rating </b> </td>
+        <td> <b> Risk Rating </b> </td>
+    </tr>
+    {% for e in experts %}
+    <tr>
+
+        <td> 
+            <input id="1" type="radio" name="complex_delegation" value="{{e.3}}" required>
+        </td>
+       <td>
+            {{e.4}}
+        </td>
+        <td>
+            {% if e.2 == 1 %}
+            <i> High </i>
+            {% endif %}
+            {% if e.2 == 0 %}
+            <i> Low </i>
+            {% endif %}
+        </td>
+        <td>
+            {% if e.1 == 1 %}
+            <i> Low </i>
+            {% endif %}
+
+            {% if e.1 == 2 %}
+            <i> Medium </i>
+            {% endif %}
+
+            {% if e.1 == 3 %}
+            <i> High </i>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<div id="NextButton" style="float: right;">
+{% next_button %}
+</div>
+
+</font>
+
+
+
+<br><br>
+
+<div class="card bg-light">
+<font size="4">
+    <div class="card-body">
+    Note that chance that this round will be chosen for payment is higher than usual (1 in 3 instead of 1 in 12).
+</div>
+</font>
+</div>
+
+<br>
+
+<script>
+    var flag =0;
+    function InstructionsVisibility(){
+ //       alert(flag)
+        var form_instructions =  document.getElementById("FormInstructions");
+        if (flag == 0) {
+            form_instructions.style.visibility="visible";
+            flag=1
+        }
+        else {
+            form_instructions.style.visibility="hidden";
+            flag=0
+        }
+    }
+</script>
+
+<div class="card bg-light">
+<input type="button" onclick="InstructionsVisibility()"  class="btn btn-outline-secondary" value="Instructions">
+</div>
+
+<div id="FormInstructions" style="visibility: hidden;">
+    <div class="card bg-light">
+        <div class="card-body" >
+                <font size="4">
+
+You can now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. 
+If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
+
+<br><br>
+
+If you choose not to delegate, then you will immediately proceed to the next round. If you want to delegate, you must specify the maximum price you are willing to pay for delegation. The computer has randomly drawn a price between 0 and 20. If that price turns out to be below your specified maximum willingness to pay, then you will pay that price and proceed to the delegation screen and pick the investor whose decision you will follow. Otherwise you will proceed to the screen where you make your own choice among the available options.
+
+<br><br>
+
+<img src="{{ static 'pictures/WTP_delegation.png' }}" class="center"/>
+
+
+<br><br>
+
+If you are to proceed to the delegation screen, your screen will display a list of five investors who have previously played this game and you may choose to which of these you want to delegate your choice. The display also tells you something about each of those previous investors: their risk ratings and their quality ratings.
+
+<br><br>
+
+<b>Their risk rating</b> --- High, Medium, or Low --- is based on all their choices during their session. High risk rating means they often made choices that result in a very high payment in one state and a very low payment in the other state, while low risk rating indicates mostly choices that give a moderate payout no matter what the state turns out to be.
+
+
+<br>
+<br>
+
+<b>Their quality rating</b> --- High or Low  --- indicates the “efficiency” of the investor's choices. A low rating indicates that they often could have obtained higher payments in both states if they had made different choices.  
+
+
+<br>
+<br>
+
+<img src="{{ static 'pictures/WTP_delegation_no_payment.png' }}" class="center"/>
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
+{{ endblock }}
