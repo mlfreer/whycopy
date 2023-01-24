@@ -1137,7 +1137,7 @@ class TrivialDelegationWTP(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        price = random.randint(1,21)
+        price = random.randint(1,20)
         if price <= player.trivial_wtp:
             player.trivial_delegation = 10
         player.trivial_price = price
@@ -1167,7 +1167,7 @@ class SimpleDelegationWTP(Page):
 
     @staticmethod
     def before_next_page(player, timeout_happened):
-        price = random.randint(1,21)
+        price = random.randint(1,20)
         if price <= player.simple_wtp:
             player.simple_delegation = 10
         player.simple_price = price
@@ -1197,7 +1197,7 @@ class ComplexDelegationWTP(Page):
         
     @staticmethod
     def before_next_page(player, timeout_happened):
-        price = random.randint(1,21)
+        price = random.randint(1,20)
         if price <= player.complex_wtp:
             player.complex_delegation = 10
         player.complex_price = price
