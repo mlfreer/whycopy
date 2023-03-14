@@ -19,7 +19,9 @@ class C(BaseConstants):
 
     EXCHANGE_RATE = 20;
 
-    DELEGATION_COSTS = cu(0.10)
+    DELEGATION_COSTS = cu(0.50)
+
+    ENDOWMENT = cu(1)
 
     #------------------------------------------------------------
     # QUIZ ANSWERS:
@@ -435,7 +437,7 @@ def set_payoffs(player: Player):
     # by the time the payment_round.
     first_payment_round = player.payment_round
     second_payment_round = player.payment_block*5 + 5
-    player.payoff = cu(0)
+    player.payoff = C.ENDOWMENT
 
     if p.treatment_index==0:
         set_trivial_payoffs(player,first_payment_round)
@@ -981,6 +983,7 @@ class TrivialDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1020,6 +1023,7 @@ class SimpleDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1057,6 +1061,7 @@ class ComplexDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
