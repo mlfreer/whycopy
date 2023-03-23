@@ -19,7 +19,7 @@ class C(BaseConstants):
 
     EXCHANGE_RATE = 20;
 
-    DELEGATION_COSTS = cu(0.50)
+    DELEGATION_COSTS = cu(1)
 
     ENDOWMENT = cu(1)
 
