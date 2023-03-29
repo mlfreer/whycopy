@@ -982,6 +982,7 @@ class TrivialDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20),
             )
 
     @staticmethod
@@ -1021,6 +1022,7 @@ class SimpleDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1058,6 +1060,7 @@ class ComplexDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
