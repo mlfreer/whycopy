@@ -1009,6 +1009,7 @@ class TrivialDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1048,6 +1049,7 @@ class SimpleDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1085,6 +1087,7 @@ class ComplexDelegation(Page):
 
         return dict(
             experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1124,8 +1127,16 @@ class TrivialDelegationWTP(Page):
 
     @staticmethod
     def vars_for_template(player):
+        investors = ['A','B','C','D','E']
+        expert_indices = [player.expert_index_1, player.expert_index_2, player.expert_index_3, player.expert_index_4, player.expert_index_5]
+        experts = [[0 for i in range(0,5)] for i in range(0,5)]
+        for i in range(0,5):
+            experts[i] = [C.E_PAYMENTS[expert_indices[i]], C.E_RISK[expert_indices[i]], C.E_QUALITY[expert_indices[i]], expert_indices[i], investors[i]]
+
         return dict(
             costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
+            experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1147,8 +1158,16 @@ class SimpleDelegationWTP(Page):
 
     @staticmethod
     def vars_for_template(player):
+        investors = ['A','B','C','D','E']
+        expert_indices = [player.expert_index_1, player.expert_index_2, player.expert_index_3, player.expert_index_4, player.expert_index_5]
+        experts = [[0 for i in range(0,5)] for i in range(0,5)]
+        for i in range(0,5):
+            experts[i] = [C.E_PAYMENTS[expert_indices[i]], C.E_RISK[expert_indices[i]], C.E_QUALITY[expert_indices[i]], expert_indices[i], investors[i]]
+
         return dict(
             costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
+            experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
@@ -1170,8 +1189,16 @@ class ComplexDelegationWTP(Page):
 
     @staticmethod
     def vars_for_template(player):
+        investors = ['A','B','C','D','E']
+        expert_indices = [player.expert_index_1, player.expert_index_2, player.expert_index_3, player.expert_index_4, player.expert_index_5]
+        experts = [[0 for i in range(0,5)] for i in range(0,5)]
+        for i in range(0,5):
+            experts[i] = [C.E_PAYMENTS[expert_indices[i]], C.E_RISK[expert_indices[i]], C.E_QUALITY[expert_indices[i]], expert_indices[i], investors[i]]
+
         return dict(
             costs = [int(C.WTP_COSTS[i]*20) for i in range(0,6)],
+            experts = [experts[i] for i in range(0,5)],
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
             )
 
     @staticmethod
