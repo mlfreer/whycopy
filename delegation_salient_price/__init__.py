@@ -1121,7 +1121,7 @@ class TrivialDelegationWTP(Page):
     def is_displayed(player):
         return player.treatment_index == 0 and player.subsession.round_number % C.BLOCK_SIZE == 0
 
-    template_name='_static/templates/Trivial_DelegationWTP_salient_price.html'
+    template_name='_static/templates/Trivial_DelegationWTP_SP.html'
     form_model = 'player'
     form_fields = ['trivial_wtp']
 
