@@ -116,24 +116,18 @@
         <div class="card-body" >
                 <font size="4">
 
-You can now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. 
-If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
+You can now choose to either delegate the task to a previous investor or else you can continue making your own choices as in the previous four rounds. If you delegate to a previous investor, then the computer will automatically choose for you exactly the same asset as that investor chose in that round.
 
 <br><br>
 
-If you choose not to delegate, then you will immediately proceed to the next round. If you want to delegate, you must specify the maximum price you are willing to pay for delegation. The computer has randomly drawn a price between 0 and 20. If that price turns out to be below your specified maximum willingness to pay, then you will pay that price and proceed to the delegation screen and pick the investor whose decision you will follow. Otherwise you will proceed to the screen where you make your own choice among the available options.
+As usual, your screen will display information you will need if you decide to make your own choices. It will also display a list of five investors who have previously played this game. The display also tells you something about each of those previous investors: the final payments they received, their risk ratings and their quality ratings.
 
 <br><br>
 
-<img src="{{ static 'pictures/WTP_delegation.png' }}" class="center"/>
+<b>Their final payments</b>, like yours, come from the last round and one of the other four rounds in a single randomly chosen block. Please note that it is often from a different block (and round) than that for which you delegate.
 
-
-<br><br>
-
-If you reach the delegation screen, you will see a list of five investors who have previously played this game, together with their risk ratings and their quality ratings. You will choose to which of these you want to delegate your choice. 
-
-
-<br><br>
+<br>
+<br>
 
 <b>Their risk rating</b> --- High, Medium, or Low --- is based on all their choices during their session. High risk rating means they often made choices that result in a very high payment in one state and a very low payment in the other state, while low risk rating indicates mostly choices that give a moderate payout no matter what the state turns out to be.
 
@@ -143,12 +137,29 @@ If you reach the delegation screen, you will see a list of five investors who ha
 
 <b>Their quality rating</b> --- High or Low  --- indicates the “efficiency” of the investor's choices. A low rating indicates that they often could have obtained higher payments in both states if they had made different choices.  
 
-
-<br>
 <br>
 
-<img src="{{ static 'pictures/WTP_delegation_no_payment.png' }}" class="center"/>
+You will first be asked to decide whether to delegate the decision or not.
+The interface is as on the picture below.
+Upon choosing confirm your decision by clicking the "Next" button.
+
+<br>
+
+
+<img src="{{ static 'pictures/delegation_twostage_1.png' }}" class="center"/>
  
+<br>
+
+If you chose not to delegate, you will be asked to to take the decision (similar to the four previous ones) on your own.
+If you chose to delegate your decision you will need to pick the investor.
+The interface is as on the picture below.
+Upon choosing confirm your decision by clicking the "Next" button.
+
+<br>
+
+<img src="{{ static 'pictures/delegation_twostage_2.png' }}" class="center"/>
+
+<br>
 
         </div>
     </div>
