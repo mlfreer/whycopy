@@ -6,11 +6,11 @@ SESSION_CONFIGS = [
 #         app_sequence=['consent_form','no_delegation'],
 #         num_demo_participants=1,
 #     ),
-     dict(
-         name='Delegation_Online',
-         app_sequence=['consent_form','delegation'],
-         num_demo_participants=1,
-     ),
+#     dict(
+#         name='Delegation_Online',
+#         app_sequence=['consent_form','delegation'],
+#         num_demo_participants=1,
+#     ),
 #     dict(
 #         name='Delegation_No_Info_Online',
 #         app_sequence=['consent_form','delegation_no_info'],
