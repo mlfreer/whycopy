@@ -41,6 +41,11 @@ SESSION_CONFIGS = [
          app_sequence=['consent_form','Delegation_After_Quality'],
          num_demo_participants=1,
      ),
+     dict(
+         name="Delegation_Before_Quality_Info",
+         app_sequence=['consent_form','Delegation_Before_Quality'],
+         num_demo_participants=1,
+     ),
 
 ]
 # DEBUG MODE:
