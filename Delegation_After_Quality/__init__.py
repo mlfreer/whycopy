@@ -647,7 +647,7 @@ class Complex_Instructions_P3(Page):
 #----------------------------------------------------------------
 class Trivial_DecisionScreen(Page):
     def is_displayed(player):
-        return (player.treatment_index==0)
+        return player.treatment_index==0
 
     template_name = '_static/templates/Trivial_DecisionScreen.html'
     form_model = 'player'
@@ -676,7 +676,7 @@ class Trivial_DecisionScreen(Page):
 
 class Simple_DecisionScreen(Page):
     def is_displayed(player):
-        return (player.treatment_index==1)
+        return player.treatment_index==1
 
     template_name = '_static/templates/Simple_DecisionScreen.html'
     form_model = 'player'
@@ -709,7 +709,7 @@ class Simple_DecisionScreen(Page):
 
 class Complex_DecisionScreen(Page):
     def is_displayed(player):
-        return (player.treatment_index==2)
+        return player.treatment_index==2
 
     template_name = '_static/templates/Complex_DecisionScreen.html'
     form_model = 'player'
@@ -968,7 +968,7 @@ class DelegationInstructions(Page):
 
 class TrivialDelegation(Page):
     def is_displayed(player):
-        return player.treatment_index == 0 and player.subsession.round_number % C.BLOCK_SIZE == 0
+        return (player.treatment_index == 0) and (player.subsession.round_number % C.BLOCK_SIZE == 0)
 
 #    template_name='_static/templates/TrivialDelegationDecision.html'
     form_model = 'player'
@@ -1008,9 +1008,10 @@ class TrivialDelegation(Page):
 
 class SimpleDelegation(Page):
     def is_displayed(player):
-        return player.treatment_index == 1 and player.subsession.round_number % C.BLOCK_SIZE == 0
+        return (player.treatment_index == 1) and (player.subsession.round_number % C.BLOCK_SIZE == 0)
 
 #    template_name='_static/templates/SimpleDelegationDecision.html'
+    template_name = './Delegation_After_Quality/SimpleDelegation.html'
     form_model = 'player'
     form_fields = ['simple_delegation']
     @staticmethod
@@ -1046,7 +1047,7 @@ class SimpleDelegation(Page):
 
 class ComplexDelegation(Page):
     def is_displayed(player):
-        return player.treatment_index == 2 and player.subsession.round_number % C.BLOCK_SIZE == 0
+        return (player.treatment_index == 2) and (player.subsession.round_number % C.BLOCK_SIZE == 0)
 
 #    template_name='_static/templates/ComplexDelegationDecision.html'
     form_model = 'player'
@@ -1093,7 +1094,6 @@ class ComplexDelegation(Page):
 # PAGE SEQUENCE
 #------------------------------------------------------------
 page_sequence = [
-                
                 Trivial_Instructions,
                 Trivial_Question1,
                 Trivial_Question2,
@@ -1103,7 +1103,6 @@ page_sequence = [
                 Simple_Question1,
                 Simple_Question2,
                 ReturnStudy,
-                SimpleDelegation,
                 Simple_DecisionScreen,
                 Complex_Instructions_P1,
                 Complex_Instructions_P2,
@@ -1111,10 +1110,11 @@ page_sequence = [
                 Complex_Question1,
                 Complex_Question2,
                 ReturnStudy,
-                ComplexDelegation,
                 Complex_DecisionScreen,
                 DelegationInstructions,
                 TrivialDelegation,
+                SimpleDelegation,
+                ComplexDelegation,
                 Big5,
                 Risk,
                 ProlificID,
