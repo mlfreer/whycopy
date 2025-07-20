@@ -1,45 +1,50 @@
 from os import environ
 
 SESSION_CONFIGS = [
-     dict(
-         name='No_Delegation_Online',
-         app_sequence=['consent_form','no_delegation'],
-         num_demo_participants=1,
-     ),
+#     dict(
+#         name='No_Delegation_Online',
+#         app_sequence=['consent_form','no_delegation'],
+#         num_demo_participants=1,
+#     ),
      dict(
          name='Delegation_Online',
          app_sequence=['consent_form','delegation'],
          num_demo_participants=1,
      ),
+#     dict(
+#         name='Delegation_No_Info_Online',
+#         app_sequence=['consent_form','delegation_no_info'],
+#         num_demo_participants=1,
+#     ),
+#     dict(
+#         name='Delegation_No_Quality_Online',
+#         app_sequence=['consent_form','delegation_no_quality'],
+#         num_demo_participants=1,
+#     ),
+#     dict(
+#         name='Delegation_WTP',
+#         app_sequence=['consent_form','delegation_wtp'],
+#         num_demo_participants=1,
+#     ),
+#     dict(
+#         name='Delegation_WTP_with_investors_list',
+#         app_sequence=['consent_form','delegation_wtp_investors_list'],
+#         num_demo_participants=1,
+#     ),
+#     dict(
+#         name="Delegation_Two_Stage",
+#         app_sequence=['consent_form','delegation_salient_price'],
+#         num_demo_participants=1,
+#     ),
      dict(
-         name='Delegation_No_Info_Online',
-         app_sequence=['consent_form','delegation_no_info'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Delegation_No_Quality_Online',
-         app_sequence=['consent_form','delegation_no_quality'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Delegation_WTP',
-         app_sequence=['consent_form','delegation_wtp'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name='Delegation_WTP_with_investors_list',
-         app_sequence=['consent_form','delegation_wtp_investors_list'],
-         num_demo_participants=1,
-     ),
-     dict(
-         name="Delegation_Two_Stage",
-         app_sequence=['consent_form','delegation_salient_price'],
+         name="Delegation_After_Quality_Info",
+         app_sequence=['consent_form','Delegation_After_Quality'],
          num_demo_participants=1,
      ),
 
 ]
 # DEBUG MODE:
-DEBUG=False
+DEBUG=True
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
