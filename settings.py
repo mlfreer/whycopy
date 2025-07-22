@@ -51,7 +51,7 @@ SESSION_CONFIGS = [
 
 ]
 # DEBUG MODE:
-DEBUG=True
+DEBUG=False
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
