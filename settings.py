@@ -40,13 +40,13 @@ SESSION_CONFIGS = [
          name="Delegation_After_Quality_Info",
          app_sequence=['consent_form','Delegation_After_Quality'],
          num_demo_participants=1,
-         completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
+         #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
      ),
      dict(
          name="Delegation_Before_Quality_Info",
          app_sequence=['consent_form','Delegation_Before_Quality'],
          num_demo_participants=1,
-         completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
+         #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
      ),
 
 ]
@@ -63,7 +63,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=.1, 
     participation_fee=0.00, 
     doc="",
-    completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
+    #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
 )
 
 PARTICIPANT_FIELDS = []
