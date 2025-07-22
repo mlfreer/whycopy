@@ -911,7 +911,8 @@ class Results(Page):
             second_payment_round = player.payment_block*5 + 5,
             payment_block = player.payment_block + 1,
             paricipation_fee = (C.PARTICIPATION_FEE),
-            treatment_index = p.treatment_index
+            treatment_index = p.treatment_index,
+            completionlink=player.subsession.session.config['completionlink']
             )
 
 class ProlificID(Page):

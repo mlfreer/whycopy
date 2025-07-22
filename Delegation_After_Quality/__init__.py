@@ -903,6 +903,7 @@ class Results(Page):
         return player.subsession.round_number == C.NUM_ROUNDS
     template_name = '_static/templates/Delegation_Results.html'
 
+
     @staticmethod
     def vars_for_template(player):
         p = player.in_round(player.payment_round)
@@ -911,7 +912,8 @@ class Results(Page):
             second_payment_round = player.payment_block*5 + 5,
             payment_block = player.payment_block + 1,
             paricipation_fee = (C.PARTICIPATION_FEE),
-            treatment_index = p.treatment_index
+            treatment_index = p.treatment_index,
+            completionlink=player.subsession.session.config['completionlink']
             )
 
 class ProlificID(Page):
