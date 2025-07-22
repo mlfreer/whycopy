@@ -913,7 +913,7 @@ class Results(Page):
             payment_block = player.payment_block + 1,
             paricipation_fee = (C.PARTICIPATION_FEE),
             treatment_index = p.treatment_index,
-            completionlink=player.subsession.session.config['completionlink']
+            #completionlink=player.subsession.session.config['completionlink']
             )
 
 class ProlificID(Page):
