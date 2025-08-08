@@ -1013,7 +1013,7 @@ class SimpleDelegation(Page):
         return (player.treatment_index == 1) and (player.subsession.round_number % C.BLOCK_SIZE == 0)
 
 #    template_name='_static/templates/SimpleDelegationDecision.html'
-    template_name = './Delegation_After_Quality/SimpleDelegation.html'
+#    template_name = './Delegation_After_Quality/SimpleDelegation.html'
     form_model = 'player'
     form_fields = ['simple_delegation']
     @staticmethod
