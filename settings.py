@@ -36,9 +36,16 @@ SESSION_CONFIGS = [
 #         app_sequence=['consent_form','delegation_salient_price'],
 #         num_demo_participants=1,
 #     ),
+    
      dict(
          name="Delegation_After_Quality_Info",
          app_sequence=['consent_form','Delegation_After_Quality'],
+         num_demo_participants=1,
+         #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
+     ),
+     dict(
+         name="Delegation_After_Quality_Info_High_Costs",
+         app_sequence=['consent_form','delegation_after_high_costs'],
          num_demo_participants=1,
          #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
      ),
@@ -51,7 +58,7 @@ SESSION_CONFIGS = [
 
 ]
 # DEBUG MODE:
-DEBUG=False
+DEBUG=True
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
