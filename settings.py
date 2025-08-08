@@ -38,14 +38,14 @@ SESSION_CONFIGS = [
 #     ),
     
      dict(
-         name="Delegation_After_Quality_Info",
-         app_sequence=['consent_form','Delegation_After_Quality'],
+         name="Delegation_After_Quality_Info_High_Costs",
+         app_sequence=['consent_form','delegation_after_high_costs'],
          num_demo_participants=1,
          #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
      ),
      dict(
-         name="Delegation_After_Quality_Info_High_Costs",
-         app_sequence=['consent_form','delegation_after_high_costs'],
+         name="Delegation_After_Quality_Info",
+         app_sequence=['consent_form','Delegation_After_Quality'],
          num_demo_participants=1,
          #completionlink="https://app.prolific.co/submissions/complete?cc=6E1B1776",
      ),
