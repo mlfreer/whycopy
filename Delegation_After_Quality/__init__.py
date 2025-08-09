@@ -965,6 +965,13 @@ class Risk(Page):
 class DelegationInstructions(Page):
     def is_displayed(player):
         return player.subsession.round_number % C.BLOCK_SIZE == 0
+
+    @staticmethod
+    def vars_for_template(player):
+        return dict(
+            token_delegation_costs = int(C.DELEGATION_COSTS*20)
+            )
+
 #    template_name='_static/templates/DelegationInstructions.html'
 
 
